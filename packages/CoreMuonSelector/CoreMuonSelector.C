@@ -1,15 +1,17 @@
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////                                                                                             /////////////
+/////////////                                     CORE MUON SELECTOR                                      /////////////
+/////////////                                                                                             /////////////
+/////////////                                  Juan R. Castiñeiras (IFCA)                                 /////////////
+/////////////                                          Jun 2016                                           /////////////
+/////////////                                                                                             /////////////
+/////////////                              -> Adjust to a 120 width window <-                             /////////////
+/////////////                                                                                             /////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/////            Muon Studies for CSA14                     ////
-
-/////        A. Calderón (IFCA)   18 / 08 / 2014            ////
-
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-
-
-#include "BasicmuonAnalyzer.h"
+#include "CoreMuonSelector.h"
 
 #include "TH1.h"
 #include "TH2.h"
@@ -25,10 +27,10 @@
 
 #include "TDatabasePDG.h"
 
-ClassImp(BasicmuonAnalyzer)
+ClassImp(CoreMuonSelector)
 
 // Initialise input parameters and data members for all events
-void BasicmuonAnalyzer::Initialise() {
+void CoreMuonSelector::Initialise() {
 
   _Signal = GetParam<TString>("Signal");
   _IsDATA = GetParam<bool>("IsDATA");
@@ -42,7 +44,7 @@ void BasicmuonAnalyzer::Initialise() {
   _factN = 1.;
   if (!_IsDATA && _XSection > 0) _factN = _XSection * _Luminosity / _NEvents;
 
-  //Counting
+  //For counting
   GCount_AllEvents = 0;
   GCount_GenEvents = 0;
   GCount_Fiducial_AtLeast2 = 0;
@@ -100,7 +102,7 @@ void BasicmuonAnalyzer::Initialise() {
 }
 
 
-void BasicmuonAnalyzer::InsideLoop() {
+void CoreMuonSelector::InsideLoop() {
  
  // The InsideLoop() function is called for each entry in the tree to be processed  
 
@@ -212,7 +214,7 @@ void BasicmuonAnalyzer::InsideLoop() {
 //---------------------------------------------------------------------------------------------------------------------
 // CheckMuons: Fill bool std::vectors of size G_RecoMuSize to indicate if the RECO muons pass several IDs and ISOs.
 //---------------------------------------------------------------------------------------------------------------------
-void BasicmuonAnalyzer::CheckMuons() {
+void CoreMuonSelector::CheckMuons() {
 
   int count = 0; // for counting how many muons pass the fiducial selection
   
@@ -282,7 +284,7 @@ void BasicmuonAnalyzer::CheckMuons() {
 //---------------------------------------------------------------------------------------------------------------------
 // passMediumID: return true if the RECO muon of index 'iMu' passes the Medium ID
 //---------------------------------------------------------------------------------------------------------------------
-bool BasicmuonAnalyzer::passMediumID(int iMu) {
+bool CoreMuonSelector::passMediumID(int iMu) {
 
   bool isMuonID = false;
   bool goodGLB = false;
@@ -303,7 +305,7 @@ bool BasicmuonAnalyzer::passMediumID(int iMu) {
 // passISO: return true if the RECO muon of index 'iMu' passes the PF Relative Isolation indicated by 'typeIso'
 //          with a working point 'wp', with the help of getISO() member function
 //---------------------------------------------------------------------------------------------------------------------
-bool BasicmuonAnalyzer::passISO(int iMu, string typeIso, float wp) {
+bool CoreMuonSelector::passISO(int iMu, string typeIso, float wp) {
 
   bool passIso = false;
 
@@ -318,7 +320,7 @@ bool BasicmuonAnalyzer::passISO(int iMu, string typeIso, float wp) {
 //---------------------------------------------------------------------------------------------------------------------
 // getISO: return, for the RECO muon of index 'iMu', the PF Relative Isolation indicated by 'typeIso' 
 //---------------------------------------------------------------------------------------------------------------------
-float BasicmuonAnalyzer::getISO(int iMu, string typeIso) {
+float CoreMuonSelector::getISO(int iMu, string typeIso) {
   
   float PFRelIso = 999.9;
   float pt = Get<float>("T_Muon_Pt",iMu);
@@ -364,7 +366,7 @@ float BasicmuonAnalyzer::getISO(int iMu, string typeIso) {
 // SetGenInfo: Retrieve all GEN prompt muons, or muons coming from a prompt tau decay, ordered by Pt.
 //             Also indicate if there are 2 GEN prompt muons found.
 // --------------------------------------------------------------------------------------------------------------------
-void BasicmuonAnalyzer::SetGenInfo() {
+void CoreMuonSelector::SetGenInfo() {
   
   UInt_t genPromptMuSize = 0;
   genPromptMuSize = Get<std::vector<float>*>("T_Gen_PromptMuon_Px")->size();
@@ -587,7 +589,7 @@ void BasicmuonAnalyzer::SetGenInfo() {
 //               * 2: matched to the 2nd GEN prompt muon
 //               * 0: not matched to any GEN prompt muon
 //---------------------------------------------------------------------------------------------------------------------
-void BasicmuonAnalyzer::GetMatching() {
+void CoreMuonSelector::GetMatching() {
 
   UInt_t GenSize = 0;
   GenSize = G_GEN_PromptMuon_4vec.size();
@@ -649,7 +651,7 @@ void BasicmuonAnalyzer::GetMatching() {
 //---------------------------------------------------------------------------------------------------------------------
 // SetEventFlags: Assign some event flags to get ready to pass them as parameters to other selectors
 //---------------------------------------------------------------------------------------------------------------------
-void BasicmuonAnalyzer::SetEventFlags() {
+void CoreMuonSelector::SetEventFlags() {
 
   if (G_RecoMuSize >= 2) {
     Flag_Fiducial = G_MuonID_Fiducial[0] && G_MuonID_Fiducial[1];
@@ -666,7 +668,7 @@ void BasicmuonAnalyzer::SetEventFlags() {
 // Counting: Increments several counting variables to display the number of events fulfilling certain criteria during
 //           the Summary method
 //---------------------------------------------------------------------------------------------------------------------
-void BasicmuonAnalyzer::Counting() {
+void CoreMuonSelector::Counting() {
 
   ++GCount_AllEvents;
   if (G_GEN_Pass) ++GCount_GenEvents;
@@ -792,7 +794,7 @@ void BasicmuonAnalyzer::Counting() {
 }
 
 
-void BasicmuonAnalyzer::Summary() {
+void CoreMuonSelector::Summary() {
   // Get Data Members at the client-master (after finishing the analysis at the workers nodes)
   // Only data members set here will be accesible at the client-master
 

@@ -1,14 +1,15 @@
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-
-/////            Muon Studies for CSA14                     ////
-
-/////        A. Calderón (IFCA)   18 / 08 / 2014            ////
-
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////                                                                                             /////////////
+/////////////                                     CORE MUON SELECTOR                                      /////////////
+/////////////                                                                                             /////////////
+/////////////                                  Juan R. Castiñeiras (IFCA)                                 /////////////
+/////////////                                          Jun 2016                                           /////////////
+/////////////                                                                                             /////////////
+/////////////                              -> Adjust to a 120 width window <-                             /////////////
+/////////////                                                                                             /////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
@@ -21,10 +22,10 @@
 #include "Riostream.h"  
 
 
-class BasicmuonAnalyzer: public PAFChainItemSelector{
+class CoreMuonSelector: public PAFChainItemSelector{
   
  public:
-  virtual ~BasicmuonAnalyzer() {}
+  virtual ~CoreMuonSelector() {}
   
   virtual void                Initialise();
   virtual void                InsideLoop();
@@ -55,7 +56,7 @@ class BasicmuonAnalyzer: public PAFChainItemSelector{
   bool                        G_GEN_isMuTau;     // "                        "  but the 2nd (in Pt) comes from a tau
   bool                        G_GEN_isTauMu;     // "                        "  but the 1st comes from a tau
   bool                        G_GEN_isTauTau;    // "                        "  and both come from a tau
-  bool                        G_GEN_Pass;         // 1 of the 4 above is true
+  bool                        G_GEN_Pass;        // 1 of the 4 above is true
   bool                        G_GEN_isNonPrompt; //There is at least a GEN non prompt muon
   
   // RECO muons
@@ -163,7 +164,7 @@ class BasicmuonAnalyzer: public PAFChainItemSelector{
 
 
  public:  
- BasicmuonAnalyzer() : 
+ CoreMuonSelector() : 
      PAFChainItemSelector(),
      G_GEN_isMuMu(),
      G_GEN_isMuTau(),
@@ -234,5 +235,5 @@ class BasicmuonAnalyzer: public PAFChainItemSelector{
      _factN()
        { }
 
-   ClassDef(BasicmuonAnalyzer,0);
+   ClassDef(CoreMuonSelector,0);
 };

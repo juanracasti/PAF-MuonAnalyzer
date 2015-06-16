@@ -1,13 +1,19 @@
-///////////////////////////////////////////////////////////////////////
-//
-//
-/////////////////////////////////////////////////////////////
-/////////////          MUON ANALYSIS            /////////////
-/////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////                                                                                             /////////////
+/////////////                                    MUON ANALYSIS WITH PAF                                   /////////////
+/////////////                                                                                             /////////////
+/////////////                                  Juan R. Castiñeiras (IFCA)                                 /////////////
+/////////////                                          Jun 2016                                           /////////////
+/////////////                                                                                             /////////////
+/////////////                              -> Adjust to a 120 width window <-                             /////////////
+/////////////                                                                                             /////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "TSelector.h"
 
-void RunBasicmuonAnalyzer(const char* data) {
+void RunMuonAnalyzer(const char* data) {
  
   gSystem->Load("libPAF.so");   
 
@@ -24,10 +30,10 @@ void RunBasicmuonAnalyzer(const char* data) {
 
   // **** INITIALISE PAF PROJECT
 
+  // Create Project in Sequential Environment mode
   PAFProject* myProject = new PAFProject( new PAFSequentialEnvironment() );
 
   myProject->SetDefaultTreeName("demo/Tree");
-
 
 
   //+++++++++++++++++++++++++++++++++
@@ -181,7 +187,10 @@ void RunBasicmuonAnalyzer(const char* data) {
   ///////////////////////////////
   // SELECTOR AND PACKAGES
 
-  myProject->AddSelectorPackage("BasicmuonAnalyzer");
+  //Add the core selector, this one is essential 
+  myProject->AddSelectorPackage("CoreMuonSelector");
+
+  //Add the additional selectors if needed (and if available! :) )
 
   // RUN THE ANALYSIS
   // ================
