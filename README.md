@@ -89,6 +89,6 @@ Now proceed with caution. Only follow the steps below if you have made contribut
 
 Open a new tab in your browser with your copy of the repository:
 
-    https://github.com/your_github_username/MuonTreeAnalyzer
+    https://github.com/YOUR_GITHUB_USERNAME/PAF-MuonAnalyzer
 
-Open a new pull request with your commits and a brief description of the changes. Eventually it will be accepted and integrated into the origin repository.
+And open a new pull request with your commits and a brief description of the changes. Eventually it will be accepted and integrated into the origin repository.
