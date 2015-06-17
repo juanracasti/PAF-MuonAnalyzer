@@ -64,15 +64,15 @@ Always check if the code compiles and produces the expected results before submi
 You may not want to do this if you just want to keep your own copy of the repository and then do your own stuff locally. However it is always good to maintain some sort of version control!
 Always check if the code compiles and produces the expected results before submitting any changes.
 Now, if you do want to commit your changes, do the following trick. This is just to make git work properly when submitting your own changes (it avoids using a ssh key):
-  Go to another directory if you like, and set the CMS environment:
+ ·Go to another directory if you like, and set the CMS environment:
 
      source /cvmfs/cms.cern.ch/cmsset_default.sh
 
-  And the architecture:
+ ·And the architecture:
 
      export SCRAM_ARCH=slc6_amd64_gcc481
 
-  Now you can choose your favorite CMSSW release.
+ ·Now you can choose your favorite CMSSW release.
 
      cmsrel CMSSW_7_4_0
      cd CMSSW_7_2_4/src
