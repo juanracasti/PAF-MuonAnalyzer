@@ -133,10 +133,12 @@ void CoreMuonSelector::InsideLoop() {
 
   G_MuonISO03.clear();
   G_MuonISO03_dBeta.clear();
-  G_MuonISO03_PFWeights.clear();
+  G_MuonISO03_PFWeighted.clear();
+  G_MuonISO03_PUPPI.clear();
   G_MuonISO04.clear();
   G_MuonISO04_dBeta.clear();
-  G_MuonISO04_PFWeights.clear();
+  G_MuonISO04_PFWeighted.clear();
+  G_MuonISO04_PUPPI.clear();
 
   G_Muon_Matching.clear();
   
@@ -148,16 +150,17 @@ void CoreMuonSelector::InsideLoop() {
   G_PassMatching = false;
 
   // Event Flags
-  Flag_Fiducial = false;
-  Flag_Gen      = false;
-  Flag_Matching = false;
+  EvtFlag_Fiducial = false;
+  EvtFlag_Gen      = false;
+  EvtFlag_Matching = false;
 
 
   //------------------------------------------------------------------------------
   // Get all RECO muons
   //------------------------------------------------------------------------------
 
-  G_RecoMuSize = GetSizeOf<float>("T_Muon_Px");
+  G_RecoMuSize = Get<std::vector<float>*>("T_Muon_Px")->size();
+  //G_RecoMuSize = GetSizeOf<float>("T_Muon_Px");
   
   for (unsigned int i = 0; i < G_RecoMuSize; ++i) {
     
@@ -189,7 +192,8 @@ void CoreMuonSelector::InsideLoop() {
   // Get number of good vertex per event
   //------------------------------------------------------------------------------
 
-  G_NPV = GetSizeOf<float>("T_Vertex_z");
+  G_NPV = Get<std::vector<float>*>("T_Vertex_z")->size();
+  //G_NPV = GetSizeOf<float>("T_Vertex_z");
   h_N_PV->Fill(G_NPV, _factN);
 
   //------------------------------------------------------------------------------
@@ -197,6 +201,42 @@ void CoreMuonSelector::InsideLoop() {
   //------------------------------------------------------------------------------
 
   SetEventFlags();
+
+  //------------------------------------------------------------------------------
+  // Set Parameters for other selectors. This is the main point of this selector
+  //------------------------------------------------------------------------------
+
+  // SetParam("Muon_4vec",            G_Muon_4vec);
+  // SetParam("GEN_PromptMuon_4vec",  G_GEN_PromptMuon_4vec);
+  // SetParam("GEN_Muon_4vec",        G_GEN_Muon_4vec);
+
+  // SetParam("MuonID_Tight",         G_MuonID_Tight);
+  // SetParam("MuonID_Medium",        G_MuonID_Medium);
+  // SetParam("MuonID_HWW",           G_MuonID_HWW);
+  // SetParam("MuonID_IPs_HWW",       G_MuonID_IPs_HWW);
+  // SetParam("MuonID_GLBorTRKArb",   G_MuonID_GLBorTRKArb);
+  // SetParam("MuonID_Fiducial",      G_MuonID_Fiducial);
+
+  // SetParam("MuonISO03",            G_MuonISO03);
+  // SetParam("MuonISO03_dBeta",      G_MuonISO03_dBeta);
+  // SetParam("MuonISO03_PFWeighted", G_MuonISO03_PFWeighted);
+  // SetParam("MuonISO03_PUPPI",      G_MuonISO03_PUPPI);
+  // SetParam("MuonISO04",            G_MuonISO04);
+  // SetParam("MuonISO04_dBeta",      G_MuonISO04_dBeta);
+  // SetParam("MuonISO04_PFWeighted", G_MuonISO04_PFWeighted);
+  // SetParam("MuonISO04_PUPPI",      G_MuonISO04_PUPPI);
+
+  // SetParam("Muon_Matching",        G_Muon_Matching);
+
+  // SetParam("RecoMuSize",           G_RecoMuSize);
+  // SetParam("NPV",                  G_NPV);
+
+  // SetParam("FLAG_Fiducial",        EvtFlag_Fiducial);
+  // SetParam("FLAG_Gen",             EvtFlag_Gen);
+  // SetParam("FLAG_Matching",        EvtFlag_Matching);
+
+  // int prueba = 0;
+  // SetParam("Prueba",prueba);
 
   //------------------------------------------------------------------------------
   // Do Event Counting
@@ -247,6 +287,7 @@ void CoreMuonSelector::CheckMuons() {
       muon_sel[12] = fabs(Get<float>("T_Muon_BestTrack_dz",i)) < 0.1;
       muon_sel[13] = Get<bool>("T_Muon_IsTightMuon",i);
       muon_sel[14] = passMediumID(i);
+      muon_sel[14] = Exists("T_Muon_IsMediumMuon") ? Get<bool>("T_Muon_IsMediumMuon",i) : passMediumID(i);
       
       muon_sel[15] = (((muon_sel[2] && muon_sel[4] && muon_sel[5] && muon_sel[6]) || muon_sel[3]) &&
 		     muon_sel[7] && muon_sel[8] && muon_sel[11] && muon_sel[12]);
@@ -260,13 +301,14 @@ void CoreMuonSelector::CheckMuons() {
       G_MuonID_GLBorTRKArb.push_back(muon_sel[16]);
       G_MuonID_Fiducial.push_back(muon_sel[0]);
 
-
-      G_MuonISO03.push_back(          passISO(i, "R03",          0.12));
-      G_MuonISO03_dBeta.push_back(    passISO(i, "dBetaR03",     0.12));
-      G_MuonISO03_PFWeights.push_back(passISO(i, "PFWeightsR03", 0.12));
-      G_MuonISO04.push_back(          passISO(i, "R04",          0.12));
-      G_MuonISO04_dBeta.push_back(    passISO(i, "dBetaR04",     0.12));
-      G_MuonISO04_PFWeights.push_back(passISO(i, "PFWeightsR04", 0.12));
+      G_MuonISO03.push_back(           passISO(i, "R03",           0.12));
+      G_MuonISO03_dBeta.push_back(     passISO(i, "dBetaR03",      0.12));
+      G_MuonISO03_PFWeighted.push_back(passISO(i, "PFWeightedR03", 0.12));
+      G_MuonISO03_PUPPI.push_back(     passISO(i, "PUPPIR03",      0.12));
+      G_MuonISO04.push_back(           passISO(i, "R04",           0.12));
+      G_MuonISO04_dBeta.push_back(     passISO(i, "dBetaR04",      0.12));
+      G_MuonISO04_PFWeighted.push_back(passISO(i, "PFWeightedR04", 0.12));
+      G_MuonISO04_PUPPI.push_back(     passISO(i, "PUPPIR04",      0.12));
 
       if (muon_sel[0]) count++;
 
@@ -349,12 +391,20 @@ float CoreMuonSelector::getISO(int iMu, string typeIso) {
 								    0.5 * Get<float>("T_Muon_sumPUPtR04",iMu)) )
       / pt;
 
-  else if (typeIso == "PFWeightsR03") // PF Rel. ISO, dR=0.3 and PF-weighted corrections
+  else if (typeIso == "PFWeightedR03") // PF Rel. ISO, dR=0.3 and PF-weighted corrections
     PFRelIso = ( Get<float>("T_Muon_chargedHadronIsoR03",iMu) + Get<float>("T_Muon_neutralIsoPFweightR03",iMu) )
       / pt;
 
-  else if (typeIso == "PFWeightsR04") // PF Rel. ISO, dR=0.4 and PF-weighted corrections
+  else if (typeIso == "PFWeightedR04") // PF Rel. ISO, dR=0.4 and PF-weighted corrections
     PFRelIso = ( Get<float>("T_Muon_chargedHadronIsoR04",iMu) + Get<float>("T_Muon_neutralIsoPFweightR04",iMu) )
+      / pt;
+
+  else if (Exists("T_Muon_neutralIsoPUPPIR03") && typeIso == "PUPPIR03") // PF Rel. ISO, dR=0.3 and PUPPI corr.
+    PFRelIso = ( Get<float>("T_Muon_chargedHadronIsoR03",iMu) + Get<float>("T_Muon_neutralIsoPUPPIR03",iMu) )
+      / pt;
+
+  else if (Exists("T_Muon_neutralIsoPUPPIR04") && typeIso == "PUPPIR04") // PF Rel. ISO, dR=0.4 and PUPPI corr.
+    PFRelIso = ( Get<float>("T_Muon_chargedHadronIsoR04",iMu) + Get<float>("T_Muon_neutralIsoPUPPIR04",iMu) )
       / pt;
 
   return PFRelIso;
@@ -370,9 +420,11 @@ void CoreMuonSelector::SetGenInfo() {
   
   UInt_t genPromptMuSize = 0;
   genPromptMuSize = Get<std::vector<float>*>("T_Gen_PromptMuon_Px")->size();
+  //genPromptMuSize = GetSizeOf<float>("T_Gen_PromptMuon_Px");
   
   UInt_t genPromptTauSize = 0;
   genPromptTauSize = Get<std::vector<float>*>("T_Gen_PromptTau_Px")->size();
+  //genPromptTauSize = GetSizeOf<float>("T_Gen_PromptTau_Px");
   
   TLorentzVector p1 = TLorentzVector(0,0,0,0);
   TLorentzVector p2 = TLorentzVector(0,0,0,0);
@@ -383,6 +435,7 @@ void CoreMuonSelector::SetGenInfo() {
      
     UInt_t genNonPromptMuSize = 0;
     genNonPromptMuSize = Get<std::vector<float>*>("T_Gen_Muon_Px")->size();
+    //genNonPromptMuSize = GetSizeOf<float>("T_Gen_Muon_Px");
     
     if ( genPromptMuSize == 1 && fabs(Get<int>("T_Gen_PromptMuon_MpdgId",0)) == 24) 
       
@@ -654,13 +707,13 @@ void CoreMuonSelector::GetMatching() {
 void CoreMuonSelector::SetEventFlags() {
 
   if (G_RecoMuSize >= 2) {
-    Flag_Fiducial = G_MuonID_Fiducial[0] && G_MuonID_Fiducial[1];
+    EvtFlag_Fiducial = G_MuonID_Fiducial[0] && G_MuonID_Fiducial[1];
   }
 
-  Flag_Gen = G_GEN_Pass;
+  EvtFlag_Gen = G_GEN_Pass;
 
-  Flag_Matching = G_PassMatching;
-  if (_IsDATA) Flag_Matching = true;
+  EvtFlag_Matching = G_PassMatching;
+  if (_IsDATA) EvtFlag_Matching = true;
 
 }
 

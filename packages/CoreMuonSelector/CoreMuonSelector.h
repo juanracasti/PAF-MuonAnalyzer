@@ -74,10 +74,12 @@ class CoreMuonSelector: public PAFChainItemSelector{
 
   std::vector<bool>           G_MuonISO03;            //Which RECO muons pass PF Rel. ISO, dR=0.3 (w.p. = 0.12)
   std::vector<bool>           G_MuonISO03_dBeta;      // ""                            "", dR=0.3 and dBeta corr.
-  std::vector<bool>           G_MuonISO03_PFWeights;  // ""                            "", dR=0.3 and PFweights corr.
+  std::vector<bool>           G_MuonISO03_PFWeighted; // ""                            "", dR=0.3 and PFweighted corr.
+  std::vector<bool>           G_MuonISO03_PUPPI;      // ""                            "", dR=0.3 and PUPPI corr.
   std::vector<bool>           G_MuonISO04;            // ""                            "", dR=0.4
   std::vector<bool>           G_MuonISO04_dBeta;      // ""                            "", dR=0.4 and dBeta corr.
-  std::vector<bool>           G_MuonISO04_PFWeights;  // ""                            "", dR=0.4 and PFweights corr.
+  std::vector<bool>           G_MuonISO04_PFWeighted; // ""                            "", dR=0.4 and PFweighted corr.
+  std::vector<bool>           G_MuonISO04_PUPPI;      // ""                            "", dR=0.4 and PUPPI corr.
 
   std::vector<int>            G_Muon_Matching;        //To which GEN prompt muon the RECO muons are matched
                                                       //  * 1: matched to the 1st GEN prompt muon
@@ -91,9 +93,9 @@ class CoreMuonSelector: public PAFChainItemSelector{
   UInt_t                      G_NPV;             //How many Primary Vtx. there are
 
   // Event Flags
-  bool                        Flag_Fiducial; // 1st and 2nd muon pass Fiducial Selection
-  bool                        Flag_Gen;      // Same as G_GEN_Pass
-  bool                        Flag_Matching; // Same as G_PassMatching
+  bool                        EvtFlag_Fiducial; // 1st and 2nd muon pass Fiducial Selection
+  bool                        EvtFlag_Gen;      // Same as G_GEN_Pass
+  bool                        EvtFlag_Matching; // Same as G_PassMatching
 
 
   // VARIABLES FOR ALL EVENTS (to be initialized only once)
@@ -175,9 +177,9 @@ class CoreMuonSelector: public PAFChainItemSelector{
      G_PassMatching(),
      G_RecoMuSize(),
      G_NPV(),
-     Flag_Fiducial(),
-     Flag_Gen(),
-     Flag_Matching(),
+     EvtFlag_Fiducial(),
+     EvtFlag_Gen(),
+     EvtFlag_Matching(),
        
      GCount_AllEvents(),
      GCount_GenEvents(),
