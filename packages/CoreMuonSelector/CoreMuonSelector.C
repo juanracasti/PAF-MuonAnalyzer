@@ -157,7 +157,8 @@ void CoreMuonSelector::InsideLoop() {
   // Get all RECO muons
   //------------------------------------------------------------------------------
 
-  G_RecoMuSize = GetSizeOf<float>("T_Muon_Px");
+  //G_RecoMuSize = Get<std::vector<float>*>("T_Muon_Px")->size();
+  G_RecoMuSize = GetSizeOf("T_Muon_Px");
   
   for (unsigned int i = 0; i < G_RecoMuSize; ++i) {
     
@@ -189,7 +190,8 @@ void CoreMuonSelector::InsideLoop() {
   // Get number of good vertex per event
   //------------------------------------------------------------------------------
 
-  G_NPV = GetSizeOf<float>("T_Vertex_z");
+  //G_NPV = Get<std::vector<float>*>("T_Vertex_z")->size();
+  G_NPV = GetSizeOf("T_Vertex_z");
   h_N_PV->Fill(G_NPV, _factN);
 
   //------------------------------------------------------------------------------
@@ -369,10 +371,12 @@ float CoreMuonSelector::getISO(int iMu, string typeIso) {
 void CoreMuonSelector::SetGenInfo() {
   
   UInt_t genPromptMuSize = 0;
-  genPromptMuSize = Get<std::vector<float>*>("T_Gen_PromptMuon_Px")->size();
+  genPromptMuSize = GetSizeOf("T_Gen_PromptMuon_Px");
+  //genPromptMuSize = Get<std::vector<float>*>("T_Gen_PromptMuon_Px")->size();
   
   UInt_t genPromptTauSize = 0;
-  genPromptTauSize = Get<std::vector<float>*>("T_Gen_PromptTau_Px")->size();
+  genPromptTauSize = GetSizeOf("T_Gen_PromptTau_Px");
+  //genPromptTauSize = Get<std::vector<float>*>("T_Gen_PromptTau_Px")->size();
   
   TLorentzVector p1 = TLorentzVector(0,0,0,0);
   TLorentzVector p2 = TLorentzVector(0,0,0,0);
@@ -382,7 +386,8 @@ void CoreMuonSelector::SetGenInfo() {
   {
      
     UInt_t genNonPromptMuSize = 0;
-    genNonPromptMuSize = Get<std::vector<float>*>("T_Gen_Muon_Px")->size();
+    genNonPromptMuSize = GetSizeOf("T_Gen_Muon_Px");
+    //genNonPromptMuSize = Get<std::vector<float>*>("T_Gen_Muon_Px")->size();
     
     if ( genPromptMuSize == 1 && fabs(Get<int>("T_Gen_PromptMuon_MpdgId",0)) == 24) 
       
@@ -795,14 +800,15 @@ void CoreMuonSelector::Counting() {
 
 
 void CoreMuonSelector::Summary() {
+  
   // Get Data Members at the client-master (after finishing the analysis at the workers nodes)
   // Only data members set here will be accesible at the client-master
 
 
-  ///*** 1D histos ***/// 
+  /// 1D histos  
 
   h_N_PV  = FindOutput<TH1F*>("h_N_PV");  
-
+  
   cout << " ---------------------------------------------------" << endl;
   cout << " " << endl;  
   cout << " Number of Events::  " << _NEvents  << endl;
@@ -878,5 +884,5 @@ void CoreMuonSelector::Summary() {
   cout << "" << endl;
   cout << " ---------------------------------------------------" << endl;
 
-
-}
+  
+} 
