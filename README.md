@@ -41,9 +41,9 @@ Take a brief look at the file RunMuonAnalyzer.C. It's the one you will use to ru
 	root -l
 	.x RunMuonAnalyzer.C("SIGNAL")
 	
-where signal is one of the possible values. For example try:
+where SIGNAL is one of the possible values. For example try:
 
-	.x RunMuonAnalyzer.C("MC_DY_PU20bx25")
+	.x RunMuonAnalyzer.C("PHYS14_PU20bx25_MC_DY")
 
 # Edit the code
 Read the PAF documentation first! Despite that, the files are well documented and should be quite self-explanatory. Try to mantain that philosophy :)
