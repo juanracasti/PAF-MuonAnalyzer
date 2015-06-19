@@ -228,12 +228,12 @@ void CoreMuonSelector::InsideLoop() {
 
   // SetParam("Muon_Matching",        G_Muon_Matching);
 
-  SetParam("RecoMuSize",           G_RecoMuSize);
-  SetParam("NPV",                  G_NPV);
+  // SetParam("RecoMuSize",           G_RecoMuSize);
+  // SetParam("NPV",                  G_NPV);
 
-  SetParam("FLAG_Fiducial",        EvtFlag_Fiducial);
-  SetParam("FLAG_Gen",             EvtFlag_Gen);
-  SetParam("FLAG_Matching",        EvtFlag_Matching);
+  // SetParam("FLAG_Fiducial",        EvtFlag_Fiducial);
+  // SetParam("FLAG_Gen",             EvtFlag_Gen);
+  // SetParam("FLAG_Matching",        EvtFlag_Matching);
 
 
 
