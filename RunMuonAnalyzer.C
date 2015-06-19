@@ -17,174 +17,152 @@ void RunMuonAnalyzer(const char* data) {
  
   gSystem->Load("libPAF.so");   
 
-  float luminosity = 20000.0;
-  TString dataPath="/gpfs/csic_projects/tier3data/TreesPHYS14/PU20bx25/";
+  TString dataPath="/gpfs/csic_projects/tier3data/";
+  TString Path_PHYS14 = "/gpfs/csic_projects/tier3data/TreesPHYS14/";
+  TString Path_DR74X = "/gpfs/csic_projects/tier3data/TreesDR74X/";
   TString signal = data;
-  bool debug =  false; //For verbose while debugging
 
-  bool isdata = false;
-  int whichRun = 1;
-  int nEventsInTheSample = 1;
-  float xSection = 1.;
+  // Manual Input Parameters
+  float luminosity = 20000.0; //In pb-1
+  bool  debug      =  false;  //For verbose while debugging
+
+  // Automatic Input Parameters (don't touch)
+  bool  isdata             = false;
+  int   whichRun           = 1;
+  int   nEventsInTheSample = 1; //before skimming
+  float xSection           = 1.;
   
-
-  // **** INITIALISE PAF PROJECT
+  //---------------------------------
+  // INITIALISE PAF PROJECT
+  //---------------------------------
 
   // Create Project in Sequential Environment mode
   PAFProject* myProject = new PAFProject( new PAFSequentialEnvironment() );
 
+  // Set default name and subdirectory of Trees
   myProject->SetDefaultTreeName("demo/Tree");
 
 
-  //+++++++++++++++++++++++++++++++++
+  ////////////////////////////////////////////////
   // ADD SAMPLES
 
-  if (signal=="MC_GGHWW_PU20bx25") {
+  if (signal=="PHYS14_PU20bx25_MC_GGHWW") {
 
-    myProject->AddDataFile(dataPath + "Tree_HWW125.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_HWW125.root");
     
-    isdata = false;
+    isdata             = false;
     nEventsInTheSample = 99555; 
-    xSection =  1.0 ;
-    whichRun = 2; 
+    xSection           = 1.;
+    whichRun           = 2; 
  
   }
 
-  else if (signal=="MC_Wjets_PU20bx25") {
+  else if (signal=="PHYS14_PU20bx25_MC_Wjets") {
 
-    myProject->AddDataFile(dataPath + "Tree_WJets_Madgraph.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_WJets_Madgraph.root");
       
-    isdata = false;
+    isdata             = false;
     nEventsInTheSample = 10017462; 
-    xSection =  20508.9;
-    whichRun = 2;
+    xSection           = 20508.9;
+    whichRun           = 2;
 
  }
 
-  else if (signal=="MC_DY_PU20bx25") {
+  else if (signal=="PHYS14_PU20bx25_MC_DY") {
 
-    myProject->AddDataFile(dataPath + "Tree_ZJets_Madgraph.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_ZJets_Madgraph.root");
    
-    isdata = false;
+    isdata             = false;
     nEventsInTheSample = 2829164; 
-    xSection =  6025.2;
-    whichRun = 2;
+    xSection           = 6025.2;
+    whichRun           = 2;
 
  }
 
-  else if (signal=="MC_TTbar_PU20bx25") {
+  else if (signal=="PHYS14_PU20bx25_MC_TTbar") {
 
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_0.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_1.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_2.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_3.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_4.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_5.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_6.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_7.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_TTJets_MadSpin_0.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_TTJets_MadSpin_1.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_TTJets_MadSpin_2.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_TTJets_MadSpin_3.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_TTJets_MadSpin_4.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_TTJets_MadSpin_5.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_TTJets_MadSpin_6.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_TTJets_MadSpin_7.root");
    
-    isdata = false;
+    isdata             = false;
     nEventsInTheSample = 2829164; 
-    xSection =  6025.2;
-    whichRun = 2;
+    xSection           = 6025.2;
+    whichRun           = 2;
 
  }
 
+  else if (signal=="PHYS14_PU30bx50_MC_TTbar") {
 
-  else if (signal=="DY_ISO_PU20bx25") {
-
-    myProject->AddDataFile(dataPath + "Tree_ZJets_Madgraph.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU30bx50/Tree_TTJets_MadSpin_0.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU30bx50/Tree_TTJets_MadSpin_1.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU30bx50/Tree_TTJets_MadSpin_2.root");
    
-    isdata = false;
+    isdata             = false;
     nEventsInTheSample = 2829164; 
-    xSection =  6025.2;
-    whichRun = 2;
+    xSection           = 6025.2;
+    whichRun           = 2;
 
  }
 
-  else if (signal=="TTbar_ISO_PU20bx25") {
+  else if (signal=="PHYS14_PU20bx25_MC_QCD") {
 
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_0.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_1.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_2.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_3.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_4.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_5.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_6.root");
-    myProject->AddDataFile(dataPath + "Tree_TTJets_MadSpin_7.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_QCD_MuEnrichedPt15.root");
    
-    isdata = false;
-    nEventsInTheSample = 2829164; 
-    xSection =  6025.2;
-    whichRun = 2;
-
- }
-
-  else if (signal=="MC_TTbar_PU30bx50") {
-
-    myProject->AddDataFile("/gpfs/csic_projects/tier3data/TreesPHYS14/PU30bx50/Tree_TTJets_MadSpin_0.root");
-    myProject->AddDataFile("/gpfs/csic_projects/tier3data/TreesPHYS14/PU30bx50/Tree_TTJets_MadSpin_1.root");
-    myProject->AddDataFile("/gpfs/csic_projects/tier3data/TreesPHYS14/PU30bx50/Tree_TTJets_MadSpin_2.root");
-   
-    isdata = false;
-    nEventsInTheSample = 2829164; 
-    xSection =  6025.2;
-    whichRun = 2;
-
- }
-
-  else if (signal=="QCD_ISO_PU20bx25") {
-
-    myProject->AddDataFile(dataPath + "Tree_QCD_MuEnrichedPt15.root");
-   
-    isdata = false;
+    isdata             = false;
     nEventsInTheSample = 787547; 
-    xSection =  1;
-    whichRun = 2;
+    xSection           = 1;
+    whichRun           = 2;
 
  }
 
   else if (signal=="SingleMu_720") {
 
-    myProject->AddDataFile(dataPath + "Tree_SingleMu_mu2012D_720.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_SingleMu_mu2012D_720.root");
    
-    isdata = true;
+    isdata             = true;
     nEventsInTheSample = 301812;  
-    xSection =  1;
-    whichRun = 1;
+    xSection           = 1;
+    whichRun           = 1;
 
  }
 
   else if (signal=="SingleMu_740") {
 
-    myProject->AddDataFile(dataPath + "Tree_SingleMu_mu2012D_740.root");
+    myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_SingleMu_mu2012D_740.root");
    
-    isdata = true;
+    isdata             = true;
     nEventsInTheSample = 299035; 
-    xSection =  1;
-    whichRun = 1;
+    xSection           = 1;
+    whichRun           = 1;
 
  }
 
+  //Number of events to process
   myProject->SetNEvents(1000);
 
   ///////////////////////////////
   // INPUT PARAMETERS
  
-  myProject->SetInputParam("IsDATA", isdata);
-  myProject->SetInputParam("Signal", data);
-  myProject->SetInputParam("XSection", xSection);
-  myProject->SetInputParam("Luminosity", luminosity);
-  myProject->SetInputParam("NEvents", nEventsInTheSample); //before skimming
+  myProject->SetInputParam("IsDATA",       isdata);
+  myProject->SetInputParam("Signal",       data);
+  myProject->SetInputParam("XSection",     xSection);
+  myProject->SetInputParam("Luminosity",   luminosity);
+  myProject->SetInputParam("NEvents",      nEventsInTheSample);
   myProject->SetInputParam("luminosityPU", 19468.3);  
-  myProject->SetInputParam("WhichRun", whichRun);
-  myProject->SetInputParam("Debug", debug);
+  myProject->SetInputParam("WhichRun",     whichRun);
+  myProject->SetInputParam("Debug",        debug);
 
   ///////////////////////////////
   // OUTPUT FILE NAME
   // Specify the name of the file where you want your histograms to be saved
 
-  myProject->SetOutputFile("phys14_"+signal+".root"); 
+  myProject->SetOutputFile(signal+".root"); 
 
   ///////////////////////////////
   // SELECTOR AND PACKAGES
@@ -192,14 +170,14 @@ void RunMuonAnalyzer(const char* data) {
   //Add the core selector, this one is essential 
   myProject->AddSelectorPackage("CoreMuonSelector");
 
-  //Add the additional selectors if needed (and if available! :) )
+  //Add the additional selectors if needed (and if available!)
 
   // RUN THE ANALYSIS
   // ================
 
   myProject->Run();
 
-  //
+  
   /////////////////////////////////////////////////////////////////////////
 
 
