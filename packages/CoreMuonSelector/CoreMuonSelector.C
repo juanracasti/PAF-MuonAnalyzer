@@ -98,6 +98,177 @@ void CoreMuonSelector::Initialise() {
   h_N_PV  = CreateH1F ("h_N_PV","h_N_PV",50,0,50); 
   h_N_PV->TH1::SetDefaultSumw2();
 
+  h_Eff_pt_Matched[0]              = CreateH1F("h_Eff_pt_Matched_Mu1",
+					       "h_Eff_pt_Matched_Mu1",              200, 0, 200);
+  h_Eff_pt_Matched[1]              = CreateH1F("h_Eff_pt_Matched_Mu2",
+					       "h_Eff_pt_Matched_Mu2",              200, 0, 200);
+  h_Eff_pt_TightID[0]              = CreateH1F("h_Eff_pt_TightID_Mu1",
+					       "h_Eff_pt_TightID_Mu1",              200, 0, 200);
+  h_Eff_pt_TightID[1]              = CreateH1F("h_Eff_pt_TightID_Mu2",
+					       "h_Eff_pt_TightID_Mu2",              200, 0, 200);
+  h_Eff_pt_MediumID[0]             = CreateH1F("h_Eff_pt_MediumID_Mu1",
+					       "h_Eff_pt_MediumID_Mu1",             200, 0, 200);
+  h_Eff_pt_MediumID[1]             = CreateH1F("h_Eff_pt_MediumID_Mu2",
+					       "h_Eff_pt_MediumID_Mu2",             200, 0, 200);
+  h_Eff_pt_HWWID[0]                = CreateH1F("h_Eff_pt_HWWID_Mu1",
+					       "h_Eff_pt_HWWID_Mu1",                200, 0, 200);
+  h_Eff_pt_HWWID[1]                = CreateH1F("h_Eff_pt_HWWID_Mu2",
+					       "h_Eff_pt_HWWID_Mu2",                200, 0, 200);
+  h_Eff_pt_TightIDipsHWW[0]        = CreateH1F("h_Eff_pt_TightIDipsHWW_Mu1",
+					       "h_Eff_pt_TightIDipsHWW_Mu1",        200, 0, 200);
+  h_Eff_pt_TightIDipsHWW[1]        = CreateH1F("h_Eff_pt_TightIDipsHWW_Mu2",
+					       "h_Eff_pt_TightIDipsHWW_Mu2",        200, 0, 200);
+  h_Eff_pt_MediumIDipsHWW[0]       = CreateH1F("h_Eff_pt_MediumIDipsHWW_Mu1",
+					       "h_Eff_pt_MediumIDipsHWW_Mu1",       200, 0, 200);
+  h_Eff_pt_MediumIDipsHWW[1]       = CreateH1F("h_Eff_pt_MediumIDipsHWW_Mu2",
+					       "h_Eff_pt_MediumIDipsHWW_Mu2",       200, 0, 200);
+  h_Eff_pt_TightISO03[0]           = CreateH1F("h_Eff_pt_TightISO03_Mu1", 
+					       "h_Eff_pt_TightISO03_Mu1",           200, 0, 200);
+  h_Eff_pt_TightISO03[1]           = CreateH1F("h_Eff_pt_TightISO03_Mu2", 
+					       "h_Eff_pt_TightISO03_Mu2",           200, 0, 200);
+  h_Eff_pt_TightISO04[0]           = CreateH1F("h_Eff_pt_TightISO04_Mu1", 
+					       "h_Eff_pt_TightISO04_Mu1",           200, 0, 200);
+  h_Eff_pt_TightISO04[1]           = CreateH1F("h_Eff_pt_TightISO04_Mu2", 
+					       "h_Eff_pt_TightISO04_Mu2",           200, 0, 200);
+  h_Eff_pt_TightISO03dBeta[0]      = CreateH1F("h_Eff_pt_TightISO03dBeta_Mu1", 
+					       "h_Eff_pt_TightISO03dBeta_Mu1",      200, 0, 200);
+  h_Eff_pt_TightISO03dBeta[1]      = CreateH1F("h_Eff_pt_TightISO03dBeta_Mu2", 
+					       "h_Eff_pt_TightISO03dBeta_Mu2",      200, 0, 200);
+  h_Eff_pt_TightISO04dBeta[0]      = CreateH1F("h_Eff_pt_TightISO04dBeta_Mu1", 
+					       "h_Eff_pt_TightISO04dBeta_Mu1",      200, 0, 200);
+  h_Eff_pt_TightISO04dBeta[1]      = CreateH1F("h_Eff_pt_TightISO04dBeta_Mu2", 
+					       "h_Eff_pt_TightISO04dBeta_Mu2",      200, 0, 200);
+  h_Eff_pt_TightISO03PFWeighted[0] = CreateH1F("h_Eff_pt_TightISO03PFWeighted_Mu1", 
+					       "h_Eff_pt_TightISO03PFWeighted_Mu1", 200, 0, 200);
+  h_Eff_pt_TightISO03PFWeighted[1] = CreateH1F("h_Eff_pt_TightISO03PFWeighted_Mu2", 
+					       "h_Eff_pt_TightISO03PFWeighted_Mu2", 200, 0, 200);
+  h_Eff_pt_TightISO04PFWeighted[0] = CreateH1F("h_Eff_pt_TightISO04PFWeighted_Mu1", 
+					       "h_Eff_pt_TightISO04PFWeighted_Mu1", 200, 0, 200);
+  h_Eff_pt_TightISO04PFWeighted[1] = CreateH1F("h_Eff_pt_TightISO04PFWeighted_Mu2", 
+					       "h_Eff_pt_TightISO04PFWeighted_Mu2", 200, 0, 200);
+  h_Eff_pt_TightISO03PUPPI[0]      = CreateH1F("h_Eff_pt_TightISO03PUPPI_Mu1", 
+					       "h_Eff_pt_TightISO03PUPPI_Mu1",      200, 0, 200);
+  h_Eff_pt_TightISO03PUPPI[1]      = CreateH1F("h_Eff_pt_TightISO03PUPPI_Mu2", 
+					       "h_Eff_pt_TightISO03PUPPI_Mu2",      200, 0, 200);
+  h_Eff_pt_TightISO04PUPPI[0]      = CreateH1F("h_Eff_pt_TightISO04PUPPI_Mu1", 
+					       "h_Eff_pt_TightISO04PUPPI_Mu1",      200, 0, 200);
+  h_Eff_pt_TightISO04PUPPI[1]      = CreateH1F("h_Eff_pt_TightISO04PUPPI_Mu2", 
+					       "h_Eff_pt_TightISO04PUPPI_Mu2",      200, 0, 200);
+  
+  h_Eff_eta_Matched[0]              = CreateH1F("h_Eff_eta_Matched_Mu1",
+						"h_Eff_eta_Matched_Mu1",              50, -2.5, 2.5);
+  h_Eff_eta_Matched[1]              = CreateH1F("h_Eff_eta_Matched_Mu2",
+						"h_Eff_eta_Matched_Mu2",              50, -2.5, 2.5);
+  h_Eff_eta_TightID[0]              = CreateH1F("h_Eff_eta_TightID_Mu1",
+						"h_Eff_eta_TightID_Mu1",              50, -2.5, 2.5);
+  h_Eff_eta_TightID[1]              = CreateH1F("h_Eff_eta_TightID_Mu2",
+						"h_Eff_eta_TightID_Mu2",              50, -2.5, 2.5);
+  h_Eff_eta_MediumID[0]             = CreateH1F("h_Eff_eta_MediumID_Mu1",
+						"h_Eff_eta_MediumID_Mu1",             50, -2.5, 2.5);
+  h_Eff_eta_MediumID[1]             = CreateH1F("h_Eff_eta_MediumID_Mu2",
+						"h_Eff_eta_MediumID_Mu2",             50, -2.5, 2.5);
+  h_Eff_eta_HWWID[0]                = CreateH1F("h_Eff_eta_HWWID_Mu1",
+						"h_Eff_eta_HWWID_Mu1",                50, -2.5, 2.5);
+  h_Eff_eta_HWWID[1]                = CreateH1F("h_Eff_eta_HWWID_Mu2",
+						"h_Eff_eta_HWWID_Mu2",                50, -2.5, 2.5);
+  h_Eff_eta_TightIDipsHWW[0]        = CreateH1F("h_Eff_eta_TightIDipsHWW_Mu1",
+						"h_Eff_eta_TightIDipsHWW_Mu1",        50, -2.5, 2.5);
+  h_Eff_eta_TightIDipsHWW[1]        = CreateH1F("h_Eff_eta_TightIDipsHWW_Mu2",
+						"h_Eff_eta_TightIDipsHWW_Mu2",        50, -2.5, 2.5);
+  h_Eff_eta_MediumIDipsHWW[0]       = CreateH1F("h_Eff_eta_MediumIDipsHWW_Mu1",
+						"h_Eff_eta_MediumIDipsHWW_Mu1",       50, -2.5, 2.5);
+  h_Eff_eta_MediumIDipsHWW[1]       = CreateH1F("h_Eff_eta_MediumIDipsHWW_Mu2",
+						"h_Eff_eta_MediumIDipsHWW_Mu2",       50, -2.5, 2.5);
+  h_Eff_eta_TightISO03[0]           = CreateH1F("h_Eff_eta_TightISO03_Mu1", 
+						"h_Eff_eta_TightISO03_Mu1",           50, -2.5, 2.5);
+  h_Eff_eta_TightISO03[1]           = CreateH1F("h_Eff_eta_TightISO03_Mu2", 
+						"h_Eff_eta_TightISO03_Mu2",           50, -2.5, 2.5);
+  h_Eff_eta_TightISO04[0]           = CreateH1F("h_Eff_eta_TightISO04_Mu1", 
+						"h_Eff_eta_TightISO04_Mu1",           50, -2.5, 2.5);
+  h_Eff_eta_TightISO04[1]           = CreateH1F("h_Eff_eta_TightISO04_Mu2", 
+						"h_Eff_eta_TightISO04_Mu2",           50, -2.5, 2.5);
+  h_Eff_eta_TightISO03dBeta[0]      = CreateH1F("h_Eff_eta_TightISO03dBeta_Mu1", 
+						"h_Eff_eta_TightISO03dBeta_Mu1",      50, -2.5, 2.5);
+  h_Eff_eta_TightISO03dBeta[1]      = CreateH1F("h_Eff_eta_TightISO03dBeta_Mu2", 
+						"h_Eff_eta_TightISO03dBeta_Mu2",      50, -2.5, 2.5);
+  h_Eff_eta_TightISO04dBeta[0]      = CreateH1F("h_Eff_eta_TightISO04dBeta_Mu1", 
+						"h_Eff_eta_TightISO04dBeta_Mu1",      50, -2.5, 2.5);
+  h_Eff_eta_TightISO04dBeta[1]      = CreateH1F("h_Eff_eta_TightISO04dBeta_Mu2", 
+						"h_Eff_eta_TightISO04dBeta_Mu2",      50, -2.5, 2.5);
+  h_Eff_eta_TightISO03PFWeighted[0] = CreateH1F("h_Eff_eta_TightISO03PFWeighted_Mu1", 
+						"h_Eff_eta_TightISO03PFWeighted_Mu1", 50, -2.5, 2.5);
+  h_Eff_eta_TightISO03PFWeighted[1] = CreateH1F("h_Eff_eta_TightISO03PFWeighted_Mu2", 
+						"h_Eff_eta_TightISO03PFWeighted_Mu2", 50, -2.5, 2.5);
+  h_Eff_eta_TightISO04PFWeighted[0] = CreateH1F("h_Eff_eta_TightISO04PFWeighted_Mu1", 
+						"h_Eff_eta_TightISO04PFWeighted_Mu1", 50, -2.5, 2.5);
+  h_Eff_eta_TightISO04PFWeighted[1] = CreateH1F("h_Eff_eta_TightISO04PFWeighted_Mu2", 
+						"h_Eff_eta_TightISO04PFWeighted_Mu2", 50, -2.5, 2.5);
+  h_Eff_eta_TightISO03PUPPI[0]      = CreateH1F("h_Eff_eta_TightISO03PUPPI_Mu1", 
+						"h_Eff_eta_TightISO03PUPPI_Mu1",      50, -2.5, 2.5);
+  h_Eff_eta_TightISO03PUPPI[1]      = CreateH1F("h_Eff_eta_TightISO03PUPPI_Mu2", 
+						"h_Eff_eta_TightISO03PUPPI_Mu2",      50, -2.5, 2.5);
+  h_Eff_eta_TightISO04PUPPI[0]      = CreateH1F("h_Eff_eta_TightISO04PUPPI_Mu1", 
+						"h_Eff_eta_TightISO04PUPPI_Mu1",      50, -2.5, 2.5);
+  h_Eff_eta_TightISO04PUPPI[1]      = CreateH1F("h_Eff_eta_TightISO04PUPPI_Mu2", 
+						"h_Eff_eta_TightISO04PUPPI_Mu2",      50, -2.5, 2.5);
+  
+  h_Eff_npv_Matched[0]              = CreateH1F("h_Eff_npv_Matched_Mu1",
+						"h_Eff_npv_Matched_Mu1",              45, 0, 45);
+  h_Eff_npv_Matched[1]              = CreateH1F("h_Eff_npv_Matched_Mu2",
+						"h_Eff_npv_Matched_Mu2",              45, 0, 45);
+  h_Eff_npv_TightID[0]              = CreateH1F("h_Eff_npv_TightID_Mu1",
+						"h_Eff_npv_TightID_Mu1",              45, 0, 45);
+  h_Eff_npv_TightID[1]              = CreateH1F("h_Eff_npv_TightID_Mu2",
+						"h_Eff_npv_TightID_Mu2",              45, 0, 45);
+  h_Eff_npv_MediumID[0]             = CreateH1F("h_Eff_npv_MediumID_Mu1",
+						"h_Eff_npv_MediumID_Mu1",             45, 0, 45);
+  h_Eff_npv_MediumID[1]             = CreateH1F("h_Eff_npv_MediumID_Mu2",
+						"h_Eff_npv_MediumID_Mu2",             45, 0, 45);
+  h_Eff_npv_HWWID[0]                = CreateH1F("h_Eff_npv_HWWID_Mu1",
+						"h_Eff_npv_HWWID_Mu1",                45, 0, 45);
+  h_Eff_npv_HWWID[1]                = CreateH1F("h_Eff_npv_HWWID_Mu2",
+						"h_Eff_npv_HWWID_Mu2",                45, 0, 45);
+  h_Eff_npv_TightIDipsHWW[0]        = CreateH1F("h_Eff_npv_TightIDipsHWW_Mu1",
+						"h_Eff_npv_TightIDipsHWW_Mu1",        45, 0, 45);
+  h_Eff_npv_TightIDipsHWW[1]        = CreateH1F("h_Eff_npv_TightIDipsHWW_Mu2",
+						"h_Eff_npv_TightIDipsHWW_Mu2",        45, 0, 45);
+  h_Eff_npv_MediumIDipsHWW[0]       = CreateH1F("h_Eff_npv_MediumIDipsHWW_Mu1",
+						"h_Eff_npv_MediumIDipsHWW_Mu1",       45, 0, 45);
+  h_Eff_npv_MediumIDipsHWW[1]       = CreateH1F("h_Eff_npv_MediumIDipsHWW_Mu2",
+						"h_Eff_npv_MediumIDipsHWW_Mu2",       45, 0, 45);
+  h_Eff_npv_TightISO03[0]           = CreateH1F("h_Eff_npv_TightISO03_Mu1", 
+						"h_Eff_npv_TightISO03_Mu1",           45, 0, 45);
+  h_Eff_npv_TightISO03[1]           = CreateH1F("h_Eff_npv_TightISO03_Mu2", 
+						"h_Eff_npv_TightISO03_Mu2",           45, 0, 45);
+  h_Eff_npv_TightISO04[0]           = CreateH1F("h_Eff_npv_TightISO04_Mu1", 
+						"h_Eff_npv_TightISO04_Mu1",           45, 0, 45);
+  h_Eff_npv_TightISO04[1]           = CreateH1F("h_Eff_npv_TightISO04_Mu2", 
+						"h_Eff_npv_TightISO04_Mu2",           45, 0, 45);
+  h_Eff_npv_TightISO03dBeta[0]      = CreateH1F("h_Eff_npv_TightISO03dBeta_Mu1", 
+						"h_Eff_npv_TightISO03dBeta_Mu1",      45, 0, 45);
+  h_Eff_npv_TightISO03dBeta[1]      = CreateH1F("h_Eff_npv_TightISO03dBeta_Mu2", 
+						"h_Eff_npv_TightISO03dBeta_Mu2",      45, 0, 45);
+  h_Eff_npv_TightISO04dBeta[0]      = CreateH1F("h_Eff_npv_TightISO04dBeta_Mu1", 
+						"h_Eff_npv_TightISO04dBeta_Mu1",      45, 0, 45);
+  h_Eff_npv_TightISO04dBeta[1]      = CreateH1F("h_Eff_npv_TightISO04dBeta_Mu2", 
+						"h_Eff_npv_TightISO04dBeta_Mu2",      45, 0, 45);
+  h_Eff_npv_TightISO03PFWeighted[0] = CreateH1F("h_Eff_npv_TightISO03PFWeighted_Mu1", 
+						"h_Eff_npv_TightISO03PFWeighted_Mu1", 45, 0, 45);
+  h_Eff_npv_TightISO03PFWeighted[1] = CreateH1F("h_Eff_npv_TightISO03PFWeighted_Mu2", 
+						"h_Eff_npv_TightISO03PFWeighted_Mu2", 45, 0, 45);
+  h_Eff_npv_TightISO04PFWeighted[0] = CreateH1F("h_Eff_npv_TightISO04PFWeighted_Mu1", 
+						"h_Eff_npv_TightISO04PFWeighted_Mu1", 45, 0, 45);
+  h_Eff_npv_TightISO04PFWeighted[1] = CreateH1F("h_Eff_npv_TightISO04PFWeighted_Mu2", 
+						"h_Eff_npv_TightISO04PFWeighted_Mu2", 45, 0, 45);
+  h_Eff_npv_TightISO03PUPPI[0]      = CreateH1F("h_Eff_npv_TightISO03PUPPI_Mu1", 
+						"h_Eff_npv_TightISO03PUPPI_Mu1",      45, 0, 45);
+  h_Eff_npv_TightISO03PUPPI[1]      = CreateH1F("h_Eff_npv_TightISO03PUPPI_Mu2", 
+						"h_Eff_npv_TightISO03PUPPI_Mu2",      45, 0, 45);
+  h_Eff_npv_TightISO04PUPPI[0]      = CreateH1F("h_Eff_npv_TightISO04PUPPI_Mu1", 
+						"h_Eff_npv_TightISO04PUPPI_Mu1",      45, 0, 45);
+  h_Eff_npv_TightISO04PUPPI[1]      = CreateH1F("h_Eff_npv_TightISO04PUPPI_Mu2", 
+						"h_Eff_npv_TightISO04PUPPI_Mu2",      45, 0, 45);
+
 
 }
 
@@ -201,6 +372,15 @@ void CoreMuonSelector::InsideLoop() {
   //------------------------------------------------------------------------------
 
   SetEventFlags();
+
+  //------------------------------------------------------------------------------
+  // Do Efficiencies in function of Pt, Eta and NPV for muons that passed matching
+  //------------------------------------------------------------------------------
+
+  if (EvtFlag_Matching) {
+    doEffsRECO(0,0);
+    doEffsRECO(1,1);
+  }
 
   //------------------------------------------------------------------------------
   // Set Parameters for other selectors. This is the main point of this selector
@@ -712,7 +892,7 @@ void CoreMuonSelector::SetEventFlags() {
   EvtFlag_Gen = G_GEN_Pass;
 
   EvtFlag_Matching = G_PassMatching;
-  if (_IsDATA) EvtFlag_Matching = true;
+  if (_IsDATA) EvtFlag_Matching = EvtFlag_Fiducial;
 
 }
 
@@ -845,19 +1025,199 @@ void CoreMuonSelector::Counting() {
       
 }
 
+void CoreMuonSelector::doEffsRECO(int iMu, int indexMuon) {
+
+  float pt  = Get<float>("T_Muon_Pt", iMu); 
+  float eta = Get<float>("T_Muon_Eta",iMu);
+  float npv = G_NPV;
+
+  
+  h_Eff_pt_Matched[indexMuon] ->Fill(pt);
+  h_Eff_eta_Matched[indexMuon]->Fill(eta);
+  h_Eff_npv_Matched[indexMuon]->Fill(npv);
+
+  if (G_MuonID_Tight[iMu]) {
+    h_Eff_pt_TightID[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightID[indexMuon]->Fill(eta);
+    h_Eff_npv_TightID[indexMuon]->Fill(npv);
+  }
+
+  if (G_MuonID_Medium[iMu]) {
+    h_Eff_pt_MediumID[indexMuon] ->Fill(pt);
+    h_Eff_eta_MediumID[indexMuon]->Fill(eta);
+    h_Eff_npv_MediumID[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_HWW[iMu]) {
+    h_Eff_pt_HWWID[indexMuon] ->Fill(pt);
+    h_Eff_eta_HWWID[indexMuon]->Fill(eta);
+    h_Eff_npv_HWWID[indexMuon]->Fill(npv);
+  }
+      
+  if (G_MuonID_Tight[iMu] && G_MuonID_IPs_HWW[iMu]) {
+    h_Eff_pt_TightIDipsHWW[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightIDipsHWW[indexMuon]->Fill(eta);
+    h_Eff_npv_TightIDipsHWW[indexMuon]->Fill(npv);
+  }
+
+  if (G_MuonID_Medium[iMu] && G_MuonID_IPs_HWW[iMu]) {
+    h_Eff_pt_MediumIDipsHWW[indexMuon] ->Fill(pt);
+    h_Eff_eta_MediumIDipsHWW[indexMuon]->Fill(eta);
+    h_Eff_npv_MediumIDipsHWW[indexMuon]->Fill(npv);
+  }
+
+  if (G_MuonID_Tight[iMu] && G_MuonISO03[iMu]) {
+    h_Eff_pt_TightISO03[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightISO03[indexMuon]->Fill(eta);
+    h_Eff_npv_TightISO03[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Tight[iMu] && G_MuonISO04[iMu]) {
+    h_Eff_pt_TightISO04[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightISO04[indexMuon]->Fill(eta);
+    h_Eff_npv_TightISO04[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Tight[iMu] && G_MuonISO03_dBeta[iMu]) {
+    h_Eff_pt_TightISO03dBeta[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightISO03dBeta[indexMuon]->Fill(eta);
+    h_Eff_npv_TightISO03dBeta[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Tight[iMu] && G_MuonISO04_dBeta[iMu]) {
+    h_Eff_pt_TightISO04dBeta[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightISO04dBeta[indexMuon]->Fill(eta);
+    h_Eff_npv_TightISO04dBeta[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Tight[iMu] && G_MuonISO03_PFWeighted[iMu]) {
+    h_Eff_pt_TightISO03PFWeighted[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightISO03PFWeighted[indexMuon]->Fill(eta);
+    h_Eff_npv_TightISO03PFWeighted[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Tight[iMu] && G_MuonISO04_PFWeighted[iMu]) {
+    h_Eff_pt_TightISO04PFWeighted[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightISO04PFWeighted[indexMuon]->Fill(eta);
+    h_Eff_npv_TightISO04PFWeighted[indexMuon]->Fill(npv);
+  } 
+
+  if (G_MuonID_Tight[iMu] && G_MuonISO03_PUPPI[iMu]) {
+    h_Eff_pt_TightISO03PUPPI[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightISO03PUPPI[indexMuon]->Fill(eta);
+    h_Eff_npv_TightISO03PUPPI[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Tight[iMu] && G_MuonISO04_PUPPI[iMu]) {
+    h_Eff_pt_TightISO04PUPPI[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightISO04PUPPI[indexMuon]->Fill(eta);
+    h_Eff_npv_TightISO04PUPPI[indexMuon]->Fill(npv);
+  } 
+  
+}
+
 
 void CoreMuonSelector::Summary() {
   // Get Data Members at the client-master (after finishing the analysis at the workers nodes)
   // Only data members set here will be accesible at the client-master
 
 
-  ///*** 1D histos ***/// 
+  // 1D histos  
 
-  h_N_PV  = FindOutput<TH1F*>("h_N_PV");  
+  h_N_PV  = FindOutput<TH1F*>("h_N_PV");
+
+  h_Eff_pt_Matched[0]              = FindOutput<TH1F*>("h_Eff_pt_Matched_Mu1");
+  h_Eff_pt_Matched[1]              = FindOutput<TH1F*>("h_Eff_pt_Matched_Mu2");
+  h_Eff_pt_TightID[0]              = FindOutput<TH1F*>("h_Eff_pt_TightID_Mu1");
+  h_Eff_pt_TightID[1]              = FindOutput<TH1F*>("h_Eff_pt_TightID_Mu2");
+  h_Eff_pt_MediumID[0]             = FindOutput<TH1F*>("h_Eff_pt_MediumID_Mu1");
+  h_Eff_pt_MediumID[1]             = FindOutput<TH1F*>("h_Eff_pt_MediumID_Mu2");
+  h_Eff_pt_HWWID[0]                = FindOutput<TH1F*>("h_Eff_pt_HWWID_Mu1");
+  h_Eff_pt_HWWID[1]                = FindOutput<TH1F*>("h_Eff_pt_HWWID_Mu2");
+  h_Eff_pt_TightIDipsHWW[0]        = FindOutput<TH1F*>("h_Eff_pt_TightIDipsHWW_Mu1");
+  h_Eff_pt_TightIDipsHWW[1]        = FindOutput<TH1F*>("h_Eff_pt_TightIDipsHWW_Mu2");
+  h_Eff_pt_MediumIDipsHWW[0]       = FindOutput<TH1F*>("h_Eff_pt_MediumIDipsHWW_Mu1");
+  h_Eff_pt_MediumIDipsHWW[1]       = FindOutput<TH1F*>("h_Eff_pt_MediumIDipsHWW_Mu2");
+  h_Eff_pt_TightISO03[0]           = FindOutput<TH1F*>("h_Eff_pt_TightISO03_Mu1");
+  h_Eff_pt_TightISO03[1]           = FindOutput<TH1F*>("h_Eff_pt_TightISO03_Mu2");
+  h_Eff_pt_TightISO04[0]           = FindOutput<TH1F*>("h_Eff_pt_TightISO04_Mu1");
+  h_Eff_pt_TightISO04[1]           = FindOutput<TH1F*>("h_Eff_pt_TightISO04_Mu2");
+  h_Eff_pt_TightISO03dBeta[0]      = FindOutput<TH1F*>("h_Eff_pt_TightISO03dBeta_Mu1");
+  h_Eff_pt_TightISO03dBeta[1]      = FindOutput<TH1F*>("h_Eff_pt_TightISO03dBeta_Mu2");
+  h_Eff_pt_TightISO04dBeta[0]      = FindOutput<TH1F*>("h_Eff_pt_TightISO04dBeta_Mu1");
+  h_Eff_pt_TightISO04dBeta[1]      = FindOutput<TH1F*>("h_Eff_pt_TightISO04dBeta_Mu2");
+  h_Eff_pt_TightISO03PFWeighted[0] = FindOutput<TH1F*>("h_Eff_pt_TightISO03PFWeighted_Mu1");
+  h_Eff_pt_TightISO03PFWeighted[1] = FindOutput<TH1F*>("h_Eff_pt_TightISO03PFWeighted_Mu2");
+  h_Eff_pt_TightISO04PFWeighted[0] = FindOutput<TH1F*>("h_Eff_pt_TightISO04PFWeighted_Mu1");
+  h_Eff_pt_TightISO04PFWeighted[1] = FindOutput<TH1F*>("h_Eff_pt_TightISO04PFWeighted_Mu2"); 
+  h_Eff_pt_TightISO03PUPPI[0]      = FindOutput<TH1F*>("h_Eff_pt_TightISO03PUPPI_Mu1");
+  h_Eff_pt_TightISO03PUPPI[1]      = FindOutput<TH1F*>("h_Eff_pt_TightISO03PUPPI_Mu2");
+  h_Eff_pt_TightISO04PUPPI[0]      = FindOutput<TH1F*>("h_Eff_pt_TightISO04PUPPI_Mu1");
+  h_Eff_pt_TightISO04PUPPI[1]      = FindOutput<TH1F*>("h_Eff_pt_TightISO04PUPPI_Mu2");  
+
+  h_Eff_eta_Matched[0]              = FindOutput<TH1F*>("h_Eff_eta_Matched_Mu1");
+  h_Eff_eta_Matched[1]              = FindOutput<TH1F*>("h_Eff_eta_Matched_Mu2");
+  h_Eff_eta_TightID[0]              = FindOutput<TH1F*>("h_Eff_eta_TightID_Mu1");
+  h_Eff_eta_TightID[1]              = FindOutput<TH1F*>("h_Eff_eta_TightID_Mu2");
+  h_Eff_eta_MediumID[0]             = FindOutput<TH1F*>("h_Eff_eta_MediumID_Mu1");
+  h_Eff_eta_MediumID[1]             = FindOutput<TH1F*>("h_Eff_eta_MediumID_Mu2");
+  h_Eff_eta_HWWID[0]                = FindOutput<TH1F*>("h_Eff_eta_HWWID_Mu1");
+  h_Eff_eta_HWWID[1]                = FindOutput<TH1F*>("h_Eff_eta_HWWID_Mu2");
+  h_Eff_eta_TightIDipsHWW[0]        = FindOutput<TH1F*>("h_Eff_eta_TightIDipsHWW_Mu1");
+  h_Eff_eta_TightIDipsHWW[1]        = FindOutput<TH1F*>("h_Eff_eta_TightIDipsHWW_Mu2");
+  h_Eff_eta_MediumIDipsHWW[0]       = FindOutput<TH1F*>("h_Eff_eta_MediumIDipsHWW_Mu1");
+  h_Eff_eta_MediumIDipsHWW[1]       = FindOutput<TH1F*>("h_Eff_eta_MediumIDipsHWW_Mu2");
+  h_Eff_eta_TightISO03[0]           = FindOutput<TH1F*>("h_Eff_eta_TightISO03_Mu1");
+  h_Eff_eta_TightISO03[1]           = FindOutput<TH1F*>("h_Eff_eta_TightISO03_Mu2");
+  h_Eff_eta_TightISO04[0]           = FindOutput<TH1F*>("h_Eff_eta_TightISO04_Mu1");
+  h_Eff_eta_TightISO04[1]           = FindOutput<TH1F*>("h_Eff_eta_TightISO04_Mu2");
+  h_Eff_eta_TightISO03dBeta[0]      = FindOutput<TH1F*>("h_Eff_eta_TightISO03dBeta_Mu1");
+  h_Eff_eta_TightISO03dBeta[1]      = FindOutput<TH1F*>("h_Eff_eta_TightISO03dBeta_Mu2");
+  h_Eff_eta_TightISO04dBeta[0]      = FindOutput<TH1F*>("h_Eff_eta_TightISO04dBeta_Mu1");
+  h_Eff_eta_TightISO04dBeta[1]      = FindOutput<TH1F*>("h_Eff_eta_TightISO04dBeta_Mu2");
+  h_Eff_eta_TightISO03PFWeighted[0] = FindOutput<TH1F*>("h_Eff_eta_TightISO03PFWeighted_Mu1");
+  h_Eff_eta_TightISO03PFWeighted[1] = FindOutput<TH1F*>("h_Eff_eta_TightISO03PFWeighted_Mu2");
+  h_Eff_eta_TightISO04PFWeighted[0] = FindOutput<TH1F*>("h_Eff_eta_TightISO04PFWeighted_Mu1");
+  h_Eff_eta_TightISO04PFWeighted[1] = FindOutput<TH1F*>("h_Eff_eta_TightISO04PFWeighted_Mu2"); 
+  h_Eff_eta_TightISO03PUPPI[0]      = FindOutput<TH1F*>("h_Eff_eta_TightISO03PUPPI_Mu1");
+  h_Eff_eta_TightISO03PUPPI[1]      = FindOutput<TH1F*>("h_Eff_eta_TightISO03PUPPI_Mu2");
+  h_Eff_eta_TightISO04PUPPI[0]      = FindOutput<TH1F*>("h_Eff_eta_TightISO04PUPPI_Mu1");
+  h_Eff_eta_TightISO04PUPPI[1]      = FindOutput<TH1F*>("h_Eff_eta_TightISO04PUPPI_Mu2");
+
+  h_Eff_npv_Matched[0]              = FindOutput<TH1F*>("h_Eff_npv_Matched_Mu1");
+  h_Eff_npv_Matched[1]              = FindOutput<TH1F*>("h_Eff_npv_Matched_Mu2");
+  h_Eff_npv_TightID[0]              = FindOutput<TH1F*>("h_Eff_npv_TightID_Mu1");
+  h_Eff_npv_TightID[1]              = FindOutput<TH1F*>("h_Eff_npv_TightID_Mu2");
+  h_Eff_npv_MediumID[0]             = FindOutput<TH1F*>("h_Eff_npv_MediumID_Mu1");
+  h_Eff_npv_MediumID[1]             = FindOutput<TH1F*>("h_Eff_npv_MediumID_Mu2");
+  h_Eff_npv_HWWID[0]                = FindOutput<TH1F*>("h_Eff_npv_HWWID_Mu1");
+  h_Eff_npv_HWWID[1]                = FindOutput<TH1F*>("h_Eff_npv_HWWID_Mu2");
+  h_Eff_npv_TightIDipsHWW[0]        = FindOutput<TH1F*>("h_Eff_npv_TightIDipsHWW_Mu1");
+  h_Eff_npv_TightIDipsHWW[1]        = FindOutput<TH1F*>("h_Eff_npv_TightIDipsHWW_Mu2");
+  h_Eff_npv_MediumIDipsHWW[0]       = FindOutput<TH1F*>("h_Eff_npv_MediumIDipsHWW_Mu1");
+  h_Eff_npv_MediumIDipsHWW[1]       = FindOutput<TH1F*>("h_Eff_npv_MediumIDipsHWW_Mu2");
+  h_Eff_npv_TightISO03[0]           = FindOutput<TH1F*>("h_Eff_npv_TightISO03_Mu1");
+  h_Eff_npv_TightISO03[1]           = FindOutput<TH1F*>("h_Eff_npv_TightISO03_Mu2");
+  h_Eff_npv_TightISO04[0]           = FindOutput<TH1F*>("h_Eff_npv_TightISO04_Mu1");
+  h_Eff_npv_TightISO04[1]           = FindOutput<TH1F*>("h_Eff_npv_TightISO04_Mu2");
+  h_Eff_npv_TightISO03dBeta[0]      = FindOutput<TH1F*>("h_Eff_npv_TightISO03dBeta_Mu1");
+  h_Eff_npv_TightISO03dBeta[1]      = FindOutput<TH1F*>("h_Eff_npv_TightISO03dBeta_Mu2");
+  h_Eff_npv_TightISO04dBeta[0]      = FindOutput<TH1F*>("h_Eff_npv_TightISO04dBeta_Mu1");
+  h_Eff_npv_TightISO04dBeta[1]      = FindOutput<TH1F*>("h_Eff_npv_TightISO04dBeta_Mu2");
+  h_Eff_npv_TightISO03PFWeighted[0] = FindOutput<TH1F*>("h_Eff_npv_TightISO03PFWeighted_Mu1");
+  h_Eff_npv_TightISO03PFWeighted[1] = FindOutput<TH1F*>("h_Eff_npv_TightISO03PFWeighted_Mu2");
+  h_Eff_npv_TightISO04PFWeighted[0] = FindOutput<TH1F*>("h_Eff_npv_TightISO04PFWeighted_Mu1");
+  h_Eff_npv_TightISO04PFWeighted[1] = FindOutput<TH1F*>("h_Eff_npv_TightISO04PFWeighted_Mu2"); 
+  h_Eff_npv_TightISO03PUPPI[0]      = FindOutput<TH1F*>("h_Eff_npv_TightISO03PUPPI_Mu1");
+  h_Eff_npv_TightISO03PUPPI[1]      = FindOutput<TH1F*>("h_Eff_npv_TightISO03PUPPI_Mu2");
+  h_Eff_npv_TightISO04PUPPI[0]      = FindOutput<TH1F*>("h_Eff_npv_TightISO04PUPPI_Mu1");
+  h_Eff_npv_TightISO04PUPPI[1]      = FindOutput<TH1F*>("h_Eff_npv_TightISO04PUPPI_Mu2");
+
+  // Final Report
 
   cout << " ---------------------------------------------------" << endl;
   cout << " " << endl;  
-  cout << " Number of Events::  " << _NEvents  << endl;
+  cout << " Number of Events in the sample:  " << _NEvents  << endl;
   cout << " Normalization factor: " << _factN << endl;
   cout << endl;
   cout << " ---------------------------------------------------" << endl;

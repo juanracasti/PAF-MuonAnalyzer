@@ -23,14 +23,15 @@ void RunMuonAnalyzer(const char* data) {
   TString signal = data;
 
   // Manual Input Parameters
-  float luminosity = 20000.0; //In pb-1
-  bool  debug      =  false;  //For verbose while debugging
+  float    luminosity       = 20000.0; //In pb-1
+  bool     debug            = false;   //For verbose while debugging
+  int nEventsToProcess      = -1;      //Number of events to be processed (-1 = all)
 
   // Automatic Input Parameters (don't touch)
-  bool  isdata             = false;
-  int   whichRun           = 1;
-  int   nEventsInTheSample = 1; //before skimming
-  float xSection           = 1.;
+  bool     isdata             = false;
+  int      whichRun           = 1;
+  int nEventsInTheSample      = 1; //before skimming
+  float    xSection           = 1.;
   
   //---------------------------------
   // INITIALISE PAF PROJECT
@@ -121,6 +122,17 @@ void RunMuonAnalyzer(const char* data) {
 
  }
 
+  else if (signal=="DR74X_50ns_MC_TTbar") {
+
+    myProject->AddDataFile(Path_DR74X + "50ns/Tree_TTbar_Powheg_0.root");
+   
+    isdata             = false;
+    nEventsInTheSample = 2829164; 
+    xSection           = 6025.2;
+    whichRun           = 2;
+
+ }
+
   else if (signal=="SingleMu_720") {
 
     myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_SingleMu_mu2012D_720.root");
@@ -144,7 +156,7 @@ void RunMuonAnalyzer(const char* data) {
  }
 
   //Number of events to process
-  myProject->SetNEvents(1000);
+  myProject->SetNEvents(nEventsToProcess);
 
   ///////////////////////////////
   // INPUT PARAMETERS

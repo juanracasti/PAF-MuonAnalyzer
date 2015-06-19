@@ -41,6 +41,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
   float                       getISO(int, string);
   void                        SetEventFlags();
   void                        Counting();
+  void                        doEffsRECO(int, int);
 
 
   // My Declarations:
@@ -149,7 +150,54 @@ class CoreMuonSelector: public PAFChainItemSelector{
  
    // Histograms 
   TH1F                        *h_N_PV;
+
+   // Efficiencies vs pt, eta, and npv
+
+  TH1F       *h_Eff_pt_Matched[2];
+  TH1F       *h_Eff_pt_TightID[2];
+  TH1F       *h_Eff_pt_MediumID[2];
+  TH1F       *h_Eff_pt_HWWID[2];
+  TH1F       *h_Eff_pt_TightIDipsHWW[2];
+  TH1F       *h_Eff_pt_MediumIDipsHWW[2];
+  TH1F       *h_Eff_pt_TightISO03[2];
+  TH1F       *h_Eff_pt_TightISO04[2];
+  TH1F       *h_Eff_pt_TightISO03dBeta[2];
+  TH1F       *h_Eff_pt_TightISO04dBeta[2];
+  TH1F       *h_Eff_pt_TightISO03PFWeighted[2];
+  TH1F       *h_Eff_pt_TightISO04PFWeighted[2];
+  TH1F       *h_Eff_pt_TightISO03PUPPI[2];
+  TH1F       *h_Eff_pt_TightISO04PUPPI[2];
   
+  TH1F       *h_Eff_eta_Matched[2];
+  TH1F       *h_Eff_eta_TightID[2];
+  TH1F       *h_Eff_eta_MediumID[2];
+  TH1F       *h_Eff_eta_HWWID[2];
+  TH1F       *h_Eff_eta_TightIDipsHWW[2];
+  TH1F       *h_Eff_eta_MediumIDipsHWW[2];
+  TH1F       *h_Eff_eta_TightISO03[2];
+  TH1F       *h_Eff_eta_TightISO04[2];
+  TH1F       *h_Eff_eta_TightISO03dBeta[2];
+  TH1F       *h_Eff_eta_TightISO04dBeta[2];
+  TH1F       *h_Eff_eta_TightISO03PFWeighted[2];
+  TH1F       *h_Eff_eta_TightISO04PFWeighted[2];
+  TH1F       *h_Eff_eta_TightISO03PUPPI[2];
+  TH1F       *h_Eff_eta_TightISO04PUPPI[2];
+  
+  TH1F       *h_Eff_npv_Matched[2];
+  TH1F       *h_Eff_npv_TightID[2];
+  TH1F       *h_Eff_npv_MediumID[2];
+  TH1F       *h_Eff_npv_HWWID[2];
+  TH1F       *h_Eff_npv_TightIDipsHWW[2];
+  TH1F       *h_Eff_npv_MediumIDipsHWW[2];
+  TH1F       *h_Eff_npv_TightISO03[2];
+  TH1F       *h_Eff_npv_TightISO04[2];
+  TH1F       *h_Eff_npv_TightISO03dBeta[2];
+  TH1F       *h_Eff_npv_TightISO04dBeta[2];
+  TH1F       *h_Eff_npv_TightISO03PFWeighted[2];
+  TH1F       *h_Eff_npv_TightISO04PFWeighted[2];
+  TH1F       *h_Eff_npv_TightISO03PUPPI[2];
+  TH1F       *h_Eff_npv_TightISO04PUPPI[2];
+
   
   // Input parameters
   TString                     _Signal;       // Type of Signal
@@ -226,6 +274,51 @@ class CoreMuonSelector: public PAFChainItemSelector{
      GCount_Fiducial_None(),
      
      h_N_PV(),
+
+     h_Eff_pt_Matched(),
+     h_Eff_pt_TightID(),
+     h_Eff_pt_MediumID(),
+     h_Eff_pt_HWWID(),
+     h_Eff_pt_TightIDipsHWW(),
+     h_Eff_pt_MediumIDipsHWW(),
+     h_Eff_pt_TightISO03(),
+     h_Eff_pt_TightISO04(),
+     h_Eff_pt_TightISO03dBeta(),
+     h_Eff_pt_TightISO04dBeta(),
+     h_Eff_pt_TightISO03PFWeighted(),
+     h_Eff_pt_TightISO04PFWeighted(),
+     h_Eff_pt_TightISO03PUPPI(),
+     h_Eff_pt_TightISO04PUPPI(),
+  
+     h_Eff_eta_Matched(),
+     h_Eff_eta_TightID(),
+     h_Eff_eta_MediumID(),
+     h_Eff_eta_HWWID(),
+     h_Eff_eta_TightIDipsHWW(),
+     h_Eff_eta_MediumIDipsHWW(),
+     h_Eff_eta_TightISO03(),
+     h_Eff_eta_TightISO04(),
+     h_Eff_eta_TightISO03dBeta(),
+     h_Eff_eta_TightISO04dBeta(),
+     h_Eff_eta_TightISO03PFWeighted(),
+     h_Eff_eta_TightISO04PFWeighted(),
+     h_Eff_eta_TightISO03PUPPI(),
+     h_Eff_eta_TightISO04PUPPI(),
+  
+     h_Eff_npv_Matched(),
+     h_Eff_npv_TightID(),
+     h_Eff_npv_MediumID(),
+     h_Eff_npv_HWWID(),
+     h_Eff_npv_TightIDipsHWW(),
+     h_Eff_npv_MediumIDipsHWW(),
+     h_Eff_npv_TightISO03(),
+     h_Eff_npv_TightISO04(),
+     h_Eff_npv_TightISO03dBeta(),
+     h_Eff_npv_TightISO04dBeta(),
+     h_Eff_npv_TightISO03PFWeighted(),
+     h_Eff_npv_TightISO04PFWeighted(),
+     h_Eff_npv_TightISO03PUPPI(),
+     h_Eff_npv_TightISO04PUPPI(),
      
      _Signal(),
      _NEvents(),
