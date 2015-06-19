@@ -166,6 +166,8 @@ void RunMuonAnalyzer(const char* data) {
 
  }
 
+  myProject->SetNEvents(1000);
+
   ///////////////////////////////
   // INPUT PARAMETERS
  

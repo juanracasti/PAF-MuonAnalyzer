@@ -159,8 +159,8 @@ void CoreMuonSelector::InsideLoop() {
   // Get all RECO muons
   //------------------------------------------------------------------------------
 
-  G_RecoMuSize = Get<std::vector<float>*>("T_Muon_Px")->size();
-  //G_RecoMuSize = GetSizeOf<float>("T_Muon_Px");
+  //G_RecoMuSize = Get<std::vector<float>*>("T_Muon_Px")->size();
+  G_RecoMuSize = GetSizeOf("T_Muon_Px");
   
   for (unsigned int i = 0; i < G_RecoMuSize; ++i) {
     
@@ -192,8 +192,8 @@ void CoreMuonSelector::InsideLoop() {
   // Get number of good vertex per event
   //------------------------------------------------------------------------------
 
-  G_NPV = Get<std::vector<float>*>("T_Vertex_z")->size();
-  //G_NPV = GetSizeOf<float>("T_Vertex_z");
+  //G_NPV = Get<std::vector<float>*>("T_Vertex_z")->size();
+  G_NPV = GetSizeOf("T_Vertex_z");
   h_N_PV->Fill(G_NPV, _factN);
 
   //------------------------------------------------------------------------------
@@ -229,14 +229,13 @@ void CoreMuonSelector::InsideLoop() {
   // SetParam("Muon_Matching",        G_Muon_Matching);
 
   // SetParam("RecoMuSize",           G_RecoMuSize);
-  // SetParam("NPV",                  G_NPV);
+  SetParam("NPV",                  G_NPV);
 
-  // SetParam("FLAG_Fiducial",        EvtFlag_Fiducial);
+   SetParam("FLAG_Fiducial",        EvtFlag_Fiducial);
   // SetParam("FLAG_Gen",             EvtFlag_Gen);
   // SetParam("FLAG_Matching",        EvtFlag_Matching);
 
-  // int prueba = 0;
-  // SetParam("Prueba",prueba);
+
 
   //------------------------------------------------------------------------------
   // Do Event Counting
@@ -419,12 +418,12 @@ float CoreMuonSelector::getISO(int iMu, string typeIso) {
 void CoreMuonSelector::SetGenInfo() {
   
   UInt_t genPromptMuSize = 0;
-  genPromptMuSize = Get<std::vector<float>*>("T_Gen_PromptMuon_Px")->size();
-  //genPromptMuSize = GetSizeOf<float>("T_Gen_PromptMuon_Px");
+  //genPromptMuSize = Get<std::vector<float>*>("T_Gen_PromptMuon_Px")->size();
+  genPromptMuSize = GetSizeOf("T_Gen_PromptMuon_Px");
   
   UInt_t genPromptTauSize = 0;
-  genPromptTauSize = Get<std::vector<float>*>("T_Gen_PromptTau_Px")->size();
-  //genPromptTauSize = GetSizeOf<float>("T_Gen_PromptTau_Px");
+  //genPromptTauSize = Get<std::vector<float>*>("T_Gen_PromptTau_Px")->size();
+  genPromptTauSize = GetSizeOf("T_Gen_PromptTau_Px");
   
   TLorentzVector p1 = TLorentzVector(0,0,0,0);
   TLorentzVector p2 = TLorentzVector(0,0,0,0);
@@ -434,8 +433,8 @@ void CoreMuonSelector::SetGenInfo() {
   {
      
     UInt_t genNonPromptMuSize = 0;
-    genNonPromptMuSize = Get<std::vector<float>*>("T_Gen_Muon_Px")->size();
-    //genNonPromptMuSize = GetSizeOf<float>("T_Gen_Muon_Px");
+    //genNonPromptMuSize = Get<std::vector<float>*>("T_Gen_Muon_Px")->size();
+    genNonPromptMuSize = GetSizeOf("T_Gen_Muon_Px");
     
     if ( genPromptMuSize == 1 && fabs(Get<int>("T_Gen_PromptMuon_MpdgId",0)) == 24) 
       
