@@ -1,7 +1,7 @@
 void IDEff(TString Sample = "DR74X_50ns_MC_DY") 
 { 
 
-  TFile *f  = TFile::Open("../files/" + Sample + ".root");
+  TFile *f  = TFile::Open("../files/" + Sample + ".root.bk");
 
   const int nVar = 3;
   const int nID  = 5;
@@ -9,53 +9,38 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
 
   TH1F* h[nVar][nID+1][nMu];
 
-  f->cd();
+  TString Var[nVar] = {
+    "pt",
+    "eta",
+    "npv"
+  };
 
-  h[0][0][0] = (TH1F*)gDirectory->Get("h_Eff_pt_Matched_Mu1");
-  h[0][1][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightID_Mu1");
-  h[0][2][0] = (TH1F*)gDirectory->Get("h_Eff_pt_MediumID_Mu1");
-  h[0][3][0] = (TH1F*)gDirectory->Get("h_Eff_pt_HWWID_Mu1");
-  h[0][4][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightIDipsHWW_Mu1");
-  h[0][5][0] = (TH1F*)gDirectory->Get("h_Eff_pt_MediumIDipsHWW_Mu1");
+  TString ID[nID+1] = {
+    "Matched",
+    "TightID",
+    "MediumID",
+    "HWWID",
+    "TightIDipsHWW",
+    "MediumIDipsHWW"
+  };
 
-  h[0][0][1] = (TH1F*)gDirectory->Get("h_Eff_pt_Matched_Mu2");
-  h[0][1][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightID_Mu2");
-  h[0][2][1] = (TH1F*)gDirectory->Get("h_Eff_pt_MediumID_Mu2");
-  h[0][3][1] = (TH1F*)gDirectory->Get("h_Eff_pt_HWWID_Mu2");
-  h[0][4][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightIDipsHWW_Mu2");
-  h[0][5][1] = (TH1F*)gDirectory->Get("h_Eff_pt_MediumIDipsHWW_Mu2");
-
-
-  h[1][0][0] = (TH1F*)gDirectory->Get("h_Eff_eta_Matched_Mu1");
-  h[1][1][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightID_Mu1");
-  h[1][2][0] = (TH1F*)gDirectory->Get("h_Eff_eta_MediumID_Mu1");
-  h[1][3][0] = (TH1F*)gDirectory->Get("h_Eff_eta_HWWID_Mu1");
-  h[1][4][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightIDipsHWW_Mu1");
-  h[1][5][0] = (TH1F*)gDirectory->Get("h_Eff_eta_MediumIDipsHWW_Mu1");
-
-  h[1][0][1] = (TH1F*)gDirectory->Get("h_Eff_eta_Matched_Mu2");
-  h[1][1][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightID_Mu2");
-  h[1][2][1] = (TH1F*)gDirectory->Get("h_Eff_eta_MediumID_Mu2");
-  h[1][3][1] = (TH1F*)gDirectory->Get("h_Eff_eta_HWWID_Mu2");
-  h[1][4][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightIDipsHWW_Mu2");
-  h[1][5][1] = (TH1F*)gDirectory->Get("h_Eff_eta_MediumIDipsHWW_Mu2");
+  TString Mu[nMu] = {
+    "Mu1",
+    "Mu2"
+  };
 
 
-  h[2][0][0] = (TH1F*)gDirectory->Get("h_Eff_npv_Matched_Mu1");
-  h[2][1][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightID_Mu1");
-  h[2][2][0] = (TH1F*)gDirectory->Get("h_Eff_npv_MediumID_Mu1");
-  h[2][3][0] = (TH1F*)gDirectory->Get("h_Eff_npv_HWWID_Mu1");
-  h[2][4][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightIDipsHWW_Mu1");
-  h[2][5][0] = (TH1F*)gDirectory->Get("h_Eff_npv_MediumIDipsHWW_Mu1");
+  for (unsigned int iVar = 0; iVar < nVar; iVar++) {
+    for (unsigned int iID = 0; iID < nID+1; iID++) {
+      for (unsigned int iMu = 0; iMu < nMu; iMu++) {
+	
+	h[iVar][iID][iMu] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+ID[iID]+"_"+Mu[iMu]);
+	
+      }
+    }
+  }
 
-  h[2][0][1] = (TH1F*)gDirectory->Get("h_Eff_npv_Matched_Mu2");
-  h[2][1][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightID_Mu2");
-  h[2][2][1] = (TH1F*)gDirectory->Get("h_Eff_npv_MediumID_Mu2");
-  h[2][3][1] = (TH1F*)gDirectory->Get("h_Eff_npv_HWWID_Mu2");
-  h[2][4][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightIDipsHWW_Mu2");
-  h[2][5][1] = (TH1F*)gDirectory->Get("h_Eff_npv_MediumIDipsHWW_Mu2");
-  
-  
+
   TGraphAsymmErrors* r[nVar][nID][nMu];
   TH1F*              h1[nVar][nID+1][nMu];
 
@@ -69,8 +54,8 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
   double npvbins[11] = {0,10,12,14,16,18,20,22,25,30,40};
 
   
-  for (int iID = 0; iID < nID+1; iID++) {
-    for (int iMu = 0; iMu < nMu; iMu++) {
+  for (unsigned int iID = 0; iID < nID+1; iID++) {
+    for (unsigned int iMu = 0; iMu < nMu; iMu++) {
       
       h1[0][iID][iMu] = (TH1F*) h[0][iID][iMu]->Rebin(10, "h1", ptbins2);
       h1[1][iID][iMu] = (TH1F*) h[1][iID][iMu]->Rebin(13, "h1", etabins);
@@ -79,9 +64,9 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     }
   }
    
-  for (int iVar = 0; iVar < nVar; iVar++) {
-    for (int iID = 0; iID < nID; iID++)   {
-      for (int iMu = 0; iMu < nMu; iMu++) {
+  for (unsigned int iVar = 0; iVar < nVar; iVar++) {
+    for (unsigned int iID = 0; iID < nID; iID++)   {
+      for (unsigned int iMu = 0; iMu < nMu; iMu++) {
 
   	r[iVar][iID][iMu] = new TGraphAsymmErrors(h1[iVar][iID+1][iMu], h1[iVar][0][iMu]); 
 
@@ -117,15 +102,15 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     c[2][1] = new TCanvas("Efficiencies vs npv Mu2",  "Efficiencies vs npv Mu2",  750, 750);
 
 
-    for (int iVar=0; iVar<nVar; iVar++) {
-      for (int iMu=0; iMu<nMu; iMu++)   {
+    for (unsigned int iVar=0; iVar<nVar; iVar++) {
+      for (unsigned int iMu=0; iMu<nMu; iMu++)   {
 	mg[iVar][iMu] = new TMultiGraph();
       }
     }
     
 
-    for (int iVar=0; iVar<nVar; iVar++) {
-      for (int iMu=0; iMu<nMu; iMu++)   {
+    for (unsigned int iVar=0; iVar<nVar; iVar++) {
+      for (unsigned int iMu=0; iMu<nMu; iMu++)   {
 	    
     	c[iVar][iMu]->Range(-0.8247861,-0.8247861,0.8247861,0.8247861);
     	c[iVar][iMu]->SetLeftMargin(0.15);
@@ -160,7 +145,7 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     l3->AddEntry(r[0][4][0], "Medium ID, HWW IP cuts", "lp");
 
 
-    for (int iMu=0; iMu<nMu; iMu++)
+    for (unsigned int iMu=0; iMu<nMu; iMu++)
       {
     	c[0][iMu]->cd();  
     	r[0][0][iMu]->GetXaxis()->SetTitle("p_{T}");
@@ -172,8 +157,8 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     	r[2][0][iMu]->GetXaxis()->SetTitle("NPV");
       }
     
-    for (int iVar=0; iVar<nVar; iVar++)   {
-      for (int iMu=0; iMu<nMu; iMu++)   {
+    for (unsigned int iVar=0; iVar<nVar; iVar++)   {
+      for (unsigned int iMu=0; iMu<nMu; iMu++)   {
 	
     	c[iVar][iMu]->cd();
 	

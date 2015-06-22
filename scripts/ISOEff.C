@@ -1,7 +1,7 @@
-void ISOEff(TString Sample = "DR74X_50ns_MC_DY", float dR = 0.4) 
+void ISOEff(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04") 
 { 
 
-  TFile *f  = TFile::Open("../files/" + Sample + ".root");
+  TFile *f  = TFile::Open("../files/" + Sample + ".root.bk");
 
   const int nVar = 3;
   const int nISO = 4;
@@ -9,91 +9,43 @@ void ISOEff(TString Sample = "DR74X_50ns_MC_DY", float dR = 0.4)
 
   TH1F* h[nVar][nISO+1][nMu];
 
-  f->cd();
+  TString Var[nVar] = {
+    "pt",
+    "eta",
+    "npv"
+  };
 
-  //if (dR == 0.4) {
-    
-    h[0][0][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightID_Mu1");
-    h[0][1][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO04_Mu1");
-    h[0][2][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO04dBeta_Mu1");
-    h[0][3][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO04PFWeighted_Mu1");
-    h[0][4][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO04PUPPI_Mu1");
+  TString BaseID = "Tight";
 
-    h[0][0][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightID_Mu2");
-    h[0][1][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO04_Mu2");
-    h[0][2][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO04dBeta_Mu2");
-    h[0][3][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO04PFWeighted_Mu2");
-    h[0][4][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO04PUPPI_Mu2");
+  TString ISO[nISO+1] = {
+    "",
+    "",
+    "dBeta",
+    "PFWeighted",
+    "PUPPI"
+  };
 
-    
-    h[1][0][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightID_Mu1");
-    h[1][1][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO04_Mu1");
-    h[1][2][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO04dBeta_Mu1");
-    h[1][3][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO04PFWeighted_Mu1");
-    h[1][4][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO04PUPPI_Mu1");
-    
-    h[1][0][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightID_Mu2");
-    h[1][1][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO04_Mu2");
-    h[1][2][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO04dBeta_Mu2");
-    h[1][3][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO04PFWeighted_Mu2");
-    h[1][4][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO04PUPPI_Mu2");
-    
-    
-    h[2][0][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightID_Mu1");
-    h[2][1][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO04_Mu1");
-    h[2][2][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO04dBeta_Mu1");
-    h[2][3][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO04PFWeighted_Mu1");
-    h[2][4][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO04PUPPI_Mu1");
-    
-    h[2][0][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightID_Mu2");
-    h[2][1][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO04_Mu2");
-    h[2][2][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO04dBeta_Mu2");
-    h[2][3][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO04PFWeighted_Mu2");
-    h[2][4][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO04PUPPI_Mu2"); 
-    
-    //}
+  TString Mu[nMu] = {
+    "Mu1",
+    "Mu2"
+  };
 
-  // else if (dR == 0.3) {
-    
-  //   h[0][0][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightID_Mu1");
-  //   h[0][1][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO03_Mu1");
-  //   h[0][2][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO03dBeta_Mu1");
-  //   h[0][3][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO03PFWeighted_Mu1");
-  //   h[0][4][0] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO03PUPPI_Mu1");
 
-  //   h[0][0][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightID_Mu2");
-  //   h[0][1][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO03_Mu2");
-  //   h[0][2][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO03dBeta_Mu2");
-  //   h[0][3][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO03PFWeighted_Mu2");
-  //   h[0][4][1] = (TH1F*)gDirectory->Get("h_Eff_pt_TightISO03PUPPI_Mu2");
+  for (unsigned int iVar = 0; iVar < nVar; iVar++)     {
+    for (unsigned int iISO = 0; iISO < nISO+1; iISO++) {
+      for (unsigned int iMu = 0; iMu < nMu; iMu++)     {
 
-    
-  //   h[1][0][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightID_Mu1");
-  //   h[1][1][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO03_Mu1");
-  //   h[1][2][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO03dBeta_Mu1");
-  //   h[1][3][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO03PFWeighted_Mu1");
-  //   h[1][4][0] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO03PUPPI_Mu1");
-    
-  //   h[1][0][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightID_Mu2");
-  //   h[1][1][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO03_Mu2");
-  //   h[1][2][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO03dBeta_Mu2");
-  //   h[1][3][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO03PFWeighted_Mu2");
-  //   h[1][4][1] = (TH1F*)gDirectory->Get("h_Eff_eta_TightISO03PUPPI_Mu2");
-    
-    
-  //   h[2][0][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightID_Mu1");
-  //   h[2][1][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO03_Mu1");
-  //   h[2][2][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO03dBeta_Mu1");
-  //   h[2][3][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO03PFWeighted_Mu1");
-  //   h[2][4][0] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO03PUPPI_Mu1");
-    
-  //   h[2][0][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightID_Mu2");
-  //   h[2][1][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO03_Mu2");
-  //   h[2][2][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO03dBeta_Mu2");
-  //   h[2][3][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO03PFWeighted_Mu2");
-  //   h[2][4][1] = (TH1F*)gDirectory->Get("h_Eff_npv_TightISO03PUPPI_Mu2"); 
-    
-  // }
+	if (iISO == 0) {
+	  h[iVar][iISO][iMu] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+BaseID+"ID_"+Mu[iMu]);
+	}
+	else {
+	  h[iVar][iISO][iMu] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+BaseID+"ISO"+dR+ISO[iISO]+"_"+Mu[iMu]);
+	}
+
+      }
+    }
+  }
+      
   
   TGraphAsymmErrors* r[nVar][nISO][nMu];
   TH1F*              h1[nVar][nISO+1][nMu];
@@ -108,8 +60,8 @@ void ISOEff(TString Sample = "DR74X_50ns_MC_DY", float dR = 0.4)
   double npvbins[11] = {0,10,12,14,16,18,20,22,25,30,40};
 
   
-  for (int iISO = 0; iISO < nISO+1; iISO++) {
-    for (int iMu = 0; iMu < nMu; iMu++)     {
+  for (unsigned int iISO = 0; iISO < nISO+1; iISO++) {
+    for (unsigned int iMu = 0; iMu < nMu; iMu++)     {
       
       h1[0][iISO][iMu] = (TH1F*) h[0][iISO][iMu]->Rebin(10, "h1", ptbins2);
       h1[1][iISO][iMu] = (TH1F*) h[1][iISO][iMu]->Rebin(13, "h1", etabins);
@@ -118,9 +70,9 @@ void ISOEff(TString Sample = "DR74X_50ns_MC_DY", float dR = 0.4)
     }
   }
    
-  for (int iVar = 0; iVar < nVar; iVar++)   {
-    for (int iISO = 0; iISO < nISO; iISO++) {
-      for (int iMu = 0; iMu < nMu; iMu++)   {
+  for (unsigned int iVar = 0; iVar < nVar; iVar++)   {
+    for (unsigned int iISO = 0; iISO < nISO; iISO++) {
+      for (unsigned int iMu = 0; iMu < nMu; iMu++)   {
 
   	r[iVar][iISO][iMu] = new TGraphAsymmErrors(h1[iVar][iISO+1][iMu], h1[iVar][0][iMu]); 
 
@@ -156,15 +108,15 @@ void ISOEff(TString Sample = "DR74X_50ns_MC_DY", float dR = 0.4)
     c[2][1] = new TCanvas("Efficiencies vs npv Mu2",  "Efficiencies vs npv Mu2",  750, 750);
 
 
-    for (int iVar=0; iVar<nVar; iVar++) {
-      for (int iMu=0; iMu<nMu; iMu++)   {
+    for (unsigned int iVar=0; iVar<nVar; iVar++) {
+      for (unsigned int iMu=0; iMu<nMu; iMu++)   {
 	mg[iVar][iMu] = new TMultiGraph();
       }
     }
     
 
-    for (int iVar=0; iVar<nVar; iVar++) {
-      for (int iMu=0; iMu<nMu; iMu++)   {
+    for (unsigned int iVar=0; iVar<nVar; iVar++) {
+      for (unsigned int iMu=0; iMu<nMu; iMu++)   {
 	    
     	c[iVar][iMu]->Range(-0.8247861,-0.8247861,0.8247861,0.8247861);
     	c[iVar][iMu]->SetLeftMargin(0.15);
@@ -197,7 +149,7 @@ void ISOEff(TString Sample = "DR74X_50ns_MC_DY", float dR = 0.4)
     l3->AddEntry(r[0][3][0], "PUPPI",                 "lp");
 
 
-    for (int iMu=0; iMu<nMu; iMu++)
+    for (unsigned int iMu=0; iMu<nMu; iMu++)
       {
     	c[0][iMu]->cd();  
     	r[0][0][iMu]->GetXaxis()->SetTitle("p_{T}");
@@ -209,8 +161,8 @@ void ISOEff(TString Sample = "DR74X_50ns_MC_DY", float dR = 0.4)
     	r[2][0][iMu]->GetXaxis()->SetTitle("NPV");
       }
     
-    for (int iVar=0; iVar<nVar; iVar++)   {
-      for (int iMu=0; iMu<nMu; iMu++)   {
+    for (unsigned int iVar=0; iVar<nVar; iVar++)   {
+      for (unsigned int iMu=0; iMu<nMu; iMu++)   {
 	
     	c[iVar][iMu]->cd();
 	
