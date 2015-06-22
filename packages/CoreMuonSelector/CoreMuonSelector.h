@@ -207,6 +207,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
   bool                        _IsDATA;       // True if is Data, False in case MC
   int                         _WhichRun;     // 1 in case of RunI samples. 2 In case of RunII samples.
   bool                        _Debug;        // True for verbose while debugging
+  bool                        _Report;       // Count events and print final report
 
   // Weights
   float                       _factN;        // Normalization factor
@@ -327,6 +328,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
      _IsDATA(),
      _WhichRun(),
      _Debug(),
+     _Report(),
      _factN()
        { }
 

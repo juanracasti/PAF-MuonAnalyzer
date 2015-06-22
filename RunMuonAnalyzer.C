@@ -25,7 +25,7 @@ void RunMuonAnalyzer(const char* data) {
   // Manual Input Parameters
   float    luminosity       = 20000.0; //In pb-1
   bool     debug            = false;   //For verbose while debugging
-  int      nEventsToProcess = 1000;   //Number of events to be processed (-1 = all)
+  int      nEventsToProcess = -1;   //Number of events to be processed (-1 = all)
   bool     doReport         = false;   //Count events and print final report
 
   // Automatic Input Parameters (don't touch)
@@ -39,7 +39,10 @@ void RunMuonAnalyzer(const char* data) {
   //---------------------------------
 
   // Create Project in Sequential Environment mode
-  PAFProject* myProject = new PAFProject( new PAFSequentialEnvironment() );
+  // PAFProject* myProject = new PAFProject( new PAFSequentialEnvironment() );
+
+  // Create Project in PROOF Lite mode
+  PAFProject* myProject = new PAFProject( new PAFPROOFLiteEnvironment(4) );
 
   // Set default name and subdirectory of Trees
   myProject->SetDefaultTreeName("demo/Tree");

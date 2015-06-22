@@ -32,62 +32,65 @@ ClassImp(CoreMuonSelector)
 // Initialise input parameters and data members for all events
 void CoreMuonSelector::Initialise() {
 
-  _Signal = GetParam<TString>("Signal");
-  _IsDATA = GetParam<bool>("IsDATA");
-  _NEvents = GetParam<int>("NEvents");
+  _Signal     = GetParam<TString>("Signal");
+  _IsDATA     = GetParam<bool>("IsDATA");
+  _NEvents    = GetParam<int>("NEvents");
   _Luminosity = GetParam<float>("Luminosity");
-  _XSection = GetParam<float>("XSection");
-  _WhichRun = GetParam<int>("WhichRun"); 
-  _Debug = GetParam<bool>("Debug");
+  _XSection   = GetParam<float>("XSection");
+  _WhichRun   = GetParam<int>("WhichRun"); 
+  _Debug      = GetParam<bool>("Debug");
+  _Report     = GetParam<bool>("Report");
 
   //Define weights
   _factN = 1.;
   if (!_IsDATA && _XSection > 0) _factN = _XSection * _Luminosity / _NEvents;
 
   //For counting
-  GCount_AllEvents = 0;
-  GCount_GenEvents = 0;
-  GCount_Fiducial_AtLeast2 = 0;
-  GCount_Fiducial_2 = 0;
-  GCount_Fiducial_1st2nd = 0;
-  GCount_Match_1st2nd = 0;
-  GCount_NoMatch_1st2nd = 0;
-  GCount_MatchTight_1st2nd = 0;
-  GCount_MatchTightIso_1st2nd = 0;
-  GCount_MatchTightIso_Only1st = 0;
-  GCount_MatchTightIso_Only2nd = 0;
-  GCount_MatchTightIso_None = 0;
-  GCount_MatchTight_Only1st = 0;
-  GCount_MatchTight_Only2nd = 0;
-  GCount_MatchTight_None = 0;
-  GCount_Tight_1st2nd = 0;
-  GCount_TightIso_1st2nd = 0;
-  GCount_TightIso_Only1st = 0;
-  GCount_TightIso_Only2nd = 0;
-  GCount_TightIso_None = 0;
-  GCount_Tight_Only1st = 0;
-  GCount_Tight_Only2nd = 0;
-  GCount_Tight_None = 0;
-  GCount_Fiducial_1st3rd = 0;
-  GCount_Match_1st3rd = 0;
-  GCount_NoMatch_1st3rd = 0;
-  GCount_MatchTight_1st3rd = 0;
-  GCount_MatchTightIso_1st3rd = 0;
-  GCount_MatchTightIso_Only3rd = 0;
-  GCount_MatchTight_Only3rd = 0;
-  GCount_Tight_1st3rd = 0;
-  GCount_TightIso_1st3rd = 0;
-  GCount_TightIso_Only3rd = 0;
-  GCount_Tight_Only3rd = 0;
-  GCount_Fiducial_1stOther = 0;
-  GCount_Fiducial_MoreThan2 = 0;
-  GCount_Match_MoreThan2_OK = 0;
-  GCount_Match_MoreThan2 = 0;
-  GCount_NoMatch_MoreThan2 = 0;
-  GCount_Fiducial_3 = 0;
-  GCount_Fiducial_MoreThan3 = 0;
-  GCount_Fiducial_Only1st = 0;
-  GCount_Fiducial_None = 0;
+  if (_Report) {
+    GCount_AllEvents = 0;
+    GCount_GenEvents = 0;
+    GCount_Fiducial_AtLeast2 = 0;
+    GCount_Fiducial_2 = 0;
+    GCount_Fiducial_1st2nd = 0;
+    GCount_Match_1st2nd = 0;
+    GCount_NoMatch_1st2nd = 0;
+    GCount_MatchTight_1st2nd = 0;
+    GCount_MatchTightIso_1st2nd = 0;
+    GCount_MatchTightIso_Only1st = 0;
+    GCount_MatchTightIso_Only2nd = 0;
+    GCount_MatchTightIso_None = 0;
+    GCount_MatchTight_Only1st = 0;
+    GCount_MatchTight_Only2nd = 0;
+    GCount_MatchTight_None = 0;
+    GCount_Tight_1st2nd = 0;
+    GCount_TightIso_1st2nd = 0;
+    GCount_TightIso_Only1st = 0;
+    GCount_TightIso_Only2nd = 0;
+    GCount_TightIso_None = 0;
+    GCount_Tight_Only1st = 0;
+    GCount_Tight_Only2nd = 0;
+    GCount_Tight_None = 0;
+    GCount_Fiducial_1st3rd = 0;
+    GCount_Match_1st3rd = 0;
+    GCount_NoMatch_1st3rd = 0;
+    GCount_MatchTight_1st3rd = 0;
+    GCount_MatchTightIso_1st3rd = 0;
+    GCount_MatchTightIso_Only3rd = 0;
+    GCount_MatchTight_Only3rd = 0;
+    GCount_Tight_1st3rd = 0;
+    GCount_TightIso_1st3rd = 0;
+    GCount_TightIso_Only3rd = 0;
+    GCount_Tight_Only3rd = 0;
+    GCount_Fiducial_1stOther = 0;
+    GCount_Fiducial_MoreThan2 = 0;
+    GCount_Match_MoreThan2_OK = 0;
+    GCount_Match_MoreThan2 = 0;
+    GCount_NoMatch_MoreThan2 = 0;
+    GCount_Fiducial_3 = 0;
+    GCount_Fiducial_MoreThan3 = 0;
+    GCount_Fiducial_Only1st = 0;
+    GCount_Fiducial_None = 0;
+  }
 
  
 //------------------------------------------------------------------------------
@@ -421,7 +424,7 @@ void CoreMuonSelector::InsideLoop() {
   // Do Event Counting
   //------------------------------------------------------------------------------
 
-  Counting();
+  if (_Report) Counting();
     
   
 } // end inside Loop
@@ -1220,75 +1223,77 @@ void CoreMuonSelector::Summary() {
   cout << " Number of Events in the sample:  " << _NEvents  << endl;
   cout << " Normalization factor: " << _factN << endl;
   cout << endl;
-  cout << " ---------------------------------------------------" << endl;
-  cout << "Counting Report" << endl;
-  cout << " ---------------------------------------------------" << endl;
-  cout << "" << endl;
-  cout << "Total NoE (Number of Events): " << GCount_AllEvents << endl;
-  cout << " NoE with 2 GEN muons: " << GCount_GenEvents << endl;
-  cout << " * NoE with at least 2 valid muons: " << GCount_Fiducial_AtLeast2 << 
-    " (" << 100*GCount_Fiducial_AtLeast2/GCount_GenEvents << "%)" << endl;
-  cout << "  * NoE with exactly 2 valid muons: " << GCount_Fiducial_2 << 
-    " (" << 100*GCount_Fiducial_2/GCount_GenEvents << "%)" << endl;
 
-  cout << "   + NoE where the valid muons are the 1st and the 2nd: " << GCount_Fiducial_1st2nd <<
-    " (" << 100*GCount_Fiducial_1st2nd/GCount_GenEvents << "%)" << endl;
- 
-  cout << "     - NoE where both are matched: " << GCount_Match_1st2nd <<
-    " (" << 100*GCount_Match_1st2nd/GCount_Fiducial_1st2nd << "%)" << endl;
-  cout << "      ~ NoE where both pass Tight ID: " << GCount_MatchTight_1st2nd <<
-    " (" << 100*GCount_MatchTight_1st2nd/GCount_Match_1st2nd << "%)" << endl;
-  cout << "      ~ NoE where both pass Tight ID and ISO: " << GCount_MatchTightIso_1st2nd <<
-    " (" << 100*GCount_MatchTightIso_1st2nd/GCount_Match_1st2nd << "%)" << endl;
-
-  cout << "     - NoE where both are not matched: " << GCount_NoMatch_1st2nd <<
-    " (" << 100*GCount_NoMatch_1st2nd/GCount_Fiducial_1st2nd << "%)" << endl;
-  cout << "      ~ NoE where both pass Tight ID: " << GCount_Tight_1st2nd <<
-    " (" << 100*GCount_Tight_1st2nd/GCount_NoMatch_1st2nd << "%)" << endl;
-  cout << "      ~ NoE where both pass Tight ID and ISO: " << GCount_TightIso_1st2nd <<
-    " (" << 100*GCount_TightIso_1st2nd/GCount_NoMatch_1st2nd << "%)" << endl;
-
-  cout << "   + NoE where the valid muons are the 1st and the 3rd: " << GCount_Fiducial_1st3rd << 
-    " (" << 100*GCount_Fiducial_1st3rd/GCount_GenEvents << "%)" << endl;
-
-  cout << "     - NoE where both are matched: " << GCount_Match_1st3rd <<
-    " (" << 100*GCount_Match_1st3rd/GCount_Fiducial_1st3rd << "%)" << endl;
-  cout << "      ~ NoE where both pass Tight ID: " << GCount_MatchTight_1st3rd <<
-    " (" << 100*GCount_MatchTight_1st3rd/GCount_Match_1st3rd << "%)" << endl;
-  cout << "      ~ NoE where both pass Tight ID and ISO: " << GCount_MatchTightIso_1st3rd <<
-    " (" << 100*GCount_MatchTightIso_1st3rd/GCount_Match_1st3rd << "%)" << endl;
-
-  cout << "     - NoE where both are not matched: " << GCount_NoMatch_1st3rd <<
-    " (" << 100*GCount_NoMatch_1st3rd/GCount_Fiducial_1st3rd << "%)" << endl;
-  cout << "      ~ NoE where both pass Tight ID: " << GCount_Tight_1st3rd <<
-    " (" << 100*GCount_Tight_1st3rd/GCount_NoMatch_1st3rd << "%)" << endl;
-  cout << "      ~ NoE where both pass Tight ID and ISO: " << GCount_TightIso_1st3rd <<
-    " (" << 100*GCount_TightIso_1st3rd/GCount_NoMatch_1st3rd << "%)" << endl;
-
-  cout << "   + NoE where the valid muons are the 1st and other one: " << GCount_Fiducial_1stOther <<
-    " (" << 100*GCount_Fiducial_1stOther/GCount_GenEvents << "%)" << endl; 
-
-  cout << "  * NoE with more than 2 valid muons: " << GCount_Fiducial_MoreThan2 <<
-    " (" << 100*GCount_Fiducial_MoreThan2/GCount_GenEvents << "%)" << endl;
-
-  cout << "   + NoE with 2 muons matched: " << GCount_Match_MoreThan2_OK << 
-    " (" << 100*GCount_Match_MoreThan2_OK/GCount_GenEvents << "%)" << endl;
-  cout << "   + NoE with more than 2 muons matched: " << GCount_Match_MoreThan2 << 
-    " (" << 100*GCount_Match_MoreThan2/GCount_GenEvents << "%)" << endl;
-  cout << "   + NoE with less than 2 muons matched: " << GCount_NoMatch_MoreThan2 << 
-    " (" << 100*GCount_NoMatch_MoreThan2/GCount_GenEvents << "%)" << endl; 
-  cout << "   + NoE with exactly 3 valid muons: " << GCount_Fiducial_3 << 
-    " (" << 100*GCount_Fiducial_3/GCount_GenEvents << "%)" << endl;
-  cout << "   + NoE with more than 3 valid muons: " << GCount_Fiducial_MoreThan3 << 
-    " (" << 100*GCount_Fiducial_MoreThan3/GCount_GenEvents << "%)" << endl;
-  cout << " * NoE where only the 1st muon is valid: " << GCount_Fiducial_Only1st << 
-
-    " (" << 100*GCount_Fiducial_Only1st/GCount_GenEvents << "%)" << endl;
-  cout << " * NoE without valid muons: " << GCount_Fiducial_None << 
-
-    " (" << 100*GCount_Fiducial_None/GCount_GenEvents << "%)" << endl;
-  cout << "" << endl;
-  cout << " ---------------------------------------------------" << endl;
-
+  if (_Report) {
+    cout << " ---------------------------------------------------" << endl;
+    cout << "Counting Report" << endl;
+    cout << " ---------------------------------------------------" << endl;
+    cout << "" << endl;
+    cout << "Total NoE (Number of Events): " << GCount_AllEvents << endl;
+    cout << " NoE with 2 GEN muons: " << GCount_GenEvents << endl;
+    cout << " * NoE with at least 2 valid muons: " << GCount_Fiducial_AtLeast2 << 
+      " (" << 100*GCount_Fiducial_AtLeast2/GCount_GenEvents << "%)" << endl;
+    cout << "  * NoE with exactly 2 valid muons: " << GCount_Fiducial_2 << 
+      " (" << 100*GCount_Fiducial_2/GCount_GenEvents << "%)" << endl;
+    
+    cout << "   + NoE where the valid muons are the 1st and the 2nd: " << GCount_Fiducial_1st2nd <<
+      " (" << 100*GCount_Fiducial_1st2nd/GCount_GenEvents << "%)" << endl;
+    
+    cout << "     - NoE where both are matched: " << GCount_Match_1st2nd <<
+      " (" << 100*GCount_Match_1st2nd/GCount_Fiducial_1st2nd << "%)" << endl;
+    cout << "      ~ NoE where both pass Tight ID: " << GCount_MatchTight_1st2nd <<
+      " (" << 100*GCount_MatchTight_1st2nd/GCount_Match_1st2nd << "%)" << endl;
+    cout << "      ~ NoE where both pass Tight ID and ISO: " << GCount_MatchTightIso_1st2nd <<
+      " (" << 100*GCount_MatchTightIso_1st2nd/GCount_Match_1st2nd << "%)" << endl;
+    
+    cout << "     - NoE where both are not matched: " << GCount_NoMatch_1st2nd <<
+      " (" << 100*GCount_NoMatch_1st2nd/GCount_Fiducial_1st2nd << "%)" << endl;
+    cout << "      ~ NoE where both pass Tight ID: " << GCount_Tight_1st2nd <<
+      " (" << 100*GCount_Tight_1st2nd/GCount_NoMatch_1st2nd << "%)" << endl;
+    cout << "      ~ NoE where both pass Tight ID and ISO: " << GCount_TightIso_1st2nd <<
+      " (" << 100*GCount_TightIso_1st2nd/GCount_NoMatch_1st2nd << "%)" << endl;
+    
+    cout << "   + NoE where the valid muons are the 1st and the 3rd: " << GCount_Fiducial_1st3rd << 
+      " (" << 100*GCount_Fiducial_1st3rd/GCount_GenEvents << "%)" << endl;
+    
+    cout << "     - NoE where both are matched: " << GCount_Match_1st3rd <<
+      " (" << 100*GCount_Match_1st3rd/GCount_Fiducial_1st3rd << "%)" << endl;
+    cout << "      ~ NoE where both pass Tight ID: " << GCount_MatchTight_1st3rd <<
+      " (" << 100*GCount_MatchTight_1st3rd/GCount_Match_1st3rd << "%)" << endl;
+    cout << "      ~ NoE where both pass Tight ID and ISO: " << GCount_MatchTightIso_1st3rd <<
+      " (" << 100*GCount_MatchTightIso_1st3rd/GCount_Match_1st3rd << "%)" << endl;
+    
+    cout << "     - NoE where both are not matched: " << GCount_NoMatch_1st3rd <<
+      " (" << 100*GCount_NoMatch_1st3rd/GCount_Fiducial_1st3rd << "%)" << endl;
+    cout << "      ~ NoE where both pass Tight ID: " << GCount_Tight_1st3rd <<
+      " (" << 100*GCount_Tight_1st3rd/GCount_NoMatch_1st3rd << "%)" << endl;
+    cout << "      ~ NoE where both pass Tight ID and ISO: " << GCount_TightIso_1st3rd <<
+      " (" << 100*GCount_TightIso_1st3rd/GCount_NoMatch_1st3rd << "%)" << endl;
+    
+    cout << "   + NoE where the valid muons are the 1st and other one: " << GCount_Fiducial_1stOther <<
+      " (" << 100*GCount_Fiducial_1stOther/GCount_GenEvents << "%)" << endl; 
+    
+    cout << "  * NoE with more than 2 valid muons: " << GCount_Fiducial_MoreThan2 <<
+      " (" << 100*GCount_Fiducial_MoreThan2/GCount_GenEvents << "%)" << endl;
+    
+    cout << "   + NoE with 2 muons matched: " << GCount_Match_MoreThan2_OK << 
+      " (" << 100*GCount_Match_MoreThan2_OK/GCount_GenEvents << "%)" << endl;
+    cout << "   + NoE with more than 2 muons matched: " << GCount_Match_MoreThan2 << 
+      " (" << 100*GCount_Match_MoreThan2/GCount_GenEvents << "%)" << endl;
+    cout << "   + NoE with less than 2 muons matched: " << GCount_NoMatch_MoreThan2 << 
+      " (" << 100*GCount_NoMatch_MoreThan2/GCount_GenEvents << "%)" << endl; 
+    cout << "   + NoE with exactly 3 valid muons: " << GCount_Fiducial_3 << 
+      " (" << 100*GCount_Fiducial_3/GCount_GenEvents << "%)" << endl;
+    cout << "   + NoE with more than 3 valid muons: " << GCount_Fiducial_MoreThan3 << 
+      " (" << 100*GCount_Fiducial_MoreThan3/GCount_GenEvents << "%)" << endl;
+    cout << " * NoE where only the 1st muon is valid: " << GCount_Fiducial_Only1st << 
+      
+      " (" << 100*GCount_Fiducial_Only1st/GCount_GenEvents << "%)" << endl;
+    cout << " * NoE without valid muons: " << GCount_Fiducial_None << 
+      
+      " (" << 100*GCount_Fiducial_None/GCount_GenEvents << "%)" << endl;
+    cout << "" << endl;
+    cout << " ---------------------------------------------------" << endl;
+  }
 
 }
