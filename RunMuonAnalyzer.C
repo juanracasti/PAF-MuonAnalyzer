@@ -25,7 +25,8 @@ void RunMuonAnalyzer(const char* data) {
   // Manual Input Parameters
   float    luminosity       = 20000.0; //In pb-1
   bool     debug            = false;   //For verbose while debugging
-  int      nEventsToProcess = -1;      //Number of events to be processed (-1 = all)
+  int      nEventsToProcess = 1000;   //Number of events to be processed (-1 = all)
+  bool     doReport         = false;   //Count events and print final report
 
   // Automatic Input Parameters (don't touch)
   bool     isdata             = false;
@@ -180,6 +181,7 @@ void RunMuonAnalyzer(const char* data) {
   myProject->SetInputParam("luminosityPU", 19468.3);  
   myProject->SetInputParam("WhichRun",     whichRun);
   myProject->SetInputParam("Debug",        debug);
+  myProject->SetInputParam("Report",       doReport);
 
   ///////////////////////////////
   // OUTPUT FILE NAME
