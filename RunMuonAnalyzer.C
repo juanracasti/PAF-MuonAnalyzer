@@ -25,12 +25,12 @@ void RunMuonAnalyzer(const char* data) {
   // Manual Input Parameters
   float    luminosity       = 20000.0; //In pb-1
   bool     debug            = false;   //For verbose while debugging
-  int nEventsToProcess      = -1;      //Number of events to be processed (-1 = all)
+  int      nEventsToProcess = -1;      //Number of events to be processed (-1 = all)
 
   // Automatic Input Parameters (don't touch)
   bool     isdata             = false;
   int      whichRun           = 1;
-  int nEventsInTheSample      = 1; //before skimming
+  int      nEventsInTheSample = 1; //before skimming
   float    xSection           = 1.;
   
   //---------------------------------
@@ -124,10 +124,21 @@ void RunMuonAnalyzer(const char* data) {
 
   else if (signal=="DR74X_50ns_MC_TTbar") {
 
-    myProject->AddDataFile(Path_DR74X + "50ns/Tree_TTbar_Powheg_0.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_TTbar_Powheg_0.root");
    
     isdata             = false;
-    nEventsInTheSample = 2829164; 
+    nEventsInTheSample = 1079068; 
+    xSection           = 6025.2;
+    whichRun           = 2;
+
+ }
+
+  else if (signal=="DR74X_50ns_MC_DY") {
+
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_0.root");
+   
+    isdata             = false;
+    nEventsInTheSample = 1559602; 
     xSection           = 6025.2;
     whichRun           = 2;
 
@@ -174,7 +185,7 @@ void RunMuonAnalyzer(const char* data) {
   // OUTPUT FILE NAME
   // Specify the name of the file where you want your histograms to be saved
 
-  myProject->SetOutputFile(signal+".root"); 
+  myProject->SetOutputFile("files/"+signal+".root"); 
 
   ///////////////////////////////
   // SELECTOR AND PACKAGES
