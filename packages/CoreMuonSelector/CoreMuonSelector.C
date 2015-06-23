@@ -101,176 +101,272 @@ void CoreMuonSelector::Initialise() {
   h_N_PV  = CreateH1F ("h_N_PV","h_N_PV",50,0,50); 
   h_N_PV->TH1::SetDefaultSumw2();
 
-  h_Eff_pt_Matched[0]              = CreateH1F("h_Eff_pt_Matched_Mu1",
-					       "h_Eff_pt_Matched_Mu1",              200, 0, 200);
-  h_Eff_pt_Matched[1]              = CreateH1F("h_Eff_pt_Matched_Mu2",
-					       "h_Eff_pt_Matched_Mu2",              200, 0, 200);
-  h_Eff_pt_TightID[0]              = CreateH1F("h_Eff_pt_TightID_Mu1",
-					       "h_Eff_pt_TightID_Mu1",              200, 0, 200);
-  h_Eff_pt_TightID[1]              = CreateH1F("h_Eff_pt_TightID_Mu2",
-					       "h_Eff_pt_TightID_Mu2",              200, 0, 200);
-  h_Eff_pt_MediumID[0]             = CreateH1F("h_Eff_pt_MediumID_Mu1",
-					       "h_Eff_pt_MediumID_Mu1",             200, 0, 200);
-  h_Eff_pt_MediumID[1]             = CreateH1F("h_Eff_pt_MediumID_Mu2",
-					       "h_Eff_pt_MediumID_Mu2",             200, 0, 200);
-  h_Eff_pt_HWWID[0]                = CreateH1F("h_Eff_pt_HWWID_Mu1",
-					       "h_Eff_pt_HWWID_Mu1",                200, 0, 200);
-  h_Eff_pt_HWWID[1]                = CreateH1F("h_Eff_pt_HWWID_Mu2",
-					       "h_Eff_pt_HWWID_Mu2",                200, 0, 200);
-  h_Eff_pt_TightIDipsHWW[0]        = CreateH1F("h_Eff_pt_TightIDipsHWW_Mu1",
-					       "h_Eff_pt_TightIDipsHWW_Mu1",        200, 0, 200);
-  h_Eff_pt_TightIDipsHWW[1]        = CreateH1F("h_Eff_pt_TightIDipsHWW_Mu2",
-					       "h_Eff_pt_TightIDipsHWW_Mu2",        200, 0, 200);
-  h_Eff_pt_MediumIDipsHWW[0]       = CreateH1F("h_Eff_pt_MediumIDipsHWW_Mu1",
-					       "h_Eff_pt_MediumIDipsHWW_Mu1",       200, 0, 200);
-  h_Eff_pt_MediumIDipsHWW[1]       = CreateH1F("h_Eff_pt_MediumIDipsHWW_Mu2",
-					       "h_Eff_pt_MediumIDipsHWW_Mu2",       200, 0, 200);
-  h_Eff_pt_TightISO03[0]           = CreateH1F("h_Eff_pt_TightISO03_Mu1", 
-					       "h_Eff_pt_TightISO03_Mu1",           200, 0, 200);
-  h_Eff_pt_TightISO03[1]           = CreateH1F("h_Eff_pt_TightISO03_Mu2", 
-					       "h_Eff_pt_TightISO03_Mu2",           200, 0, 200);
-  h_Eff_pt_TightISO04[0]           = CreateH1F("h_Eff_pt_TightISO04_Mu1", 
-					       "h_Eff_pt_TightISO04_Mu1",           200, 0, 200);
-  h_Eff_pt_TightISO04[1]           = CreateH1F("h_Eff_pt_TightISO04_Mu2", 
-					       "h_Eff_pt_TightISO04_Mu2",           200, 0, 200);
-  h_Eff_pt_TightISO03dBeta[0]      = CreateH1F("h_Eff_pt_TightISO03dBeta_Mu1", 
-					       "h_Eff_pt_TightISO03dBeta_Mu1",      200, 0, 200);
-  h_Eff_pt_TightISO03dBeta[1]      = CreateH1F("h_Eff_pt_TightISO03dBeta_Mu2", 
-					       "h_Eff_pt_TightISO03dBeta_Mu2",      200, 0, 200);
-  h_Eff_pt_TightISO04dBeta[0]      = CreateH1F("h_Eff_pt_TightISO04dBeta_Mu1", 
-					       "h_Eff_pt_TightISO04dBeta_Mu1",      200, 0, 200);
-  h_Eff_pt_TightISO04dBeta[1]      = CreateH1F("h_Eff_pt_TightISO04dBeta_Mu2", 
-					       "h_Eff_pt_TightISO04dBeta_Mu2",      200, 0, 200);
-  h_Eff_pt_TightISO03PFWeighted[0] = CreateH1F("h_Eff_pt_TightISO03PFWeighted_Mu1", 
-					       "h_Eff_pt_TightISO03PFWeighted_Mu1", 200, 0, 200);
-  h_Eff_pt_TightISO03PFWeighted[1] = CreateH1F("h_Eff_pt_TightISO03PFWeighted_Mu2", 
-					       "h_Eff_pt_TightISO03PFWeighted_Mu2", 200, 0, 200);
-  h_Eff_pt_TightISO04PFWeighted[0] = CreateH1F("h_Eff_pt_TightISO04PFWeighted_Mu1", 
-					       "h_Eff_pt_TightISO04PFWeighted_Mu1", 200, 0, 200);
-  h_Eff_pt_TightISO04PFWeighted[1] = CreateH1F("h_Eff_pt_TightISO04PFWeighted_Mu2", 
-					       "h_Eff_pt_TightISO04PFWeighted_Mu2", 200, 0, 200);
-  h_Eff_pt_TightISO03PUPPI[0]      = CreateH1F("h_Eff_pt_TightISO03PUPPI_Mu1", 
-					       "h_Eff_pt_TightISO03PUPPI_Mu1",      200, 0, 200);
-  h_Eff_pt_TightISO03PUPPI[1]      = CreateH1F("h_Eff_pt_TightISO03PUPPI_Mu2", 
-					       "h_Eff_pt_TightISO03PUPPI_Mu2",      200, 0, 200);
-  h_Eff_pt_TightISO04PUPPI[0]      = CreateH1F("h_Eff_pt_TightISO04PUPPI_Mu1", 
-					       "h_Eff_pt_TightISO04PUPPI_Mu1",      200, 0, 200);
-  h_Eff_pt_TightISO04PUPPI[1]      = CreateH1F("h_Eff_pt_TightISO04PUPPI_Mu2", 
-					       "h_Eff_pt_TightISO04PUPPI_Mu2",      200, 0, 200);
+  h_Eff_pt_Matched[0]                   = CreateH1F("h_Eff_pt_Matched_Mu1",
+						    "h_Eff_pt_Matched_Mu1",                    200, 0, 200);
+  h_Eff_pt_Matched[1]                   = CreateH1F("h_Eff_pt_Matched_Mu2",
+						    "h_Eff_pt_Matched_Mu2",                    200, 0, 200);
+  h_Eff_pt_TightID[0]                   = CreateH1F("h_Eff_pt_TightID_Mu1",
+						    "h_Eff_pt_TightID_Mu1",                    200, 0, 200);
+  h_Eff_pt_TightID[1]                   = CreateH1F("h_Eff_pt_TightID_Mu2",
+						    "h_Eff_pt_TightID_Mu2",                    200, 0, 200);
+  h_Eff_pt_MediumID[0]                  = CreateH1F("h_Eff_pt_MediumID_Mu1",
+						    "h_Eff_pt_MediumID_Mu1",                   200, 0, 200);
+  h_Eff_pt_MediumID[1]                  = CreateH1F("h_Eff_pt_MediumID_Mu2",
+						    "h_Eff_pt_MediumID_Mu2",                   200, 0, 200);
+  h_Eff_pt_HWWID[0]                     = CreateH1F("h_Eff_pt_HWWID_Mu1",
+						    "h_Eff_pt_HWWID_Mu1",                      200, 0, 200);
+  h_Eff_pt_HWWID[1]                     = CreateH1F("h_Eff_pt_HWWID_Mu2",
+						    "h_Eff_pt_HWWID_Mu2",                      200, 0, 200);
+  h_Eff_pt_TightIDipsHWW[0]             = CreateH1F("h_Eff_pt_TightIDipsHWW_Mu1",
+						    "h_Eff_pt_TightIDipsHWW_Mu1",              200, 0, 200);
+  h_Eff_pt_TightIDipsHWW[1]             = CreateH1F("h_Eff_pt_TightIDipsHWW_Mu2",
+						    "h_Eff_pt_TightIDipsHWW_Mu2",              200, 0, 200);
+  h_Eff_pt_MediumIDipsHWW[0]            = CreateH1F("h_Eff_pt_MediumIDipsHWW_Mu1",
+						    "h_Eff_pt_MediumIDipsHWW_Mu1",             200, 0, 200);
+  h_Eff_pt_MediumIDipsHWW[1]            = CreateH1F("h_Eff_pt_MediumIDipsHWW_Mu2",
+						    "h_Eff_pt_MediumIDipsHWW_Mu2",             200, 0, 200);
+  h_Eff_pt_TightID_ISO03[0]             = CreateH1F("h_Eff_pt_TightID_ISO03_Mu1", 
+						    "h_Eff_pt_TightID_ISO03_Mu1",              200, 0, 200);
+  h_Eff_pt_TightID_ISO03[1]             = CreateH1F("h_Eff_pt_TightID_ISO03_Mu2", 
+						    "h_Eff_pt_TightID_ISO03_Mu2",              200, 0, 200);
+  h_Eff_pt_TightID_ISO04[0]             = CreateH1F("h_Eff_pt_TightID_ISO04_Mu1", 
+						    "h_Eff_pt_TightID_ISO04_Mu1",              200, 0, 200);
+  h_Eff_pt_TightID_ISO04[1]             = CreateH1F("h_Eff_pt_TightID_ISO04_Mu2", 
+						    "h_Eff_pt_TightID_ISO04_Mu2",              200, 0, 200);
+  h_Eff_pt_TightID_ISO03dBeta[0]        = CreateH1F("h_Eff_pt_TightID_ISO03dBeta_Mu1", 
+						    "h_Eff_pt_TightID_ISO03dBeta_Mu1",         200, 0, 200);
+  h_Eff_pt_TightID_ISO03dBeta[1]        = CreateH1F("h_Eff_pt_TightID_ISO03dBeta_Mu2", 
+						    "h_Eff_pt_TightID_ISO03dBeta_Mu2",         200, 0, 200);
+  h_Eff_pt_TightID_ISO04dBeta[0]        = CreateH1F("h_Eff_pt_TightID_ISO04dBeta_Mu1", 
+						    "h_Eff_pt_TightID_ISO04dBeta_Mu1",         200, 0, 200);
+  h_Eff_pt_TightID_ISO04dBeta[1]        = CreateH1F("h_Eff_pt_TightID_ISO04dBeta_Mu2", 
+						    "h_Eff_pt_TightID_ISO04dBeta_Mu2",         200, 0, 200);
+  h_Eff_pt_TightID_ISO03PFWeighted[0]   = CreateH1F("h_Eff_pt_TightID_ISO03PFWeighted_Mu1", 
+						    "h_Eff_pt_TightID_ISO03PFWeighted_Mu1",    200, 0, 200);
+  h_Eff_pt_TightID_ISO03PFWeighted[1]   = CreateH1F("h_Eff_pt_TightID_ISO03PFWeighted_Mu2", 
+						    "h_Eff_pt_TightID_ISO03PFWeighted_Mu2",    200, 0, 200);
+  h_Eff_pt_TightID_ISO04PFWeighted[0]   = CreateH1F("h_Eff_pt_TightID_ISO04PFWeighted_Mu1", 
+						    "h_Eff_pt_TightID_ISO04PFWeighted_Mu1",    200, 0, 200);
+  h_Eff_pt_TightID_ISO04PFWeighted[1]   = CreateH1F("h_Eff_pt_TightID_ISO04PFWeighted_Mu2", 
+						    "h_Eff_pt_TightID_ISO04PFWeighted_Mu2",    200, 0, 200);
+  h_Eff_pt_TightID_ISO03PUPPI[0]        = CreateH1F("h_Eff_pt_TightID_ISO03PUPPI_Mu1", 
+						    "h_Eff_pt_TightID_ISO03PUPPI_Mu1",         200, 0, 200);
+  h_Eff_pt_TightID_ISO03PUPPI[1]        = CreateH1F("h_Eff_pt_TightID_ISO03PUPPI_Mu2", 
+						    "h_Eff_pt_TightID_ISO03PUPPI_Mu2",         200, 0, 200);
+  h_Eff_pt_TightID_ISO04PUPPI[0]        = CreateH1F("h_Eff_pt_TightID_ISO04PUPPI_Mu1", 
+						    "h_Eff_pt_TightID_ISO04PUPPI_Mu1",         200, 0, 200);
+  h_Eff_pt_TightID_ISO04PUPPI[1]        = CreateH1F("h_Eff_pt_TightID_ISO04PUPPI_Mu2", 
+						    "h_Eff_pt_TightID_ISO04PUPPI_Mu2",         200, 0, 200);
+  h_Eff_pt_MediumID_ISO03[0]            = CreateH1F("h_Eff_pt_MediumID_ISO03_Mu1", 
+						    "h_Eff_pt_MediumID_ISO03_Mu1",             200, 0, 200);
+  h_Eff_pt_MediumID_ISO03[1]            = CreateH1F("h_Eff_pt_MediumID_ISO03_Mu2", 
+						    "h_Eff_pt_MediumID_ISO03_Mu2",             200, 0, 200);
+  h_Eff_pt_MediumID_ISO04[0]            = CreateH1F("h_Eff_pt_MediumID_ISO04_Mu1", 
+						    "h_Eff_pt_MediumID_ISO04_Mu1",             200, 0, 200);
+  h_Eff_pt_MediumID_ISO04[1]            = CreateH1F("h_Eff_pt_MediumID_ISO04_Mu2", 
+						    "h_Eff_pt_MediumID_ISO04_Mu2",             200, 0, 200);
+  h_Eff_pt_MediumID_ISO03dBeta[0]       = CreateH1F("h_Eff_pt_MediumID_ISO03dBeta_Mu1", 
+						    "h_Eff_pt_MediumID_ISO03dBeta_Mu1",        200, 0, 200);
+  h_Eff_pt_MediumID_ISO03dBeta[1]       = CreateH1F("h_Eff_pt_MediumID_ISO03dBeta_Mu2", 
+						    "h_Eff_pt_MediumID_ISO03dBeta_Mu2",        200, 0, 200);
+  h_Eff_pt_MediumID_ISO04dBeta[0]       = CreateH1F("h_Eff_pt_MediumID_ISO04dBeta_Mu1", 
+						    "h_Eff_pt_MediumID_ISO04dBeta_Mu1",        200, 0, 200);
+  h_Eff_pt_MediumID_ISO04dBeta[1]       = CreateH1F("h_Eff_pt_MediumID_ISO04dBeta_Mu2", 
+						    "h_Eff_pt_MediumID_ISO04dBeta_Mu2",        200, 0, 200);
+  h_Eff_pt_MediumID_ISO03PFWeighted[0]  = CreateH1F("h_Eff_pt_MediumID_ISO03PFWeighted_Mu1", 
+						    "h_Eff_pt_MediumID_ISO03PFWeighted_Mu1",   200, 0, 200);
+  h_Eff_pt_MediumID_ISO03PFWeighted[1]  = CreateH1F("h_Eff_pt_MediumID_ISO03PFWeighted_Mu2", 
+						    "h_Eff_pt_MediumID_ISO03PFWeighted_Mu2",   200, 0, 200);
+  h_Eff_pt_MediumID_ISO04PFWeighted[0]  = CreateH1F("h_Eff_pt_MediumID_ISO04PFWeighted_Mu1", 
+						    "h_Eff_pt_MediumID_ISO04PFWeighted_Mu1",   200, 0, 200);
+  h_Eff_pt_MediumID_ISO04PFWeighted[1]  = CreateH1F("h_Eff_pt_MediumID_ISO04PFWeighted_Mu2", 
+						    "h_Eff_pt_MediumID_ISO04PFWeighted_Mu2",   200, 0, 200);
+  h_Eff_pt_MediumID_ISO03PUPPI[0]       = CreateH1F("h_Eff_pt_MediumID_ISO03PUPPI_Mu1", 
+						    "h_Eff_pt_MediumID_ISO03PUPPI_Mu1",        200, 0, 200);
+  h_Eff_pt_MediumID_ISO03PUPPI[1]       = CreateH1F("h_Eff_pt_MediumID_ISO03PUPPI_Mu2", 
+						    "h_Eff_pt_MediumID_ISO03PUPPI_Mu2",        200, 0, 200);
+  h_Eff_pt_MediumID_ISO04PUPPI[0]       = CreateH1F("h_Eff_pt_MediumID_ISO04PUPPI_Mu1", 
+						    "h_Eff_pt_MediumID_ISO04PUPPI_Mu1",        200, 0, 200);
+  h_Eff_pt_MediumID_ISO04PUPPI[1]       = CreateH1F("h_Eff_pt_MediumID_ISO04PUPPI_Mu2", 
+						    "h_Eff_pt_MediumID_ISO04PUPPI_Mu2",        200, 0, 200);
   
-  h_Eff_eta_Matched[0]              = CreateH1F("h_Eff_eta_Matched_Mu1",
-						"h_Eff_eta_Matched_Mu1",              50, -2.5, 2.5);
-  h_Eff_eta_Matched[1]              = CreateH1F("h_Eff_eta_Matched_Mu2",
-						"h_Eff_eta_Matched_Mu2",              50, -2.5, 2.5);
-  h_Eff_eta_TightID[0]              = CreateH1F("h_Eff_eta_TightID_Mu1",
-						"h_Eff_eta_TightID_Mu1",              50, -2.5, 2.5);
-  h_Eff_eta_TightID[1]              = CreateH1F("h_Eff_eta_TightID_Mu2",
-						"h_Eff_eta_TightID_Mu2",              50, -2.5, 2.5);
-  h_Eff_eta_MediumID[0]             = CreateH1F("h_Eff_eta_MediumID_Mu1",
-						"h_Eff_eta_MediumID_Mu1",             50, -2.5, 2.5);
-  h_Eff_eta_MediumID[1]             = CreateH1F("h_Eff_eta_MediumID_Mu2",
-						"h_Eff_eta_MediumID_Mu2",             50, -2.5, 2.5);
-  h_Eff_eta_HWWID[0]                = CreateH1F("h_Eff_eta_HWWID_Mu1",
-						"h_Eff_eta_HWWID_Mu1",                50, -2.5, 2.5);
-  h_Eff_eta_HWWID[1]                = CreateH1F("h_Eff_eta_HWWID_Mu2",
-						"h_Eff_eta_HWWID_Mu2",                50, -2.5, 2.5);
-  h_Eff_eta_TightIDipsHWW[0]        = CreateH1F("h_Eff_eta_TightIDipsHWW_Mu1",
-						"h_Eff_eta_TightIDipsHWW_Mu1",        50, -2.5, 2.5);
-  h_Eff_eta_TightIDipsHWW[1]        = CreateH1F("h_Eff_eta_TightIDipsHWW_Mu2",
-						"h_Eff_eta_TightIDipsHWW_Mu2",        50, -2.5, 2.5);
-  h_Eff_eta_MediumIDipsHWW[0]       = CreateH1F("h_Eff_eta_MediumIDipsHWW_Mu1",
-						"h_Eff_eta_MediumIDipsHWW_Mu1",       50, -2.5, 2.5);
-  h_Eff_eta_MediumIDipsHWW[1]       = CreateH1F("h_Eff_eta_MediumIDipsHWW_Mu2",
-						"h_Eff_eta_MediumIDipsHWW_Mu2",       50, -2.5, 2.5);
-  h_Eff_eta_TightISO03[0]           = CreateH1F("h_Eff_eta_TightISO03_Mu1", 
-						"h_Eff_eta_TightISO03_Mu1",           50, -2.5, 2.5);
-  h_Eff_eta_TightISO03[1]           = CreateH1F("h_Eff_eta_TightISO03_Mu2", 
-						"h_Eff_eta_TightISO03_Mu2",           50, -2.5, 2.5);
-  h_Eff_eta_TightISO04[0]           = CreateH1F("h_Eff_eta_TightISO04_Mu1", 
-						"h_Eff_eta_TightISO04_Mu1",           50, -2.5, 2.5);
-  h_Eff_eta_TightISO04[1]           = CreateH1F("h_Eff_eta_TightISO04_Mu2", 
-						"h_Eff_eta_TightISO04_Mu2",           50, -2.5, 2.5);
-  h_Eff_eta_TightISO03dBeta[0]      = CreateH1F("h_Eff_eta_TightISO03dBeta_Mu1", 
-						"h_Eff_eta_TightISO03dBeta_Mu1",      50, -2.5, 2.5);
-  h_Eff_eta_TightISO03dBeta[1]      = CreateH1F("h_Eff_eta_TightISO03dBeta_Mu2", 
-						"h_Eff_eta_TightISO03dBeta_Mu2",      50, -2.5, 2.5);
-  h_Eff_eta_TightISO04dBeta[0]      = CreateH1F("h_Eff_eta_TightISO04dBeta_Mu1", 
-						"h_Eff_eta_TightISO04dBeta_Mu1",      50, -2.5, 2.5);
-  h_Eff_eta_TightISO04dBeta[1]      = CreateH1F("h_Eff_eta_TightISO04dBeta_Mu2", 
-						"h_Eff_eta_TightISO04dBeta_Mu2",      50, -2.5, 2.5);
-  h_Eff_eta_TightISO03PFWeighted[0] = CreateH1F("h_Eff_eta_TightISO03PFWeighted_Mu1", 
-						"h_Eff_eta_TightISO03PFWeighted_Mu1", 50, -2.5, 2.5);
-  h_Eff_eta_TightISO03PFWeighted[1] = CreateH1F("h_Eff_eta_TightISO03PFWeighted_Mu2", 
-						"h_Eff_eta_TightISO03PFWeighted_Mu2", 50, -2.5, 2.5);
-  h_Eff_eta_TightISO04PFWeighted[0] = CreateH1F("h_Eff_eta_TightISO04PFWeighted_Mu1", 
-						"h_Eff_eta_TightISO04PFWeighted_Mu1", 50, -2.5, 2.5);
-  h_Eff_eta_TightISO04PFWeighted[1] = CreateH1F("h_Eff_eta_TightISO04PFWeighted_Mu2", 
-						"h_Eff_eta_TightISO04PFWeighted_Mu2", 50, -2.5, 2.5);
-  h_Eff_eta_TightISO03PUPPI[0]      = CreateH1F("h_Eff_eta_TightISO03PUPPI_Mu1", 
-						"h_Eff_eta_TightISO03PUPPI_Mu1",      50, -2.5, 2.5);
-  h_Eff_eta_TightISO03PUPPI[1]      = CreateH1F("h_Eff_eta_TightISO03PUPPI_Mu2", 
-						"h_Eff_eta_TightISO03PUPPI_Mu2",      50, -2.5, 2.5);
-  h_Eff_eta_TightISO04PUPPI[0]      = CreateH1F("h_Eff_eta_TightISO04PUPPI_Mu1", 
-						"h_Eff_eta_TightISO04PUPPI_Mu1",      50, -2.5, 2.5);
-  h_Eff_eta_TightISO04PUPPI[1]      = CreateH1F("h_Eff_eta_TightISO04PUPPI_Mu2", 
-						"h_Eff_eta_TightISO04PUPPI_Mu2",      50, -2.5, 2.5);
+  h_Eff_eta_Matched[0]                  = CreateH1F("h_Eff_eta_Matched_Mu1",
+						    "h_Eff_eta_Matched_Mu1",                   50, -2.5, 2.5);
+  h_Eff_eta_Matched[1]                  = CreateH1F("h_Eff_eta_Matched_Mu2",
+						    "h_Eff_eta_Matched_Mu2",                   50, -2.5, 2.5);
+  h_Eff_eta_TightID[0]                  = CreateH1F("h_Eff_eta_TightID_Mu1",
+						    "h_Eff_eta_TightID_Mu1",                   50, -2.5, 2.5);
+  h_Eff_eta_TightID[1]                  = CreateH1F("h_Eff_eta_TightID_Mu2",
+						    "h_Eff_eta_TightID_Mu2",                   50, -2.5, 2.5);
+  h_Eff_eta_MediumID[0]                 = CreateH1F("h_Eff_eta_MediumID_Mu1",
+						    "h_Eff_eta_MediumID_Mu1",                  50, -2.5, 2.5);
+  h_Eff_eta_MediumID[1]                 = CreateH1F("h_Eff_eta_MediumID_Mu2",
+						    "h_Eff_eta_MediumID_Mu2",                  50, -2.5, 2.5);
+  h_Eff_eta_HWWID[0]                    = CreateH1F("h_Eff_eta_HWWID_Mu1",
+						    "h_Eff_eta_HWWID_Mu1",                     50, -2.5, 2.5);
+  h_Eff_eta_HWWID[1]                    = CreateH1F("h_Eff_eta_HWWID_Mu2",
+						    "h_Eff_eta_HWWID_Mu2",                     50, -2.5, 2.5);
+  h_Eff_eta_TightIDipsHWW[0]            = CreateH1F("h_Eff_eta_TightIDipsHWW_Mu1",
+						    "h_Eff_eta_TightIDipsHWW_Mu1",             50, -2.5, 2.5);
+  h_Eff_eta_TightIDipsHWW[1]            = CreateH1F("h_Eff_eta_TightIDipsHWW_Mu2",
+						    "h_Eff_eta_TightIDipsHWW_Mu2",             50, -2.5, 2.5);
+  h_Eff_eta_MediumIDipsHWW[0]           = CreateH1F("h_Eff_eta_MediumIDipsHWW_Mu1",
+						    "h_Eff_eta_MediumIDipsHWW_Mu1",            50, -2.5, 2.5);
+  h_Eff_eta_MediumIDipsHWW[1]           = CreateH1F("h_Eff_eta_MediumIDipsHWW_Mu2",
+						    "h_Eff_eta_MediumIDipsHWW_Mu2",            50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03[0]            = CreateH1F("h_Eff_eta_TightID_ISO03_Mu1", 
+						    "h_Eff_eta_TightID_ISO03_Mu1",             50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03[1]            = CreateH1F("h_Eff_eta_TightID_ISO03_Mu2", 
+						    "h_Eff_eta_TightID_ISO03_Mu2",             50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04[0]            = CreateH1F("h_Eff_eta_TightID_ISO04_Mu1", 
+						    "h_Eff_eta_TightID_ISO04_Mu1",             50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04[1]            = CreateH1F("h_Eff_eta_TightID_ISO04_Mu2", 
+						    "h_Eff_eta_TightID_ISO04_Mu2",             50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03dBeta[0]       = CreateH1F("h_Eff_eta_TightID_ISO03dBeta_Mu1", 
+						    "h_Eff_eta_TightID_ISO03dBeta_Mu1",        50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03dBeta[1]       = CreateH1F("h_Eff_eta_TightID_ISO03dBeta_Mu2", 
+						    "h_Eff_eta_TightID_ISO03dBeta_Mu2",        50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04dBeta[0]       = CreateH1F("h_Eff_eta_TightID_ISO04dBeta_Mu1", 
+						    "h_Eff_eta_TightID_ISO04dBeta_Mu1",        50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04dBeta[1]       = CreateH1F("h_Eff_eta_TightID_ISO04dBeta_Mu2", 
+						    "h_Eff_eta_TightID_ISO04dBeta_Mu2",        50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03PFWeighted[0]  = CreateH1F("h_Eff_eta_TightID_ISO03PFWeighted_Mu1", 
+						    "h_Eff_eta_TightID_ISO03PFWeighted_Mu1",   50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03PFWeighted[1]  = CreateH1F("h_Eff_eta_TightID_ISO03PFWeighted_Mu2", 
+						    "h_Eff_eta_TightID_ISO03PFWeighted_Mu2",   50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04PFWeighted[0]  = CreateH1F("h_Eff_eta_TightID_ISO04PFWeighted_Mu1", 
+						    "h_Eff_eta_TightID_ISO04PFWeighted_Mu1",   50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04PFWeighted[1]  = CreateH1F("h_Eff_eta_TightID_ISO04PFWeighted_Mu2", 
+						    "h_Eff_eta_TightID_ISO04PFWeighted_Mu2",   50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03PUPPI[0]       = CreateH1F("h_Eff_eta_TightID_ISO03PUPPI_Mu1", 
+						    "h_Eff_eta_TightID_ISO03PUPPI_Mu1",        50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03PUPPI[1]       = CreateH1F("h_Eff_eta_TightID_ISO03PUPPI_Mu2", 
+						    "h_Eff_eta_TightID_ISO03PUPPI_Mu2",        50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04PUPPI[0]       = CreateH1F("h_Eff_eta_TightID_ISO04PUPPI_Mu1", 
+						    "h_Eff_eta_TightID_ISO04PUPPI_Mu1",        50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04PUPPI[1]       = CreateH1F("h_Eff_eta_TightID_ISO04PUPPI_Mu2", 
+						    "h_Eff_eta_TightID_ISO04PUPPI_Mu2",        50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03[0]           = CreateH1F("h_Eff_eta_MediumID_ISO03_Mu1", 
+						    "h_Eff_eta_MediumID_ISO03_Mu1",            50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03[1]           = CreateH1F("h_Eff_eta_MediumID_ISO03_Mu2", 
+						    "h_Eff_eta_MediumID_ISO03_Mu2",            50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04[0]           = CreateH1F("h_Eff_eta_MediumID_ISO04_Mu1", 
+						    "h_Eff_eta_MediumID_ISO04_Mu1",            50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04[1]           = CreateH1F("h_Eff_eta_MediumID_ISO04_Mu2", 
+						    "h_Eff_eta_MediumID_ISO04_Mu2",            50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03dBeta[0]      = CreateH1F("h_Eff_eta_MediumID_ISO03dBeta_Mu1", 
+						    "h_Eff_eta_MediumID_ISO03dBeta_Mu1",       50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03dBeta[1]      = CreateH1F("h_Eff_eta_MediumID_ISO03dBeta_Mu2", 
+						    "h_Eff_eta_MediumID_ISO03dBeta_Mu2",       50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04dBeta[0]      = CreateH1F("h_Eff_eta_MediumID_ISO04dBeta_Mu1", 
+						    "h_Eff_eta_MediumID_ISO04dBeta_Mu1",       50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04dBeta[1]      = CreateH1F("h_Eff_eta_MediumID_ISO04dBeta_Mu2", 
+						    "h_Eff_eta_MediumID_ISO04dBeta_Mu2",       50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03PFWeighted[0] = CreateH1F("h_Eff_eta_MediumID_ISO03PFWeighted_Mu1", 
+						    "h_Eff_eta_MediumID_ISO03PFWeighted_Mu1",  50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03PFWeighted[1] = CreateH1F("h_Eff_eta_MediumID_ISO03PFWeighted_Mu2", 
+						    "h_Eff_eta_MediumID_ISO03PFWeighted_Mu2",  50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04PFWeighted[0] = CreateH1F("h_Eff_eta_MediumID_ISO04PFWeighted_Mu1", 
+						    "h_Eff_eta_MediumID_ISO04PFWeighted_Mu1",  50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04PFWeighted[1] = CreateH1F("h_Eff_eta_MediumID_ISO04PFWeighted_Mu2", 
+						    "h_Eff_eta_MediumID_ISO04PFWeighted_Mu2",  50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03PUPPI[0]      = CreateH1F("h_Eff_eta_MediumID_ISO03PUPPI_Mu1", 
+						    "h_Eff_eta_MediumID_ISO03PUPPI_Mu1",       50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03PUPPI[1]      = CreateH1F("h_Eff_eta_MediumID_ISO03PUPPI_Mu2", 
+						    "h_Eff_eta_MediumID_ISO03PUPPI_Mu2",       50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04PUPPI[0]      = CreateH1F("h_Eff_eta_MediumID_ISO04PUPPI_Mu1", 
+						    "h_Eff_eta_MediumID_ISO04PUPPI_Mu1",       50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04PUPPI[1]      = CreateH1F("h_Eff_eta_MediumID_ISO04PUPPI_Mu2", 
+						    "h_Eff_eta_MediumID_ISO04PUPPI_Mu2",       50, -2.5, 2.5);
   
-  h_Eff_npv_Matched[0]              = CreateH1F("h_Eff_npv_Matched_Mu1",
-						"h_Eff_npv_Matched_Mu1",              45, 0, 45);
-  h_Eff_npv_Matched[1]              = CreateH1F("h_Eff_npv_Matched_Mu2",
-						"h_Eff_npv_Matched_Mu2",              45, 0, 45);
-  h_Eff_npv_TightID[0]              = CreateH1F("h_Eff_npv_TightID_Mu1",
-						"h_Eff_npv_TightID_Mu1",              45, 0, 45);
-  h_Eff_npv_TightID[1]              = CreateH1F("h_Eff_npv_TightID_Mu2",
-						"h_Eff_npv_TightID_Mu2",              45, 0, 45);
-  h_Eff_npv_MediumID[0]             = CreateH1F("h_Eff_npv_MediumID_Mu1",
-						"h_Eff_npv_MediumID_Mu1",             45, 0, 45);
-  h_Eff_npv_MediumID[1]             = CreateH1F("h_Eff_npv_MediumID_Mu2",
-						"h_Eff_npv_MediumID_Mu2",             45, 0, 45);
-  h_Eff_npv_HWWID[0]                = CreateH1F("h_Eff_npv_HWWID_Mu1",
-						"h_Eff_npv_HWWID_Mu1",                45, 0, 45);
-  h_Eff_npv_HWWID[1]                = CreateH1F("h_Eff_npv_HWWID_Mu2",
-						"h_Eff_npv_HWWID_Mu2",                45, 0, 45);
-  h_Eff_npv_TightIDipsHWW[0]        = CreateH1F("h_Eff_npv_TightIDipsHWW_Mu1",
-						"h_Eff_npv_TightIDipsHWW_Mu1",        45, 0, 45);
-  h_Eff_npv_TightIDipsHWW[1]        = CreateH1F("h_Eff_npv_TightIDipsHWW_Mu2",
-						"h_Eff_npv_TightIDipsHWW_Mu2",        45, 0, 45);
-  h_Eff_npv_MediumIDipsHWW[0]       = CreateH1F("h_Eff_npv_MediumIDipsHWW_Mu1",
-						"h_Eff_npv_MediumIDipsHWW_Mu1",       45, 0, 45);
-  h_Eff_npv_MediumIDipsHWW[1]       = CreateH1F("h_Eff_npv_MediumIDipsHWW_Mu2",
-						"h_Eff_npv_MediumIDipsHWW_Mu2",       45, 0, 45);
-  h_Eff_npv_TightISO03[0]           = CreateH1F("h_Eff_npv_TightISO03_Mu1", 
-						"h_Eff_npv_TightISO03_Mu1",           45, 0, 45);
-  h_Eff_npv_TightISO03[1]           = CreateH1F("h_Eff_npv_TightISO03_Mu2", 
-						"h_Eff_npv_TightISO03_Mu2",           45, 0, 45);
-  h_Eff_npv_TightISO04[0]           = CreateH1F("h_Eff_npv_TightISO04_Mu1", 
-						"h_Eff_npv_TightISO04_Mu1",           45, 0, 45);
-  h_Eff_npv_TightISO04[1]           = CreateH1F("h_Eff_npv_TightISO04_Mu2", 
-						"h_Eff_npv_TightISO04_Mu2",           45, 0, 45);
-  h_Eff_npv_TightISO03dBeta[0]      = CreateH1F("h_Eff_npv_TightISO03dBeta_Mu1", 
-						"h_Eff_npv_TightISO03dBeta_Mu1",      45, 0, 45);
-  h_Eff_npv_TightISO03dBeta[1]      = CreateH1F("h_Eff_npv_TightISO03dBeta_Mu2", 
-						"h_Eff_npv_TightISO03dBeta_Mu2",      45, 0, 45);
-  h_Eff_npv_TightISO04dBeta[0]      = CreateH1F("h_Eff_npv_TightISO04dBeta_Mu1", 
-						"h_Eff_npv_TightISO04dBeta_Mu1",      45, 0, 45);
-  h_Eff_npv_TightISO04dBeta[1]      = CreateH1F("h_Eff_npv_TightISO04dBeta_Mu2", 
-						"h_Eff_npv_TightISO04dBeta_Mu2",      45, 0, 45);
-  h_Eff_npv_TightISO03PFWeighted[0] = CreateH1F("h_Eff_npv_TightISO03PFWeighted_Mu1", 
-						"h_Eff_npv_TightISO03PFWeighted_Mu1", 45, 0, 45);
-  h_Eff_npv_TightISO03PFWeighted[1] = CreateH1F("h_Eff_npv_TightISO03PFWeighted_Mu2", 
-						"h_Eff_npv_TightISO03PFWeighted_Mu2", 45, 0, 45);
-  h_Eff_npv_TightISO04PFWeighted[0] = CreateH1F("h_Eff_npv_TightISO04PFWeighted_Mu1", 
-						"h_Eff_npv_TightISO04PFWeighted_Mu1", 45, 0, 45);
-  h_Eff_npv_TightISO04PFWeighted[1] = CreateH1F("h_Eff_npv_TightISO04PFWeighted_Mu2", 
-						"h_Eff_npv_TightISO04PFWeighted_Mu2", 45, 0, 45);
-  h_Eff_npv_TightISO03PUPPI[0]      = CreateH1F("h_Eff_npv_TightISO03PUPPI_Mu1", 
-						"h_Eff_npv_TightISO03PUPPI_Mu1",      45, 0, 45);
-  h_Eff_npv_TightISO03PUPPI[1]      = CreateH1F("h_Eff_npv_TightISO03PUPPI_Mu2", 
-						"h_Eff_npv_TightISO03PUPPI_Mu2",      45, 0, 45);
-  h_Eff_npv_TightISO04PUPPI[0]      = CreateH1F("h_Eff_npv_TightISO04PUPPI_Mu1", 
-						"h_Eff_npv_TightISO04PUPPI_Mu1",      45, 0, 45);
-  h_Eff_npv_TightISO04PUPPI[1]      = CreateH1F("h_Eff_npv_TightISO04PUPPI_Mu2", 
-						"h_Eff_npv_TightISO04PUPPI_Mu2",      45, 0, 45);
+  h_Eff_npv_Matched[0]                  = CreateH1F("h_Eff_npv_Matched_Mu1",
+						    "h_Eff_npv_Matched_Mu1",                   45, 0, 45);
+  h_Eff_npv_Matched[1]                  = CreateH1F("h_Eff_npv_Matched_Mu2",
+						    "h_Eff_npv_Matched_Mu2",                   45, 0, 45);
+  h_Eff_npv_TightID[0]                  = CreateH1F("h_Eff_npv_TightID_Mu1",
+						    "h_Eff_npv_TightID_Mu1",                   45, 0, 45);
+  h_Eff_npv_TightID[1]                  = CreateH1F("h_Eff_npv_TightID_Mu2",
+						    "h_Eff_npv_TightID_Mu2",                   45, 0, 45);
+  h_Eff_npv_MediumID[0]                 = CreateH1F("h_Eff_npv_MediumID_Mu1",
+						    "h_Eff_npv_MediumID_Mu1",                  45, 0, 45);
+  h_Eff_npv_MediumID[1]                 = CreateH1F("h_Eff_npv_MediumID_Mu2",
+						    "h_Eff_npv_MediumID_Mu2",                  45, 0, 45);
+  h_Eff_npv_HWWID[0]                    = CreateH1F("h_Eff_npv_HWWID_Mu1",
+						    "h_Eff_npv_HWWID_Mu1",                     45, 0, 45);
+  h_Eff_npv_HWWID[1]                    = CreateH1F("h_Eff_npv_HWWID_Mu2",
+						    "h_Eff_npv_HWWID_Mu2",                     45, 0, 45);
+  h_Eff_npv_TightIDipsHWW[0]            = CreateH1F("h_Eff_npv_TightIDipsHWW_Mu1",
+						    "h_Eff_npv_TightIDipsHWW_Mu1",             45, 0, 45);
+  h_Eff_npv_TightIDipsHWW[1]            = CreateH1F("h_Eff_npv_TightIDipsHWW_Mu2",
+						    "h_Eff_npv_TightIDipsHWW_Mu2",             45, 0, 45);
+  h_Eff_npv_MediumIDipsHWW[0]           = CreateH1F("h_Eff_npv_MediumIDipsHWW_Mu1",
+						    "h_Eff_npv_MediumIDipsHWW_Mu1",            45, 0, 45);
+  h_Eff_npv_MediumIDipsHWW[1]           = CreateH1F("h_Eff_npv_MediumIDipsHWW_Mu2",
+						    "h_Eff_npv_MediumIDipsHWW_Mu2",            45, 0, 45);
+  h_Eff_npv_TightID_ISO03[0]            = CreateH1F("h_Eff_npv_TightID_ISO03_Mu1", 
+						    "h_Eff_npv_TightID_ISO03_Mu1",             45, 0, 45);
+  h_Eff_npv_TightID_ISO03[1]            = CreateH1F("h_Eff_npv_TightID_ISO03_Mu2", 
+						    "h_Eff_npv_TightID_ISO03_Mu2",             45, 0, 45);
+  h_Eff_npv_TightID_ISO04[0]            = CreateH1F("h_Eff_npv_TightID_ISO04_Mu1", 
+						    "h_Eff_npv_TightID_ISO04_Mu1",             45, 0, 45);
+  h_Eff_npv_TightID_ISO04[1]            = CreateH1F("h_Eff_npv_TightID_ISO04_Mu2", 
+						    "h_Eff_npv_TightID_ISO04_Mu2",             45, 0, 45);
+  h_Eff_npv_TightID_ISO03dBeta[0]       = CreateH1F("h_Eff_npv_TightID_ISO03dBeta_Mu1", 
+						    "h_Eff_npv_TightID_ISO03dBeta_Mu1",        45, 0, 45);
+  h_Eff_npv_TightID_ISO03dBeta[1]       = CreateH1F("h_Eff_npv_TightID_ISO03dBeta_Mu2", 
+						    "h_Eff_npv_TightID_ISO03dBeta_Mu2",        45, 0, 45);
+  h_Eff_npv_TightID_ISO04dBeta[0]       = CreateH1F("h_Eff_npv_TightID_ISO04dBeta_Mu1", 
+						    "h_Eff_npv_TightID_ISO04dBeta_Mu1",        45, 0, 45);
+  h_Eff_npv_TightID_ISO04dBeta[1]       = CreateH1F("h_Eff_npv_TightID_ISO04dBeta_Mu2", 
+						    "h_Eff_npv_TightID_ISO04dBeta_Mu2",        45, 0, 45);
+  h_Eff_npv_TightID_ISO03PFWeighted[0]  = CreateH1F("h_Eff_npv_TightID_ISO03PFWeighted_Mu1", 
+						    "h_Eff_npv_TightID_ISO03PFWeighted_Mu1",   45, 0, 45);
+  h_Eff_npv_TightID_ISO03PFWeighted[1]  = CreateH1F("h_Eff_npv_TightID_ISO03PFWeighted_Mu2", 
+						    "h_Eff_npv_TightID_ISO03PFWeighted_Mu2",   45, 0, 45);
+  h_Eff_npv_TightID_ISO04PFWeighted[0]  = CreateH1F("h_Eff_npv_TightID_ISO04PFWeighted_Mu1", 
+						    "h_Eff_npv_TightID_ISO04PFWeighted_Mu1",   45, 0, 45);
+  h_Eff_npv_TightID_ISO04PFWeighted[1]  = CreateH1F("h_Eff_npv_TightID_ISO04PFWeighted_Mu2", 
+						    "h_Eff_npv_TightID_ISO04PFWeighted_Mu2",   45, 0, 45);
+  h_Eff_npv_TightID_ISO03PUPPI[0]       = CreateH1F("h_Eff_npv_TightID_ISO03PUPPI_Mu1", 
+						    "h_Eff_npv_TightID_ISO03PUPPI_Mu1",        45, 0, 45);
+  h_Eff_npv_TightID_ISO03PUPPI[1]       = CreateH1F("h_Eff_npv_TightID_ISO03PUPPI_Mu2", 
+						    "h_Eff_npv_TightID_ISO03PUPPI_Mu2",        45, 0, 45);
+  h_Eff_npv_TightID_ISO04PUPPI[0]       = CreateH1F("h_Eff_npv_TightID_ISO04PUPPI_Mu1", 
+						    "h_Eff_npv_TightID_ISO04PUPPI_Mu1",        45, 0, 45);
+  h_Eff_npv_TightID_ISO04PUPPI[1]       = CreateH1F("h_Eff_npv_TightID_ISO04PUPPI_Mu2", 
+						    "h_Eff_npv_TightID_ISO04PUPPI_Mu2",        45, 0, 45);
+  h_Eff_npv_MediumID_ISO03[0]           = CreateH1F("h_Eff_npv_MediumID_ISO03_Mu1", 
+						    "h_Eff_npv_MediumID_ISO03_Mu1",            45, 0, 45);
+  h_Eff_npv_MediumID_ISO03[1]           = CreateH1F("h_Eff_npv_MediumID_ISO03_Mu2", 
+						    "h_Eff_npv_MediumID_ISO03_Mu2",            45, 0, 45);
+  h_Eff_npv_MediumID_ISO04[0]           = CreateH1F("h_Eff_npv_MediumID_ISO04_Mu1", 
+						    "h_Eff_npv_MediumID_ISO04_Mu1",            45, 0, 45);
+  h_Eff_npv_MediumID_ISO04[1]           = CreateH1F("h_Eff_npv_MediumID_ISO04_Mu2", 
+						    "h_Eff_npv_MediumID_ISO04_Mu2",            45, 0, 45);
+  h_Eff_npv_MediumID_ISO03dBeta[0]      = CreateH1F("h_Eff_npv_MediumID_ISO03dBeta_Mu1", 
+						    "h_Eff_npv_MediumID_ISO03dBeta_Mu1",       45, 0, 45);
+  h_Eff_npv_MediumID_ISO03dBeta[1]      = CreateH1F("h_Eff_npv_MediumID_ISO03dBeta_Mu2", 
+						    "h_Eff_npv_MediumID_ISO03dBeta_Mu2",       45, 0, 45);
+  h_Eff_npv_MediumID_ISO04dBeta[0]      = CreateH1F("h_Eff_npv_MediumID_ISO04dBeta_Mu1", 
+						    "h_Eff_npv_MediumID_ISO04dBeta_Mu1",       45, 0, 45);
+  h_Eff_npv_MediumID_ISO04dBeta[1]      = CreateH1F("h_Eff_npv_MediumID_ISO04dBeta_Mu2", 
+						    "h_Eff_npv_MediumID_ISO04dBeta_Mu2",       45, 0, 45);
+  h_Eff_npv_MediumID_ISO03PFWeighted[0] = CreateH1F("h_Eff_npv_MediumID_ISO03PFWeighted_Mu1", 
+						    "h_Eff_npv_MediumID_ISO03PFWeighted_Mu1",  45, 0, 45);
+  h_Eff_npv_MediumID_ISO03PFWeighted[1] = CreateH1F("h_Eff_npv_MediumID_ISO03PFWeighted_Mu2", 
+						    "h_Eff_npv_MediumID_ISO03PFWeighted_Mu2",  45, 0, 45);
+  h_Eff_npv_MediumID_ISO04PFWeighted[0] = CreateH1F("h_Eff_npv_MediumID_ISO04PFWeighted_Mu1", 
+						    "h_Eff_npv_MediumID_ISO04PFWeighted_Mu1",  45, 0, 45);
+  h_Eff_npv_MediumID_ISO04PFWeighted[1] = CreateH1F("h_Eff_npv_MediumID_ISO04PFWeighted_Mu2", 
+						    "h_Eff_npv_MediumID_ISO04PFWeighted_Mu2",  45, 0, 45);
+  h_Eff_npv_MediumID_ISO03PUPPI[0]      = CreateH1F("h_Eff_npv_MediumID_ISO03PUPPI_Mu1", 
+						    "h_Eff_npv_MediumID_ISO03PUPPI_Mu1",       45, 0, 45);
+  h_Eff_npv_MediumID_ISO03PUPPI[1]      = CreateH1F("h_Eff_npv_MediumID_ISO03PUPPI_Mu2", 
+						    "h_Eff_npv_MediumID_ISO03PUPPI_Mu2",       45, 0, 45);
+  h_Eff_npv_MediumID_ISO04PUPPI[0]      = CreateH1F("h_Eff_npv_MediumID_ISO04PUPPI_Mu1", 
+						    "h_Eff_npv_MediumID_ISO04PUPPI_Mu1",       45, 0, 45);
+  h_Eff_npv_MediumID_ISO04PUPPI[1]      = CreateH1F("h_Eff_npv_MediumID_ISO04PUPPI_Mu2", 
+						    "h_Eff_npv_MediumID_ISO04PUPPI_Mu2",       45, 0, 45);
 
 
 }
@@ -1070,51 +1166,99 @@ void CoreMuonSelector::doEffsRECO(int iMu, int indexMuon) {
   }
 
   if (G_MuonID_Tight[iMu] && G_MuonISO03[iMu]) {
-    h_Eff_pt_TightISO03[indexMuon] ->Fill(pt);
-    h_Eff_eta_TightISO03[indexMuon]->Fill(eta);
-    h_Eff_npv_TightISO03[indexMuon]->Fill(npv);
+    h_Eff_pt_TightID_ISO03[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightID_ISO03[indexMuon]->Fill(eta);
+    h_Eff_npv_TightID_ISO03[indexMuon]->Fill(npv);
   }
   
   if (G_MuonID_Tight[iMu] && G_MuonISO04[iMu]) {
-    h_Eff_pt_TightISO04[indexMuon] ->Fill(pt);
-    h_Eff_eta_TightISO04[indexMuon]->Fill(eta);
-    h_Eff_npv_TightISO04[indexMuon]->Fill(npv);
+    h_Eff_pt_TightID_ISO04[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightID_ISO04[indexMuon]->Fill(eta);
+    h_Eff_npv_TightID_ISO04[indexMuon]->Fill(npv);
   }
   
   if (G_MuonID_Tight[iMu] && G_MuonISO03_dBeta[iMu]) {
-    h_Eff_pt_TightISO03dBeta[indexMuon] ->Fill(pt);
-    h_Eff_eta_TightISO03dBeta[indexMuon]->Fill(eta);
-    h_Eff_npv_TightISO03dBeta[indexMuon]->Fill(npv);
+    h_Eff_pt_TightID_ISO03dBeta[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightID_ISO03dBeta[indexMuon]->Fill(eta);
+    h_Eff_npv_TightID_ISO03dBeta[indexMuon]->Fill(npv);
   }
   
   if (G_MuonID_Tight[iMu] && G_MuonISO04_dBeta[iMu]) {
-    h_Eff_pt_TightISO04dBeta[indexMuon] ->Fill(pt);
-    h_Eff_eta_TightISO04dBeta[indexMuon]->Fill(eta);
-    h_Eff_npv_TightISO04dBeta[indexMuon]->Fill(npv);
+    h_Eff_pt_TightID_ISO04dBeta[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightID_ISO04dBeta[indexMuon]->Fill(eta);
+    h_Eff_npv_TightID_ISO04dBeta[indexMuon]->Fill(npv);
   }
   
   if (G_MuonID_Tight[iMu] && G_MuonISO03_PFWeighted[iMu]) {
-    h_Eff_pt_TightISO03PFWeighted[indexMuon] ->Fill(pt);
-    h_Eff_eta_TightISO03PFWeighted[indexMuon]->Fill(eta);
-    h_Eff_npv_TightISO03PFWeighted[indexMuon]->Fill(npv);
+    h_Eff_pt_TightID_ISO03PFWeighted[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightID_ISO03PFWeighted[indexMuon]->Fill(eta);
+    h_Eff_npv_TightID_ISO03PFWeighted[indexMuon]->Fill(npv);
   }
   
   if (G_MuonID_Tight[iMu] && G_MuonISO04_PFWeighted[iMu]) {
-    h_Eff_pt_TightISO04PFWeighted[indexMuon] ->Fill(pt);
-    h_Eff_eta_TightISO04PFWeighted[indexMuon]->Fill(eta);
-    h_Eff_npv_TightISO04PFWeighted[indexMuon]->Fill(npv);
+    h_Eff_pt_TightID_ISO04PFWeighted[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightID_ISO04PFWeighted[indexMuon]->Fill(eta);
+    h_Eff_npv_TightID_ISO04PFWeighted[indexMuon]->Fill(npv);
   } 
 
   if (G_MuonID_Tight[iMu] && G_MuonISO03_PUPPI[iMu]) {
-    h_Eff_pt_TightISO03PUPPI[indexMuon] ->Fill(pt);
-    h_Eff_eta_TightISO03PUPPI[indexMuon]->Fill(eta);
-    h_Eff_npv_TightISO03PUPPI[indexMuon]->Fill(npv);
+    h_Eff_pt_TightID_ISO03PUPPI[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightID_ISO03PUPPI[indexMuon]->Fill(eta);
+    h_Eff_npv_TightID_ISO03PUPPI[indexMuon]->Fill(npv);
   }
   
   if (G_MuonID_Tight[iMu] && G_MuonISO04_PUPPI[iMu]) {
-    h_Eff_pt_TightISO04PUPPI[indexMuon] ->Fill(pt);
-    h_Eff_eta_TightISO04PUPPI[indexMuon]->Fill(eta);
-    h_Eff_npv_TightISO04PUPPI[indexMuon]->Fill(npv);
+    h_Eff_pt_TightID_ISO04PUPPI[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightID_ISO04PUPPI[indexMuon]->Fill(eta);
+    h_Eff_npv_TightID_ISO04PUPPI[indexMuon]->Fill(npv);
+  } 
+
+  if (G_MuonID_Medium[iMu] && G_MuonISO03[iMu]) {
+    h_Eff_pt_MediumID_ISO03[indexMuon] ->Fill(pt);
+    h_Eff_eta_MediumID_ISO03[indexMuon]->Fill(eta);
+    h_Eff_npv_MediumID_ISO03[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Medium[iMu] && G_MuonISO04[iMu]) {
+    h_Eff_pt_MediumID_ISO04[indexMuon] ->Fill(pt);
+    h_Eff_eta_MediumID_ISO04[indexMuon]->Fill(eta);
+    h_Eff_npv_MediumID_ISO04[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Medium[iMu] && G_MuonISO03_dBeta[iMu]) {
+    h_Eff_pt_MediumID_ISO03dBeta[indexMuon] ->Fill(pt);
+    h_Eff_eta_MediumID_ISO03dBeta[indexMuon]->Fill(eta);
+    h_Eff_npv_MediumID_ISO03dBeta[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Medium[iMu] && G_MuonISO04_dBeta[iMu]) {
+    h_Eff_pt_MediumID_ISO04dBeta[indexMuon] ->Fill(pt);
+    h_Eff_eta_MediumID_ISO04dBeta[indexMuon]->Fill(eta);
+    h_Eff_npv_MediumID_ISO04dBeta[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Medium[iMu] && G_MuonISO03_PFWeighted[iMu]) {
+    h_Eff_pt_MediumID_ISO03PFWeighted[indexMuon] ->Fill(pt);
+    h_Eff_eta_MediumID_ISO03PFWeighted[indexMuon]->Fill(eta);
+    h_Eff_npv_MediumID_ISO03PFWeighted[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Medium[iMu] && G_MuonISO04_PFWeighted[iMu]) {
+    h_Eff_pt_MediumID_ISO04PFWeighted[indexMuon] ->Fill(pt);
+    h_Eff_eta_MediumID_ISO04PFWeighted[indexMuon]->Fill(eta);
+    h_Eff_npv_MediumID_ISO04PFWeighted[indexMuon]->Fill(npv);
+  } 
+
+  if (G_MuonID_Medium[iMu] && G_MuonISO03_PUPPI[iMu]) {
+    h_Eff_pt_MediumID_ISO03PUPPI[indexMuon] ->Fill(pt);
+    h_Eff_eta_MediumID_ISO03PUPPI[indexMuon]->Fill(eta);
+    h_Eff_npv_MediumID_ISO03PUPPI[indexMuon]->Fill(npv);
+  }
+  
+  if (G_MuonID_Medium[iMu] && G_MuonISO04_PUPPI[iMu]) {
+    h_Eff_pt_MediumID_ISO04PUPPI[indexMuon] ->Fill(pt);
+    h_Eff_eta_MediumID_ISO04PUPPI[indexMuon]->Fill(eta);
+    h_Eff_npv_MediumID_ISO04PUPPI[indexMuon]->Fill(npv);
   } 
   
 }
@@ -1129,92 +1273,140 @@ void CoreMuonSelector::Summary() {
 
   h_N_PV  = FindOutput<TH1F*>("h_N_PV");
 
-  h_Eff_pt_Matched[0]              = FindOutput<TH1F*>("h_Eff_pt_Matched_Mu1");
-  h_Eff_pt_Matched[1]              = FindOutput<TH1F*>("h_Eff_pt_Matched_Mu2");
-  h_Eff_pt_TightID[0]              = FindOutput<TH1F*>("h_Eff_pt_TightID_Mu1");
-  h_Eff_pt_TightID[1]              = FindOutput<TH1F*>("h_Eff_pt_TightID_Mu2");
-  h_Eff_pt_MediumID[0]             = FindOutput<TH1F*>("h_Eff_pt_MediumID_Mu1");
-  h_Eff_pt_MediumID[1]             = FindOutput<TH1F*>("h_Eff_pt_MediumID_Mu2");
-  h_Eff_pt_HWWID[0]                = FindOutput<TH1F*>("h_Eff_pt_HWWID_Mu1");
-  h_Eff_pt_HWWID[1]                = FindOutput<TH1F*>("h_Eff_pt_HWWID_Mu2");
-  h_Eff_pt_TightIDipsHWW[0]        = FindOutput<TH1F*>("h_Eff_pt_TightIDipsHWW_Mu1");
-  h_Eff_pt_TightIDipsHWW[1]        = FindOutput<TH1F*>("h_Eff_pt_TightIDipsHWW_Mu2");
-  h_Eff_pt_MediumIDipsHWW[0]       = FindOutput<TH1F*>("h_Eff_pt_MediumIDipsHWW_Mu1");
-  h_Eff_pt_MediumIDipsHWW[1]       = FindOutput<TH1F*>("h_Eff_pt_MediumIDipsHWW_Mu2");
-  h_Eff_pt_TightISO03[0]           = FindOutput<TH1F*>("h_Eff_pt_TightISO03_Mu1");
-  h_Eff_pt_TightISO03[1]           = FindOutput<TH1F*>("h_Eff_pt_TightISO03_Mu2");
-  h_Eff_pt_TightISO04[0]           = FindOutput<TH1F*>("h_Eff_pt_TightISO04_Mu1");
-  h_Eff_pt_TightISO04[1]           = FindOutput<TH1F*>("h_Eff_pt_TightISO04_Mu2");
-  h_Eff_pt_TightISO03dBeta[0]      = FindOutput<TH1F*>("h_Eff_pt_TightISO03dBeta_Mu1");
-  h_Eff_pt_TightISO03dBeta[1]      = FindOutput<TH1F*>("h_Eff_pt_TightISO03dBeta_Mu2");
-  h_Eff_pt_TightISO04dBeta[0]      = FindOutput<TH1F*>("h_Eff_pt_TightISO04dBeta_Mu1");
-  h_Eff_pt_TightISO04dBeta[1]      = FindOutput<TH1F*>("h_Eff_pt_TightISO04dBeta_Mu2");
-  h_Eff_pt_TightISO03PFWeighted[0] = FindOutput<TH1F*>("h_Eff_pt_TightISO03PFWeighted_Mu1");
-  h_Eff_pt_TightISO03PFWeighted[1] = FindOutput<TH1F*>("h_Eff_pt_TightISO03PFWeighted_Mu2");
-  h_Eff_pt_TightISO04PFWeighted[0] = FindOutput<TH1F*>("h_Eff_pt_TightISO04PFWeighted_Mu1");
-  h_Eff_pt_TightISO04PFWeighted[1] = FindOutput<TH1F*>("h_Eff_pt_TightISO04PFWeighted_Mu2"); 
-  h_Eff_pt_TightISO03PUPPI[0]      = FindOutput<TH1F*>("h_Eff_pt_TightISO03PUPPI_Mu1");
-  h_Eff_pt_TightISO03PUPPI[1]      = FindOutput<TH1F*>("h_Eff_pt_TightISO03PUPPI_Mu2");
-  h_Eff_pt_TightISO04PUPPI[0]      = FindOutput<TH1F*>("h_Eff_pt_TightISO04PUPPI_Mu1");
-  h_Eff_pt_TightISO04PUPPI[1]      = FindOutput<TH1F*>("h_Eff_pt_TightISO04PUPPI_Mu2");  
+  h_Eff_pt_Matched[0]                   = FindOutput<TH1F*>("h_Eff_pt_Matched_Mu1");
+  h_Eff_pt_Matched[1]                   = FindOutput<TH1F*>("h_Eff_pt_Matched_Mu2");
+  h_Eff_pt_TightID[0]                   = FindOutput<TH1F*>("h_Eff_pt_TightID_Mu1");
+  h_Eff_pt_TightID[1]                   = FindOutput<TH1F*>("h_Eff_pt_TightID_Mu2");
+  h_Eff_pt_MediumID[0]                  = FindOutput<TH1F*>("h_Eff_pt_MediumID_Mu1");
+  h_Eff_pt_MediumID[1]                  = FindOutput<TH1F*>("h_Eff_pt_MediumID_Mu2");
+  h_Eff_pt_HWWID[0]                     = FindOutput<TH1F*>("h_Eff_pt_HWWID_Mu1");
+  h_Eff_pt_HWWID[1]                     = FindOutput<TH1F*>("h_Eff_pt_HWWID_Mu2");
+  h_Eff_pt_TightIDipsHWW[0]             = FindOutput<TH1F*>("h_Eff_pt_TightIDipsHWW_Mu1");
+  h_Eff_pt_TightIDipsHWW[1]             = FindOutput<TH1F*>("h_Eff_pt_TightIDipsHWW_Mu2");
+  h_Eff_pt_MediumIDipsHWW[0]            = FindOutput<TH1F*>("h_Eff_pt_MediumIDipsHWW_Mu1");
+  h_Eff_pt_MediumIDipsHWW[1]            = FindOutput<TH1F*>("h_Eff_pt_MediumIDipsHWW_Mu2");
+  h_Eff_pt_TightID_ISO03[0]             = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03_Mu1");
+  h_Eff_pt_TightID_ISO03[1]             = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03_Mu2");
+  h_Eff_pt_TightID_ISO04[0]             = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04_Mu1");
+  h_Eff_pt_TightID_ISO04[1]             = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04_Mu2");
+  h_Eff_pt_TightID_ISO03dBeta[0]        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03dBeta_Mu1");
+  h_Eff_pt_TightID_ISO03dBeta[1]        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03dBeta_Mu2");
+  h_Eff_pt_TightID_ISO04dBeta[0]        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04dBeta_Mu1");
+  h_Eff_pt_TightID_ISO04dBeta[1]        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04dBeta_Mu2");
+  h_Eff_pt_TightID_ISO03PFWeighted[0]   = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03PFWeighted_Mu1");
+  h_Eff_pt_TightID_ISO03PFWeighted[1]   = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03PFWeighted_Mu2");
+  h_Eff_pt_TightID_ISO04PFWeighted[0]   = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04PFWeighted_Mu1");
+  h_Eff_pt_TightID_ISO04PFWeighted[1]   = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04PFWeighted_Mu2"); 
+  h_Eff_pt_TightID_ISO03PUPPI[0]        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03PUPPI_Mu1");
+  h_Eff_pt_TightID_ISO03PUPPI[1]        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03PUPPI_Mu2");
+  h_Eff_pt_TightID_ISO04PUPPI[0]        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04PUPPI_Mu1");
+  h_Eff_pt_TightID_ISO04PUPPI[1]        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04PUPPI_Mu2"); 
+  h_Eff_pt_MediumID_ISO03[0]            = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03_Mu1");
+  h_Eff_pt_MediumID_ISO03[1]            = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03_Mu2");
+  h_Eff_pt_MediumID_ISO04[0]            = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04_Mu1");
+  h_Eff_pt_MediumID_ISO04[1]            = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04_Mu2");
+  h_Eff_pt_MediumID_ISO03dBeta[0]       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03dBeta_Mu1");
+  h_Eff_pt_MediumID_ISO03dBeta[1]       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03dBeta_Mu2");
+  h_Eff_pt_MediumID_ISO04dBeta[0]       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04dBeta_Mu1");
+  h_Eff_pt_MediumID_ISO04dBeta[1]       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04dBeta_Mu2");
+  h_Eff_pt_MediumID_ISO03PFWeighted[0]  = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03PFWeighted_Mu1");
+  h_Eff_pt_MediumID_ISO03PFWeighted[1]  = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03PFWeighted_Mu2");
+  h_Eff_pt_MediumID_ISO04PFWeighted[0]  = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04PFWeighted_Mu1");
+  h_Eff_pt_MediumID_ISO04PFWeighted[1]  = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04PFWeighted_Mu2"); 
+  h_Eff_pt_MediumID_ISO03PUPPI[0]       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03PUPPI_Mu1");
+  h_Eff_pt_MediumID_ISO03PUPPI[1]       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03PUPPI_Mu2");
+  h_Eff_pt_MediumID_ISO04PUPPI[0]       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04PUPPI_Mu1");
+  h_Eff_pt_MediumID_ISO04PUPPI[1]       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04PUPPI_Mu2"); 
 
-  h_Eff_eta_Matched[0]              = FindOutput<TH1F*>("h_Eff_eta_Matched_Mu1");
-  h_Eff_eta_Matched[1]              = FindOutput<TH1F*>("h_Eff_eta_Matched_Mu2");
-  h_Eff_eta_TightID[0]              = FindOutput<TH1F*>("h_Eff_eta_TightID_Mu1");
-  h_Eff_eta_TightID[1]              = FindOutput<TH1F*>("h_Eff_eta_TightID_Mu2");
-  h_Eff_eta_MediumID[0]             = FindOutput<TH1F*>("h_Eff_eta_MediumID_Mu1");
-  h_Eff_eta_MediumID[1]             = FindOutput<TH1F*>("h_Eff_eta_MediumID_Mu2");
-  h_Eff_eta_HWWID[0]                = FindOutput<TH1F*>("h_Eff_eta_HWWID_Mu1");
-  h_Eff_eta_HWWID[1]                = FindOutput<TH1F*>("h_Eff_eta_HWWID_Mu2");
-  h_Eff_eta_TightIDipsHWW[0]        = FindOutput<TH1F*>("h_Eff_eta_TightIDipsHWW_Mu1");
-  h_Eff_eta_TightIDipsHWW[1]        = FindOutput<TH1F*>("h_Eff_eta_TightIDipsHWW_Mu2");
-  h_Eff_eta_MediumIDipsHWW[0]       = FindOutput<TH1F*>("h_Eff_eta_MediumIDipsHWW_Mu1");
-  h_Eff_eta_MediumIDipsHWW[1]       = FindOutput<TH1F*>("h_Eff_eta_MediumIDipsHWW_Mu2");
-  h_Eff_eta_TightISO03[0]           = FindOutput<TH1F*>("h_Eff_eta_TightISO03_Mu1");
-  h_Eff_eta_TightISO03[1]           = FindOutput<TH1F*>("h_Eff_eta_TightISO03_Mu2");
-  h_Eff_eta_TightISO04[0]           = FindOutput<TH1F*>("h_Eff_eta_TightISO04_Mu1");
-  h_Eff_eta_TightISO04[1]           = FindOutput<TH1F*>("h_Eff_eta_TightISO04_Mu2");
-  h_Eff_eta_TightISO03dBeta[0]      = FindOutput<TH1F*>("h_Eff_eta_TightISO03dBeta_Mu1");
-  h_Eff_eta_TightISO03dBeta[1]      = FindOutput<TH1F*>("h_Eff_eta_TightISO03dBeta_Mu2");
-  h_Eff_eta_TightISO04dBeta[0]      = FindOutput<TH1F*>("h_Eff_eta_TightISO04dBeta_Mu1");
-  h_Eff_eta_TightISO04dBeta[1]      = FindOutput<TH1F*>("h_Eff_eta_TightISO04dBeta_Mu2");
-  h_Eff_eta_TightISO03PFWeighted[0] = FindOutput<TH1F*>("h_Eff_eta_TightISO03PFWeighted_Mu1");
-  h_Eff_eta_TightISO03PFWeighted[1] = FindOutput<TH1F*>("h_Eff_eta_TightISO03PFWeighted_Mu2");
-  h_Eff_eta_TightISO04PFWeighted[0] = FindOutput<TH1F*>("h_Eff_eta_TightISO04PFWeighted_Mu1");
-  h_Eff_eta_TightISO04PFWeighted[1] = FindOutput<TH1F*>("h_Eff_eta_TightISO04PFWeighted_Mu2"); 
-  h_Eff_eta_TightISO03PUPPI[0]      = FindOutput<TH1F*>("h_Eff_eta_TightISO03PUPPI_Mu1");
-  h_Eff_eta_TightISO03PUPPI[1]      = FindOutput<TH1F*>("h_Eff_eta_TightISO03PUPPI_Mu2");
-  h_Eff_eta_TightISO04PUPPI[0]      = FindOutput<TH1F*>("h_Eff_eta_TightISO04PUPPI_Mu1");
-  h_Eff_eta_TightISO04PUPPI[1]      = FindOutput<TH1F*>("h_Eff_eta_TightISO04PUPPI_Mu2");
+  h_Eff_eta_Matched[0]                  = FindOutput<TH1F*>("h_Eff_eta_Matched_Mu1");
+  h_Eff_eta_Matched[1]                  = FindOutput<TH1F*>("h_Eff_eta_Matched_Mu2");
+  h_Eff_eta_TightID[0]                  = FindOutput<TH1F*>("h_Eff_eta_TightID_Mu1");
+  h_Eff_eta_TightID[1]                  = FindOutput<TH1F*>("h_Eff_eta_TightID_Mu2");
+  h_Eff_eta_MediumID[0]                 = FindOutput<TH1F*>("h_Eff_eta_MediumID_Mu1");
+  h_Eff_eta_MediumID[1]                 = FindOutput<TH1F*>("h_Eff_eta_MediumID_Mu2");
+  h_Eff_eta_HWWID[0]                    = FindOutput<TH1F*>("h_Eff_eta_HWWID_Mu1");
+  h_Eff_eta_HWWID[1]                    = FindOutput<TH1F*>("h_Eff_eta_HWWID_Mu2");
+  h_Eff_eta_TightIDipsHWW[0]            = FindOutput<TH1F*>("h_Eff_eta_TightIDipsHWW_Mu1");
+  h_Eff_eta_TightIDipsHWW[1]            = FindOutput<TH1F*>("h_Eff_eta_TightIDipsHWW_Mu2");
+  h_Eff_eta_MediumIDipsHWW[0]           = FindOutput<TH1F*>("h_Eff_eta_MediumIDipsHWW_Mu1");
+  h_Eff_eta_MediumIDipsHWW[1]           = FindOutput<TH1F*>("h_Eff_eta_MediumIDipsHWW_Mu2");
+  h_Eff_eta_TightID_ISO03[0]            = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03_Mu1");
+  h_Eff_eta_TightID_ISO03[1]            = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03_Mu2");
+  h_Eff_eta_TightID_ISO04[0]            = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04_Mu1");
+  h_Eff_eta_TightID_ISO04[1]            = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04_Mu2");
+  h_Eff_eta_TightID_ISO03dBeta[0]       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03dBeta_Mu1");
+  h_Eff_eta_TightID_ISO03dBeta[1]       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03dBeta_Mu2");
+  h_Eff_eta_TightID_ISO04dBeta[0]       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04dBeta_Mu1");
+  h_Eff_eta_TightID_ISO04dBeta[1]       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04dBeta_Mu2");
+  h_Eff_eta_TightID_ISO03PFWeighted[0]  = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03PFWeighted_Mu1");
+  h_Eff_eta_TightID_ISO03PFWeighted[1]  = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03PFWeighted_Mu2");
+  h_Eff_eta_TightID_ISO04PFWeighted[0]  = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04PFWeighted_Mu1");
+  h_Eff_eta_TightID_ISO04PFWeighted[1]  = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04PFWeighted_Mu2"); 
+  h_Eff_eta_TightID_ISO03PUPPI[0]       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03PUPPI_Mu1");
+  h_Eff_eta_TightID_ISO03PUPPI[1]       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03PUPPI_Mu2");
+  h_Eff_eta_TightID_ISO04PUPPI[0]       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04PUPPI_Mu1");
+  h_Eff_eta_TightID_ISO04PUPPI[1]       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04PUPPI_Mu2");
+  h_Eff_eta_MediumID_ISO03[0]           = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03_Mu1");
+  h_Eff_eta_MediumID_ISO03[1]           = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03_Mu2");
+  h_Eff_eta_MediumID_ISO04[0]           = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04_Mu1");
+  h_Eff_eta_MediumID_ISO04[1]           = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04_Mu2");
+  h_Eff_eta_MediumID_ISO03dBeta[0]      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03dBeta_Mu1");
+  h_Eff_eta_MediumID_ISO03dBeta[1]      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03dBeta_Mu2");
+  h_Eff_eta_MediumID_ISO04dBeta[0]      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04dBeta_Mu1");
+  h_Eff_eta_MediumID_ISO04dBeta[1]      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04dBeta_Mu2");
+  h_Eff_eta_MediumID_ISO03PFWeighted[0] = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03PFWeighted_Mu1");
+  h_Eff_eta_MediumID_ISO03PFWeighted[1] = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03PFWeighted_Mu2");
+  h_Eff_eta_MediumID_ISO04PFWeighted[0] = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04PFWeighted_Mu1");
+  h_Eff_eta_MediumID_ISO04PFWeighted[1] = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04PFWeighted_Mu2"); 
+  h_Eff_eta_MediumID_ISO03PUPPI[0]      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03PUPPI_Mu1");
+  h_Eff_eta_MediumID_ISO03PUPPI[1]      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03PUPPI_Mu2");
+  h_Eff_eta_MediumID_ISO04PUPPI[0]      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04PUPPI_Mu1");
+  h_Eff_eta_MediumID_ISO04PUPPI[1]      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04PUPPI_Mu2");
 
-  h_Eff_npv_Matched[0]              = FindOutput<TH1F*>("h_Eff_npv_Matched_Mu1");
-  h_Eff_npv_Matched[1]              = FindOutput<TH1F*>("h_Eff_npv_Matched_Mu2");
-  h_Eff_npv_TightID[0]              = FindOutput<TH1F*>("h_Eff_npv_TightID_Mu1");
-  h_Eff_npv_TightID[1]              = FindOutput<TH1F*>("h_Eff_npv_TightID_Mu2");
-  h_Eff_npv_MediumID[0]             = FindOutput<TH1F*>("h_Eff_npv_MediumID_Mu1");
-  h_Eff_npv_MediumID[1]             = FindOutput<TH1F*>("h_Eff_npv_MediumID_Mu2");
-  h_Eff_npv_HWWID[0]                = FindOutput<TH1F*>("h_Eff_npv_HWWID_Mu1");
-  h_Eff_npv_HWWID[1]                = FindOutput<TH1F*>("h_Eff_npv_HWWID_Mu2");
-  h_Eff_npv_TightIDipsHWW[0]        = FindOutput<TH1F*>("h_Eff_npv_TightIDipsHWW_Mu1");
-  h_Eff_npv_TightIDipsHWW[1]        = FindOutput<TH1F*>("h_Eff_npv_TightIDipsHWW_Mu2");
-  h_Eff_npv_MediumIDipsHWW[0]       = FindOutput<TH1F*>("h_Eff_npv_MediumIDipsHWW_Mu1");
-  h_Eff_npv_MediumIDipsHWW[1]       = FindOutput<TH1F*>("h_Eff_npv_MediumIDipsHWW_Mu2");
-  h_Eff_npv_TightISO03[0]           = FindOutput<TH1F*>("h_Eff_npv_TightISO03_Mu1");
-  h_Eff_npv_TightISO03[1]           = FindOutput<TH1F*>("h_Eff_npv_TightISO03_Mu2");
-  h_Eff_npv_TightISO04[0]           = FindOutput<TH1F*>("h_Eff_npv_TightISO04_Mu1");
-  h_Eff_npv_TightISO04[1]           = FindOutput<TH1F*>("h_Eff_npv_TightISO04_Mu2");
-  h_Eff_npv_TightISO03dBeta[0]      = FindOutput<TH1F*>("h_Eff_npv_TightISO03dBeta_Mu1");
-  h_Eff_npv_TightISO03dBeta[1]      = FindOutput<TH1F*>("h_Eff_npv_TightISO03dBeta_Mu2");
-  h_Eff_npv_TightISO04dBeta[0]      = FindOutput<TH1F*>("h_Eff_npv_TightISO04dBeta_Mu1");
-  h_Eff_npv_TightISO04dBeta[1]      = FindOutput<TH1F*>("h_Eff_npv_TightISO04dBeta_Mu2");
-  h_Eff_npv_TightISO03PFWeighted[0] = FindOutput<TH1F*>("h_Eff_npv_TightISO03PFWeighted_Mu1");
-  h_Eff_npv_TightISO03PFWeighted[1] = FindOutput<TH1F*>("h_Eff_npv_TightISO03PFWeighted_Mu2");
-  h_Eff_npv_TightISO04PFWeighted[0] = FindOutput<TH1F*>("h_Eff_npv_TightISO04PFWeighted_Mu1");
-  h_Eff_npv_TightISO04PFWeighted[1] = FindOutput<TH1F*>("h_Eff_npv_TightISO04PFWeighted_Mu2"); 
-  h_Eff_npv_TightISO03PUPPI[0]      = FindOutput<TH1F*>("h_Eff_npv_TightISO03PUPPI_Mu1");
-  h_Eff_npv_TightISO03PUPPI[1]      = FindOutput<TH1F*>("h_Eff_npv_TightISO03PUPPI_Mu2");
-  h_Eff_npv_TightISO04PUPPI[0]      = FindOutput<TH1F*>("h_Eff_npv_TightISO04PUPPI_Mu1");
-  h_Eff_npv_TightISO04PUPPI[1]      = FindOutput<TH1F*>("h_Eff_npv_TightISO04PUPPI_Mu2");
+  h_Eff_npv_Matched[0]                  = FindOutput<TH1F*>("h_Eff_npv_Matched_Mu1");
+  h_Eff_npv_Matched[1]                  = FindOutput<TH1F*>("h_Eff_npv_Matched_Mu2");
+  h_Eff_npv_TightID[0]                  = FindOutput<TH1F*>("h_Eff_npv_TightID_Mu1");
+  h_Eff_npv_TightID[1]                  = FindOutput<TH1F*>("h_Eff_npv_TightID_Mu2");
+  h_Eff_npv_MediumID[0]                 = FindOutput<TH1F*>("h_Eff_npv_MediumID_Mu1");
+  h_Eff_npv_MediumID[1]                 = FindOutput<TH1F*>("h_Eff_npv_MediumID_Mu2");
+  h_Eff_npv_HWWID[0]                    = FindOutput<TH1F*>("h_Eff_npv_HWWID_Mu1");
+  h_Eff_npv_HWWID[1]                    = FindOutput<TH1F*>("h_Eff_npv_HWWID_Mu2");
+  h_Eff_npv_TightIDipsHWW[0]            = FindOutput<TH1F*>("h_Eff_npv_TightIDipsHWW_Mu1");
+  h_Eff_npv_TightIDipsHWW[1]            = FindOutput<TH1F*>("h_Eff_npv_TightIDipsHWW_Mu2");
+  h_Eff_npv_MediumIDipsHWW[0]           = FindOutput<TH1F*>("h_Eff_npv_MediumIDipsHWW_Mu1");
+  h_Eff_npv_MediumIDipsHWW[1]           = FindOutput<TH1F*>("h_Eff_npv_MediumIDipsHWW_Mu2");
+  h_Eff_npv_TightID_ISO03[0]            = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03_Mu1");
+  h_Eff_npv_TightID_ISO03[1]            = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03_Mu2");
+  h_Eff_npv_TightID_ISO04[0]            = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04_Mu1");
+  h_Eff_npv_TightID_ISO04[1]            = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04_Mu2");
+  h_Eff_npv_TightID_ISO03dBeta[0]       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03dBeta_Mu1");
+  h_Eff_npv_TightID_ISO03dBeta[1]       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03dBeta_Mu2");
+  h_Eff_npv_TightID_ISO04dBeta[0]       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04dBeta_Mu1");
+  h_Eff_npv_TightID_ISO04dBeta[1]       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04dBeta_Mu2");
+  h_Eff_npv_TightID_ISO03PFWeighted[0]  = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03PFWeighted_Mu1");
+  h_Eff_npv_TightID_ISO03PFWeighted[1]  = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03PFWeighted_Mu2");
+  h_Eff_npv_TightID_ISO04PFWeighted[0]  = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04PFWeighted_Mu1");
+  h_Eff_npv_TightID_ISO04PFWeighted[1]  = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04PFWeighted_Mu2"); 
+  h_Eff_npv_TightID_ISO03PUPPI[0]       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03PUPPI_Mu1");
+  h_Eff_npv_TightID_ISO03PUPPI[1]       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03PUPPI_Mu2");
+  h_Eff_npv_TightID_ISO04PUPPI[0]       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04PUPPI_Mu1");
+  h_Eff_npv_TightID_ISO04PUPPI[1]       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04PUPPI_Mu2");
+  h_Eff_npv_MediumID_ISO03[0]           = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03_Mu1");
+  h_Eff_npv_MediumID_ISO03[1]           = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03_Mu2");
+  h_Eff_npv_MediumID_ISO04[0]           = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04_Mu1");
+  h_Eff_npv_MediumID_ISO04[1]           = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04_Mu2");
+  h_Eff_npv_MediumID_ISO03dBeta[0]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03dBeta_Mu1");
+  h_Eff_npv_MediumID_ISO03dBeta[1]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03dBeta_Mu2");
+  h_Eff_npv_MediumID_ISO04dBeta[0]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04dBeta_Mu1");
+  h_Eff_npv_MediumID_ISO04dBeta[1]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04dBeta_Mu2");
+  h_Eff_npv_MediumID_ISO03PFWeighted[0] = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03PFWeighted_Mu1");
+  h_Eff_npv_MediumID_ISO03PFWeighted[1] = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03PFWeighted_Mu2");
+  h_Eff_npv_MediumID_ISO04PFWeighted[0] = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04PFWeighted_Mu1");
+  h_Eff_npv_MediumID_ISO04PFWeighted[1] = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04PFWeighted_Mu2"); 
+  h_Eff_npv_MediumID_ISO03PUPPI[0]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03PUPPI_Mu1");
+  h_Eff_npv_MediumID_ISO03PUPPI[1]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03PUPPI_Mu2");
+  h_Eff_npv_MediumID_ISO04PUPPI[0]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04PUPPI_Mu1");
+  h_Eff_npv_MediumID_ISO04PUPPI[1]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04PUPPI_Mu2");
 
   // Final Report
 
