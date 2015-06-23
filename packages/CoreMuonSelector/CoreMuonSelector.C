@@ -119,6 +119,10 @@ void CoreMuonSelector::Initialise() {
 						    "h_Eff_pt_HWWID_Mu1",                      200, 0, 200);
   h_Eff_pt_HWWID[1]                     = CreateH1F("h_Eff_pt_HWWID_Mu2",
 						    "h_Eff_pt_HWWID_Mu2",                      200, 0, 200);
+  h_Eff_pt_TightIDGoT[0]                = CreateH1F("h_Eff_pt_TightIDGoT_Mu1",
+						    "h_Eff_pt_TightIDGoT_Mu1",                 200, 0, 200);
+  h_Eff_pt_TightIDGoT[1]                = CreateH1F("h_Eff_pt_TightIDGoT_Mu2",
+						    "h_Eff_pt_TightIDGoT_Mu2",                 200, 0, 200);
   h_Eff_pt_TightIDipsHWW[0]             = CreateH1F("h_Eff_pt_TightIDipsHWW_Mu1",
 						    "h_Eff_pt_TightIDipsHWW_Mu1",              200, 0, 200);
   h_Eff_pt_TightIDipsHWW[1]             = CreateH1F("h_Eff_pt_TightIDipsHWW_Mu2",
@@ -208,6 +212,10 @@ void CoreMuonSelector::Initialise() {
 						    "h_Eff_eta_HWWID_Mu1",                     50, -2.5, 2.5);
   h_Eff_eta_HWWID[1]                    = CreateH1F("h_Eff_eta_HWWID_Mu2",
 						    "h_Eff_eta_HWWID_Mu2",                     50, -2.5, 2.5);
+  h_Eff_eta_TightIDGoT[0]               = CreateH1F("h_Eff_eta_TightIDGoT_Mu1",
+						    "h_Eff_eta_TightIDGoT_Mu1",                50, -2.5, 2.5);
+  h_Eff_eta_TightIDGoT[1]               = CreateH1F("h_Eff_eta_TightIDGoT_Mu2",
+						    "h_Eff_eta_TightIDGoT_Mu2",                50, -2.5, 2.5);
   h_Eff_eta_TightIDipsHWW[0]            = CreateH1F("h_Eff_eta_TightIDipsHWW_Mu1",
 						    "h_Eff_eta_TightIDipsHWW_Mu1",             50, -2.5, 2.5);
   h_Eff_eta_TightIDipsHWW[1]            = CreateH1F("h_Eff_eta_TightIDipsHWW_Mu2",
@@ -297,6 +305,10 @@ void CoreMuonSelector::Initialise() {
 						    "h_Eff_npv_HWWID_Mu1",                     45, 0, 45);
   h_Eff_npv_HWWID[1]                    = CreateH1F("h_Eff_npv_HWWID_Mu2",
 						    "h_Eff_npv_HWWID_Mu2",                     45, 0, 45);
+  h_Eff_npv_TightIDGoT[0]               = CreateH1F("h_Eff_npv_TightIDGoT_Mu1",
+						    "h_Eff_npv_TightIDGoT_Mu1",                45, 0, 45);
+  h_Eff_npv_TightIDGoT[1]               = CreateH1F("h_Eff_npv_TightIDGoT_Mu2",
+						    "h_Eff_npv_TightIDGoT_Mu2",                45, 0, 45);
   h_Eff_npv_TightIDipsHWW[0]            = CreateH1F("h_Eff_npv_TightIDipsHWW_Mu1",
 						    "h_Eff_npv_TightIDipsHWW_Mu1",             45, 0, 45);
   h_Eff_npv_TightIDipsHWW[1]            = CreateH1F("h_Eff_npv_TightIDipsHWW_Mu2",
@@ -513,6 +525,7 @@ void CoreMuonSelector::InsideLoop() {
   G_MuonID_Tight.clear();
   G_MuonID_Medium.clear();
   G_MuonID_HWW.clear();
+  G_MuonID_Tight_GoT.clear();
   G_MuonID_IPs_HWW.clear();
   G_MuonID_GLBorTRKArb.clear();
   G_MuonID_Fiducial.clear();
@@ -526,6 +539,7 @@ void CoreMuonSelector::InsideLoop() {
   G_MuonISO04_PFWeighted.clear();
   G_MuonISO04_PUPPI.clear();
 
+  G_Muon_ChCompatible.clear();
   G_Muon_Matching.clear();
   
   // Sizes
@@ -595,8 +609,10 @@ void CoreMuonSelector::InsideLoop() {
   if (EvtFlag_Matching) {
     doEffsRECO(0,0);
     doEffsRECO(1,1);
-    doEffsRECODilep();
+    //doEffsRECODilep();
   }
+
+  doEffsRECODilep();
 
   //------------------------------------------------------------------------------
   // Set Parameters for other selectors. This is the main point of this selector
@@ -659,14 +675,13 @@ void CoreMuonSelector::CheckMuons() {
       
       // Define selection for several Muon IDs (or components of IDs) and PF Rel. ISOs
 
-      const int NFLAGS = 17;
+      const int NFLAGS = 19;
       bool muon_sel[NFLAGS];   
       for (int j=0; j<NFLAGS; ++j) muon_sel[j] = false;
 
       muon_sel[0] = (i==0) ? 
 	(G_Muon_4vec[i].Pt() > 20. && fabs(G_Muon_4vec[i].Eta()) < 2.4) :
-	(G_Muon_4vec[i].Pt() > 10. && fabs(G_Muon_4vec[i].Eta()) < 2.4 && 
-	 (Get<int>("T_Muon_Charge",0)*Get<int>("T_Muon_Charge",i)) < 0);
+	(G_Muon_4vec[i].Pt() > 10. && fabs(G_Muon_4vec[i].Eta()) < 2.4);
       muon_sel[1] = Get<bool>("T_Muon_IsPFMuon",i);
       muon_sel[2] = Get<bool>("T_Muon_IsGlobalMuon",i);
       muon_sel[3] = Get<bool>("T_Muon_IsTrackerMuon",i) && Get<bool>("T_Muon_IsTrackerMuonArbitrated",i);
@@ -684,17 +699,23 @@ void CoreMuonSelector::CheckMuons() {
       muon_sel[14] = passMediumID(i);
       muon_sel[14] = Exists("T_Muon_IsMediumMuon") ? Get<bool>("T_Muon_IsMediumMuon",i) : passMediumID(i);
       
-      muon_sel[15] = (((muon_sel[2] && muon_sel[4] && muon_sel[5] && muon_sel[6]) || muon_sel[3]) &&
+      muon_sel[15] = (muon_sel[2] || muon_sel[3]);
+      muon_sel[16] = (((muon_sel[2] && muon_sel[4] && muon_sel[5] && muon_sel[6]) || muon_sel[3]) &&
 		     muon_sel[7] && muon_sel[8] && muon_sel[11] && muon_sel[12]);
-      muon_sel[16] = (muon_sel[2] || muon_sel[3]);
+      muon_sel[17] = (((muon_sel[2] && muon_sel[4] && muon_sel[5] && muon_sel[6]) || muon_sel[3]) &&
+		     muon_sel[7] && muon_sel[8] && muon_sel[9] && muon_sel[10]);
+      muon_sel[18] = (i==0) ? true : (Get<int>("T_Muon_Charge",0)*Get<int>("T_Muon_Charge",i)) < 0;
 
       
       G_MuonID_Tight.push_back(muon_sel[13]);
       G_MuonID_Medium.push_back(muon_sel[14]);
-      G_MuonID_HWW.push_back(muon_sel[15]);
+      G_MuonID_HWW.push_back(muon_sel[16]);
+      G_MuonID_Tight_GoT.push_back(muon_sel[17]);
       G_MuonID_IPs_HWW.push_back(muon_sel[11] * muon_sel[12]);
-      G_MuonID_GLBorTRKArb.push_back(muon_sel[16]);
+      G_MuonID_GLBorTRKArb.push_back(muon_sel[15]);
       G_MuonID_Fiducial.push_back(muon_sel[0]);
+
+      G_Muon_ChCompatible.push_back(muon_sel[18]);
 
       G_MuonISO03.push_back(           passISO(i, "R03",           0.12));
       G_MuonISO03_dBeta.push_back(     passISO(i, "dBetaR03",      0.12));
@@ -1046,7 +1067,7 @@ void CoreMuonSelector::GetMatching() {
 
     int isMatchedTo = 0;
 
-    if (G_MuonID_Fiducial[i] && G_MuonID_GLBorTRKArb[i] && G_GEN_Pass) { 
+    if (G_MuonID_Fiducial[i] && G_MuonID_GLBorTRKArb[i] && G_GEN_Pass && G_Muon_ChCompatible[i] ) { 
 
       for (UInt_t j = 0; j < GenSize; ++j) {
       
@@ -1269,6 +1290,12 @@ void CoreMuonSelector::doEffsRECO(int iMu, int indexMuon) {
     h_Eff_eta_HWWID[indexMuon]->Fill(eta);
     h_Eff_npv_HWWID[indexMuon]->Fill(npv);
   }
+
+  if (G_MuonID_Tight_GoT[iMu]) {
+    h_Eff_pt_TightIDGoT[indexMuon] ->Fill(pt);
+    h_Eff_eta_TightIDGoT[indexMuon]->Fill(eta);
+    h_Eff_npv_TightIDGoT[indexMuon]->Fill(npv);
+  }
       
   if (G_MuonID_Tight[iMu] && G_MuonID_IPs_HWW[iMu]) {
     h_Eff_pt_TightIDipsHWW[indexMuon] ->Fill(pt);
@@ -1382,13 +1409,14 @@ void CoreMuonSelector::doEffsRECO(int iMu, int indexMuon) {
 
 void CoreMuonSelector::doEffsRECODilep() {
 
-  for (UInt_t i=0; i<2; i++) {
+  for (UInt_t i=0; i<G_RecoMuSize; i++) {
 
     float pt  = Get<float>("T_Muon_Pt", i); 
     float eta = Get<float>("T_Muon_Eta",i);
     float npv = G_NPV;
 
-    if (pt < 20) continue;
+    if (pt < 20 && fabs(eta) > 2.4) continue;
+    if (_Signal.Contains("DY") && !G_Muon_Matching[i]) continue;
     
     if (G_MuonID_Tight[i]) {
        h_Eff_pt_TightID_Dilep->Fill(pt);
@@ -1402,7 +1430,6 @@ void CoreMuonSelector::doEffsRECODilep() {
       h_Eff_npv_MediumID_Dilep->Fill(npv);
     }
     
-
     if (G_MuonID_Tight[i] && G_MuonISO03[i]) {
        h_Eff_pt_TightID_ISO03_Dilep->Fill(pt);
       h_Eff_eta_TightID_ISO03_Dilep->Fill(eta);
@@ -1522,6 +1549,8 @@ void CoreMuonSelector::Summary() {
   h_Eff_pt_MediumID[1]                  = FindOutput<TH1F*>("h_Eff_pt_MediumID_Mu2");
   h_Eff_pt_HWWID[0]                     = FindOutput<TH1F*>("h_Eff_pt_HWWID_Mu1");
   h_Eff_pt_HWWID[1]                     = FindOutput<TH1F*>("h_Eff_pt_HWWID_Mu2");
+  h_Eff_pt_TightIDGoT[0]                = FindOutput<TH1F*>("h_Eff_pt_TightIDGoT_Mu1");
+  h_Eff_pt_TightIDGoT[1]                = FindOutput<TH1F*>("h_Eff_pt_TightIDGoT_Mu2");
   h_Eff_pt_TightIDipsHWW[0]             = FindOutput<TH1F*>("h_Eff_pt_TightIDipsHWW_Mu1");
   h_Eff_pt_TightIDipsHWW[1]             = FindOutput<TH1F*>("h_Eff_pt_TightIDipsHWW_Mu2");
   h_Eff_pt_MediumIDipsHWW[0]            = FindOutput<TH1F*>("h_Eff_pt_MediumIDipsHWW_Mu1");
@@ -1567,6 +1596,8 @@ void CoreMuonSelector::Summary() {
   h_Eff_eta_MediumID[1]                 = FindOutput<TH1F*>("h_Eff_eta_MediumID_Mu2");
   h_Eff_eta_HWWID[0]                    = FindOutput<TH1F*>("h_Eff_eta_HWWID_Mu1");
   h_Eff_eta_HWWID[1]                    = FindOutput<TH1F*>("h_Eff_eta_HWWID_Mu2");
+  h_Eff_eta_TightIDGoT[0]               = FindOutput<TH1F*>("h_Eff_eta_TightIDGoT_Mu1");
+  h_Eff_eta_TightIDGoT[1]               = FindOutput<TH1F*>("h_Eff_eta_TightIDGoT_Mu2");
   h_Eff_eta_TightIDipsHWW[0]            = FindOutput<TH1F*>("h_Eff_eta_TightIDipsHWW_Mu1");
   h_Eff_eta_TightIDipsHWW[1]            = FindOutput<TH1F*>("h_Eff_eta_TightIDipsHWW_Mu2");
   h_Eff_eta_MediumIDipsHWW[0]           = FindOutput<TH1F*>("h_Eff_eta_MediumIDipsHWW_Mu1");
@@ -1612,6 +1643,8 @@ void CoreMuonSelector::Summary() {
   h_Eff_npv_MediumID[1]                 = FindOutput<TH1F*>("h_Eff_npv_MediumID_Mu2");
   h_Eff_npv_HWWID[0]                    = FindOutput<TH1F*>("h_Eff_npv_HWWID_Mu1");
   h_Eff_npv_HWWID[1]                    = FindOutput<TH1F*>("h_Eff_npv_HWWID_Mu2");
+  h_Eff_npv_TightIDGoT[0]               = FindOutput<TH1F*>("h_Eff_npv_TightIDGoT_Mu1");
+  h_Eff_npv_TightIDGoT[1]               = FindOutput<TH1F*>("h_Eff_npv_TightIDGoT_Mu2");
   h_Eff_npv_TightIDipsHWW[0]            = FindOutput<TH1F*>("h_Eff_npv_TightIDipsHWW_Mu1");
   h_Eff_npv_TightIDipsHWW[1]            = FindOutput<TH1F*>("h_Eff_npv_TightIDipsHWW_Mu2");
   h_Eff_npv_MediumIDipsHWW[0]           = FindOutput<TH1F*>("h_Eff_npv_MediumIDipsHWW_Mu1");

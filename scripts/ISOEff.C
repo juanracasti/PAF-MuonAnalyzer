@@ -1,4 +1,4 @@
-void ISOEff(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04") 
+void ISOEff(TString Sample = "DR74X_50ns_MC_DY", TString BaseID = "TightID", TString dR = "04") 
 { 
 
   TFile *f  = TFile::Open("../files/" + Sample + ".root");
@@ -15,7 +15,6 @@ void ISOEff(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04")
     "npv"
   };
 
-  TString BaseID = "TightID";
 
   TString ISO[nISO+1] = {
     "",

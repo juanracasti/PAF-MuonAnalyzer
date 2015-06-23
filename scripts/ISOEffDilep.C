@@ -1,4 +1,4 @@
-void ISOEffDilep(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04") 
+void ISOEffDilep(TString Sample = "DR74X_50ns_MC_DY", TString BaseID = "TightID", TString dR = "04") 
 { 
 
   TFile *f  = TFile::Open("../files/" + Sample + ".root");
@@ -13,8 +13,6 @@ void ISOEffDilep(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04")
     "eta",
     "npv"
   };
-
-  TString BaseID = "TightID";
 
   TString ISO[nISO+1] = {
     "",
@@ -111,7 +109,7 @@ void ISOEffDilep(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04")
     }
     
 
-    l2 = new TLegend(0.60, 0.20, 0.83, 0.35);
+    l2 = new TLegend(0.20, 0.20, 0.43, 0.35);
     l2->SetBorderSize(1);
     l2->SetFillStyle(1001);
     l2->SetTextFont(42);
@@ -121,7 +119,7 @@ void ISOEffDilep(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04")
     l2->AddEntry(r[0][3], "PUPPI",                 "lp");
 
 
-    l3 = new TLegend(0.60, 0.68, 0.83, 0.83); 
+    l3 = new TLegend(0.20, 0.68, 0.43, 0.83); //(0.60, 0.68, 0.83, 0.83)
     l3->SetBorderSize(1);
     l3->SetFillStyle(1001);
     l3->SetTextFont(42);
@@ -212,7 +210,7 @@ void ISOEffDilep(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04")
       }
 	
       else if (Sample.Contains("QCD")) {
-	mg[iVar]->GetYaxis()->SetRangeUser(0.00,0.20);
+	mg[iVar]->GetYaxis()->SetRangeUser(0.00,0.40);
 	l3->Draw(); 
       }
 	

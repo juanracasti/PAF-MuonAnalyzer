@@ -4,7 +4,7 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
   TFile *f  = TFile::Open("../files/" + Sample + ".root");
 
   const int nVar = 3;
-  const int nID  = 5;
+  const int nID  = 6;
   const int nMu  = 2;
 
   TH1F* h[nVar][nID+1][nMu];
@@ -20,6 +20,7 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     "TightID",
     "MediumID",
     "HWWID",
+    "TightIDGoT",
     "TightIDipsHWW",
     "MediumIDipsHWW"
   };
@@ -130,8 +131,9 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     l2->AddEntry(r[0][0][0], "Tight ID",               "lp");
     l2->AddEntry(r[0][1][0], "Medium ID",              "lp");
     l2->AddEntry(r[0][2][0], "HWW ID",                 "lp");
-    l2->AddEntry(r[0][3][0], "Tight ID, HWW IP cuts",  "lp");
-    l2->AddEntry(r[0][4][0], "Medium ID, HWW IP cuts", "lp");
+    l2->AddEntry(r[0][3][0], "Tight ID, GLB or TRK",   "lp");
+    l2->AddEntry(r[0][4][0], "Tight ID, HWW IP cuts",  "lp");
+    l2->AddEntry(r[0][5][0], "Medium ID, HWW IP cuts", "lp");
 
 
     l3 = new TLegend(0.60, 0.68, 0.83, 0.83); 
@@ -141,8 +143,9 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     l3->AddEntry(r[0][0][0], "Tight ID",               "lp");
     l3->AddEntry(r[0][1][0], "Medium ID",              "lp");
     l3->AddEntry(r[0][2][0], "HWW ID",                 "lp");
-    l3->AddEntry(r[0][3][0], "Tight ID, HWW IP cuts",  "lp");
-    l3->AddEntry(r[0][4][0], "Medium ID, HWW IP cuts", "lp");
+    l3->AddEntry(r[0][3][0], "Tight ID, GLB or TRK",   "lp");
+    l3->AddEntry(r[0][4][0], "Tight ID, HWW IP cuts",  "lp");
+    l3->AddEntry(r[0][5][0], "Medium ID, HWW IP cuts", "lp");
 
 
     for (unsigned int iMu=0; iMu<nMu; iMu++)
@@ -190,19 +193,27 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     	r[iVar][3][iMu]->SetMarkerStyle(kOpenCircle);
     	r[iVar][3][iMu]->SetFillStyle(3001);
     	r[iVar][3][iMu]->SetFillColor(kOrange+7);
-    	r[iVar][4][iMu]->SetLineColor(7);
+    	r[iVar][4][iMu]->SetLineColor(kCyan+2);
     	r[iVar][4][iMu]->SetLineWidth(2);
-    	r[iVar][4][iMu]->SetMarkerColor(7);
+    	r[iVar][4][iMu]->SetMarkerColor(kCyan+2);
     	r[iVar][4][iMu]->SetMarkerSize(0.85);
-    	r[iVar][4][iMu]->SetMarkerStyle(kFullCircle);
+    	r[iVar][4][iMu]->SetMarkerStyle(kOpenCircle);
     	r[iVar][4][iMu]->SetFillStyle(0);
-    	r[iVar][4][iMu]->SetFillColor(7);
+    	r[iVar][4][iMu]->SetFillColor(kCyan+2);
+    	r[iVar][5][iMu]->SetLineColor(kRed+1);
+    	r[iVar][5][iMu]->SetLineWidth(2);
+    	r[iVar][5][iMu]->SetMarkerColor(kRed+1);
+    	r[iVar][5][iMu]->SetMarkerSize(0.85);
+    	r[iVar][5][iMu]->SetMarkerStyle(kOpenTriangleUp);
+    	r[iVar][5][iMu]->SetFillStyle(0);
+    	r[iVar][5][iMu]->SetFillColor(kRed+1);
 	
     	mg[iVar][iMu]->Add(r[iVar][0][iMu], "p");
     	mg[iVar][iMu]->Add(r[iVar][2][iMu], "p");
     	mg[iVar][iMu]->Add(r[iVar][1][iMu], "p");
     	mg[iVar][iMu]->Add(r[iVar][3][iMu], "p");
-    	mg[iVar][iMu]->Add(r[iVar][4][iMu], "p");	    
+    	mg[iVar][iMu]->Add(r[iVar][4][iMu], "p");
+	mg[iVar][iMu]->Add(r[iVar][5][iMu], "p");	    
 
     	c[iVar][iMu] ->Clear();
     	mg[iVar][iMu]->Draw("a");
@@ -232,7 +243,7 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     	mg[iVar][iMu]->GetYaxis()->SetTitleSize(0.035);
     	mg[iVar][iMu]->GetYaxis()->SetTitleOffset(1.6);
 	
-    	mg[iVar][iMu]->GetYaxis()->SetRangeUser(0.75,1.05);
+    	mg[iVar][iMu]->GetYaxis()->SetRangeUser(0.0,1.05);
     	l2->Draw(); 
 	
     	//c[iVar]->Update();

@@ -66,13 +66,13 @@ class CoreMuonSelector: public PAFChainItemSelector{
 
   std::vector<bool>           G_MuonID_Tight;         //Which RECO muons pass Tight ID 
   std::vector<bool>           G_MuonID_Medium;        // ""          ""  pass Medium ID
-  std::vector<bool>           G_MuonID_HWW;           // ""          ""  pass HWW ID 
+  std::vector<bool>           G_MuonID_HWW;           // ""          ""  pass HWW ID
+  std::vector<bool>           G_MuonID_Tight_GoT;     // ""          ""  pass Tight ID with GLB or TRK arbitrated 
   std::vector<bool>           G_MuonID_IPs_HWW;       // ""          ""  pass IP cuts (dxy and dz) from HWW ID
   std::vector<bool>           G_MuonID_GLBorTRKArb;   // ""          ""  are GLB or TRK Arbitrated
   std::vector<bool>           G_MuonID_Fiducial;      // ""          ""  have:
                                                       //   * For the first muon,  Pt > 20 & |Eta| < 2.4 
-                                                      //   * For the other muons, Pt > 10 & |Eta| < 2.4, 
-                                                      //     and opposite charge than the first muon   
+                                                      //   * For the other muons, Pt > 10 & |Eta| < 2.4    
 
   std::vector<bool>           G_MuonISO03;            //Which RECO muons pass PF Rel. ISO, dR=0.3 (w.p. = 0.12)
   std::vector<bool>           G_MuonISO03_dBeta;      // ""                            "", dR=0.3 and dBeta corr.
@@ -83,6 +83,8 @@ class CoreMuonSelector: public PAFChainItemSelector{
   std::vector<bool>           G_MuonISO04_PFWeighted; // ""                            "", dR=0.4 and PFweighted corr.
   std::vector<bool>           G_MuonISO04_PUPPI;      // ""                            "", dR=0.4 and PUPPI corr.
 
+  std::vector<bool>           G_Muon_ChCompatible;    //Which RECO muons have opposite charge than the first one
+                                                      //(true for the first one too)
   std::vector<int>            G_Muon_Matching;        //To which GEN prompt muon the RECO muons are matched
                                                       //  * 1: matched to the 1st GEN prompt muon
                                                       //  * 2: matched to the 2nd GEN prompt muon 
@@ -159,6 +161,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_pt_TightID[2];
   TH1F       *h_Eff_pt_MediumID[2];
   TH1F       *h_Eff_pt_HWWID[2];
+  TH1F       *h_Eff_pt_TightIDGoT[2];
   TH1F       *h_Eff_pt_TightIDipsHWW[2];
   TH1F       *h_Eff_pt_MediumIDipsHWW[2];
   TH1F       *h_Eff_pt_TightID_ISO03[2];
@@ -182,6 +185,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_eta_TightID[2];
   TH1F       *h_Eff_eta_MediumID[2];
   TH1F       *h_Eff_eta_HWWID[2];
+  TH1F       *h_Eff_eta_TightIDGoT[2];
   TH1F       *h_Eff_eta_TightIDipsHWW[2];
   TH1F       *h_Eff_eta_MediumIDipsHWW[2];
   TH1F       *h_Eff_eta_TightID_ISO03[2];
@@ -205,6 +209,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_npv_TightID[2];
   TH1F       *h_Eff_npv_MediumID[2];
   TH1F       *h_Eff_npv_HWWID[2];
+  TH1F       *h_Eff_npv_TightIDGoT[2];
   TH1F       *h_Eff_npv_TightIDipsHWW[2];
   TH1F       *h_Eff_npv_MediumIDipsHWW[2];
   TH1F       *h_Eff_npv_TightID_ISO03[2];
@@ -363,6 +368,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_pt_TightID(),
      h_Eff_pt_MediumID(),
      h_Eff_pt_HWWID(),
+     h_Eff_pt_TightIDGoT(),
      h_Eff_pt_TightIDipsHWW(),
      h_Eff_pt_MediumIDipsHWW(),
      h_Eff_pt_TightID_ISO03(),
@@ -386,6 +392,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_eta_TightID(),
      h_Eff_eta_MediumID(),
      h_Eff_eta_HWWID(),
+     h_Eff_eta_TightIDGoT(),
      h_Eff_eta_TightIDipsHWW(),
      h_Eff_eta_MediumIDipsHWW(),
      h_Eff_eta_TightID_ISO03(),
@@ -409,6 +416,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_npv_TightID(),
      h_Eff_npv_MediumID(),
      h_Eff_npv_HWWID(),
+     h_Eff_npv_TightIDGoT(),
      h_Eff_npv_TightIDipsHWW(),
      h_Eff_npv_MediumIDipsHWW(),
      h_Eff_npv_TightID_ISO03(),
