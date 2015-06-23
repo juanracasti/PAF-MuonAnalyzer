@@ -140,9 +140,13 @@ void RunMuonAnalyzer(const char* data) {
   else if (signal=="DR74X_50ns_MC_DY") {
 
     myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_0.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_1.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_2.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_3.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_4.root");
    
     isdata             = false;
-    nEventsInTheSample = 1559602; 
+    nEventsInTheSample = 6810943; 
     xSection           = 6025.2;
     whichRun           = 2;
 
@@ -151,9 +155,10 @@ void RunMuonAnalyzer(const char* data) {
   else if (signal=="DR74X_50ns_MC_QCD") {
 
     myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_QCDmuEnriched_0.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_QCDmuEnriched_1.root");
    
     isdata             = false;
-    nEventsInTheSample = 1237119; 
+    nEventsInTheSample = 1848472; 
     xSection           = 1.;
     whichRun           = 2;
 
