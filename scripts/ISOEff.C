@@ -1,7 +1,7 @@
 void ISOEff(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04") 
 { 
 
-  TFile *f  = TFile::Open("../files/" + Sample + ".root.bk");
+  TFile *f  = TFile::Open("../files/" + Sample + ".root");
 
   const int nVar = 3;
   const int nISO = 4;
@@ -15,7 +15,7 @@ void ISOEff(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04")
     "npv"
   };
 
-  TString BaseID = "Tight";
+  TString BaseID = "TightID";
 
   TString ISO[nISO+1] = {
     "",
@@ -36,10 +36,10 @@ void ISOEff(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04")
       for (unsigned int iMu = 0; iMu < nMu; iMu++)     {
 
 	if (iISO == 0) {
-	  h[iVar][iISO][iMu] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+BaseID+"ID_"+Mu[iMu]);
+	  h[iVar][iISO][iMu] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+BaseID+"_"+Mu[iMu]);
 	}
 	else {
-	  h[iVar][iISO][iMu] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+BaseID+"ISO"+dR+ISO[iISO]+"_"+Mu[iMu]);
+	  h[iVar][iISO][iMu] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+BaseID+"_ISO"+dR+ISO[iISO]+"_"+Mu[iMu]);
 	}
 
       }
@@ -228,8 +228,15 @@ void ISOEff(TString Sample = "DR74X_50ns_MC_DY", TString dR = "04")
     	mg[iVar][iMu]->GetYaxis()->SetTitleSize(0.035);
     	mg[iVar][iMu]->GetYaxis()->SetTitleOffset(1.6);
 	
-    	mg[iVar][iMu]->GetYaxis()->SetRangeUser(0.65,1.05);
-    	l2->Draw(); 
+	if (Sample.Contains("DY")) {
+	  mg[iVar][iMu]->GetYaxis()->SetRangeUser(0.65,1.05);
+	  l2->Draw(); 
+	}
+	
+	else if (Sample.Contains("QCD")) {
+	  mg[iVar][iMu]->GetYaxis()->SetRangeUser(0.00,0.20);
+	  l3->Draw(); 
+	}
 	
     	//c[iVar]->Update();
 	

@@ -101,6 +101,8 @@ void CoreMuonSelector::Initialise() {
   h_N_PV  = CreateH1F ("h_N_PV","h_N_PV",50,0,50); 
   h_N_PV->TH1::SetDefaultSumw2();
 
+  // Single Muon ID and ISO efficiencies vs pt, eta and npv
+
   h_Eff_pt_Matched[0]                   = CreateH1F("h_Eff_pt_Matched_Mu1",
 						    "h_Eff_pt_Matched_Mu1",                    200, 0, 200);
   h_Eff_pt_Matched[1]                   = CreateH1F("h_Eff_pt_Matched_Mu2",
@@ -368,6 +370,120 @@ void CoreMuonSelector::Initialise() {
   h_Eff_npv_MediumID_ISO04PUPPI[1]      = CreateH1F("h_Eff_npv_MediumID_ISO04PUPPI_Mu2", 
 						    "h_Eff_npv_MediumID_ISO04PUPPI_Mu2",       45, 0, 45);
 
+  // Dimuon ISO efficiencies vs pt, eta and npv
+
+  h_Eff_pt_TightID_Dilep                   = CreateH1F("h_Eff_pt_TightID_Dilep", 
+						       "h_Eff_pt_TightID_Dilep",                    200, 0, 200);
+  h_Eff_pt_TightID_ISO03_Dilep             = CreateH1F("h_Eff_pt_TightID_ISO03_Dilep", 
+						       "h_Eff_pt_TightID_ISO03_Dilep",              200, 0, 200);
+  h_Eff_pt_TightID_ISO04_Dilep             = CreateH1F("h_Eff_pt_TightID_ISO04_Dilep", 
+						       "h_Eff_pt_TightID_ISO04_Dilep",              200, 0, 200);
+  h_Eff_pt_TightID_ISO03dBeta_Dilep        = CreateH1F("h_Eff_pt_TightID_ISO03dBeta_Dilep", 
+						       "h_Eff_pt_TightID_ISO03dBeta_Dilep",         200, 0, 200);
+  h_Eff_pt_TightID_ISO04dBeta_Dilep        = CreateH1F("h_Eff_pt_TightID_ISO04dBeta_Dilep", 
+						       "h_Eff_pt_TightID_ISO04dBeta_Dilep",         200, 0, 200);
+  h_Eff_pt_TightID_ISO03PFWeighted_Dilep   = CreateH1F("h_Eff_pt_TightID_ISO03PFWeighted_Dilep", 
+						       "h_Eff_pt_TightID_ISO03PFWeighted_Dilep",    200, 0, 200);
+  h_Eff_pt_TightID_ISO04PFWeighted_Dilep   = CreateH1F("h_Eff_pt_TightID_ISO04PFWeighted_Dilep", 
+						       "h_Eff_pt_TightID_ISO04PFWeighted_Dilep",    200, 0, 200);
+  h_Eff_pt_TightID_ISO03PUPPI_Dilep        = CreateH1F("h_Eff_pt_TightID_ISO03PUPPI_Dilep", 
+						       "h_Eff_pt_TightID_ISO03PUPPI_Dilep",         200, 0, 200);
+  h_Eff_pt_TightID_ISO04PUPPI_Dilep        = CreateH1F("h_Eff_pt_TightID_ISO04PUPPI_Dilep", 
+						       "h_Eff_pt_TightID_ISO04PUPPI_Dilep",         200, 0, 200);
+  h_Eff_pt_MediumID_Dilep                  = CreateH1F("h_Eff_pt_MediumID_Dilep", 
+						       "h_Eff_pt_MediumID_Dilep",                   200, 0, 200);
+  h_Eff_pt_MediumID_ISO03_Dilep            = CreateH1F("h_Eff_pt_MediumID_ISO03_Dilep", 
+						       "h_Eff_pt_MediumID_ISO03_Dilep",             200, 0, 200);
+  h_Eff_pt_MediumID_ISO04_Dilep            = CreateH1F("h_Eff_pt_MediumID_ISO04_Dilep", 
+						       "h_Eff_pt_MediumID_ISO04_Dilep",             200, 0, 200);
+  h_Eff_pt_MediumID_ISO03dBeta_Dilep       = CreateH1F("h_Eff_pt_MediumID_ISO03dBeta_Dilep", 
+						       "h_Eff_pt_MediumID_ISO03dBeta_Dilep",        200, 0, 200);
+  h_Eff_pt_MediumID_ISO04dBeta_Dilep       = CreateH1F("h_Eff_pt_MediumID_ISO04dBeta_Dilep", 
+						       "h_Eff_pt_MediumID_ISO04dBeta_Dilep",        200, 0, 200);
+  h_Eff_pt_MediumID_ISO03PFWeighted_Dilep  = CreateH1F("h_Eff_pt_MediumID_ISO03PFWeighted_Dilep", 
+						       "h_Eff_pt_MediumID_ISO03PFWeighted_Dilep",   200, 0, 200);
+  h_Eff_pt_MediumID_ISO04PFWeighted_Dilep  = CreateH1F("h_Eff_pt_MediumID_ISO04PFWeighted_Dilep", 
+						       "h_Eff_pt_MediumID_ISO04PFWeighted_Dilep",   200, 0, 200);
+  h_Eff_pt_MediumID_ISO03PUPPI_Dilep       = CreateH1F("h_Eff_pt_MediumID_ISO03PUPPI_Dilep", 
+						       "h_Eff_pt_MediumID_ISO03PUPPI_Dilep",        200, 0, 200);
+  h_Eff_pt_MediumID_ISO04PUPPI_Dilep       = CreateH1F("h_Eff_pt_MediumID_ISO04PUPPI_Dilep", 
+						       "h_Eff_pt_MediumID_ISO04PUPPI_Dilep",        200, 0, 200);
+
+
+  h_Eff_eta_TightID_Dilep                  = CreateH1F("h_Eff_eta_TightID_Dilep", 
+						       "h_Eff_eta_TightID_Dilep",                   50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03_Dilep            = CreateH1F("h_Eff_eta_TightID_ISO03_Dilep", 
+						       "h_Eff_eta_TightID_ISO03_Dilep",             50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04_Dilep            = CreateH1F("h_Eff_eta_TightID_ISO04_Dilep", 
+						       "h_Eff_eta_TightID_ISO04_Dilep",             50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03dBeta_Dilep       = CreateH1F("h_Eff_eta_TightID_ISO03dBeta_Dilep", 
+						       "h_Eff_eta_TightID_ISO03dBeta_Dilep",        50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04dBeta_Dilep       = CreateH1F("h_Eff_eta_TightID_ISO04dBeta_Dilep", 
+						       "h_Eff_eta_TightID_ISO04dBeta_Dilep",        50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03PFWeighted_Dilep  = CreateH1F("h_Eff_eta_TightID_ISO03PFWeighted_Dilep", 
+						       "h_Eff_eta_TightID_ISO03PFWeighted_Dilep",   50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04PFWeighted_Dilep  = CreateH1F("h_Eff_eta_TightID_ISO04PFWeighted_Dilep", 
+						       "h_Eff_eta_TightID_ISO04PFWeighted_Dilep",   50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO03PUPPI_Dilep       = CreateH1F("h_Eff_eta_TightID_ISO03PUPPI_Dilep", 
+						       "h_Eff_eta_TightID_ISO03PUPPI_Dilep",        50, -2.5, 2.5);
+  h_Eff_eta_TightID_ISO04PUPPI_Dilep       = CreateH1F("h_Eff_eta_TightID_ISO04PUPPI_Dilep", 
+						       "h_Eff_eta_TightID_ISO04PUPPI_Dilep",        50, -2.5, 2.5);
+  h_Eff_eta_MediumID_Dilep                 = CreateH1F("h_Eff_eta_MediumID_Dilep", 
+						       "h_Eff_eta_MediumID_Dilep",                  50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03_Dilep           = CreateH1F("h_Eff_eta_MediumID_ISO03_Dilep", 
+						       "h_Eff_eta_MediumID_ISO03_Dilep",            50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04_Dilep           = CreateH1F("h_Eff_eta_MediumID_ISO04_Dilep", 
+						       "h_Eff_eta_MediumID_ISO04_Dilep",            50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03dBeta_Dilep      = CreateH1F("h_Eff_eta_MediumID_ISO03dBeta_Dilep", 
+						       "h_Eff_eta_MediumID_ISO03dBeta_Dilep",       50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04dBeta_Dilep      = CreateH1F("h_Eff_eta_MediumID_ISO04dBeta_Dilep", 
+						       "h_Eff_eta_MediumID_ISO04dBeta_Dilep",       50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03PFWeighted_Dilep = CreateH1F("h_Eff_eta_MediumID_ISO03PFWeighted_Dilep", 
+						       "h_Eff_eta_MediumID_ISO03PFWeighted_Dilep",  50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04PFWeighted_Dilep = CreateH1F("h_Eff_eta_MediumID_ISO04PFWeighted_Dilep", 
+						       "h_Eff_eta_MediumID_ISO04PFWeighted_Dilep",  50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO03PUPPI_Dilep      = CreateH1F("h_Eff_eta_MediumID_ISO03PUPPI_Dilep", 
+						       "h_Eff_eta_MediumID_ISO03PUPPI_Dilep",       50, -2.5, 2.5);
+  h_Eff_eta_MediumID_ISO04PUPPI_Dilep      = CreateH1F("h_Eff_eta_MediumID_ISO04PUPPI_Dilep", 
+						       "h_Eff_eta_MediumID_ISO04PUPPI_Dilep",       50, -2.5, 2.5);
+  
+
+  h_Eff_npv_TightID_Dilep                  = CreateH1F("h_Eff_npv_TightID_Dilep", 
+						       "h_Eff_npv_TightID_Dilep",                   45, 0, 45);
+  h_Eff_npv_TightID_ISO03_Dilep            = CreateH1F("h_Eff_npv_TightID_ISO03_Dilep", 
+						       "h_Eff_npv_TightID_ISO03_Dilep",             45, 0, 45);
+  h_Eff_npv_TightID_ISO04_Dilep            = CreateH1F("h_Eff_npv_TightID_ISO04_Dilep", 
+						       "h_Eff_npv_TightID_ISO04_Dilep",             45, 0, 45);
+  h_Eff_npv_TightID_ISO03dBeta_Dilep       = CreateH1F("h_Eff_npv_TightID_ISO03dBeta_Dilep", 
+						       "h_Eff_npv_TightID_ISO03dBeta_Dilep",        45, 0, 45);
+  h_Eff_npv_TightID_ISO04dBeta_Dilep       = CreateH1F("h_Eff_npv_TightID_ISO04dBeta_Dilep", 
+						       "h_Eff_npv_TightID_ISO04dBeta_Dilep",        45, 0, 45);
+  h_Eff_npv_TightID_ISO03PFWeighted_Dilep  = CreateH1F("h_Eff_npv_TightID_ISO03PFWeighted_Dilep", 
+						       "h_Eff_npv_TightID_ISO03PFWeighted_Dilep",   45, 0, 45);
+  h_Eff_npv_TightID_ISO04PFWeighted_Dilep  = CreateH1F("h_Eff_npv_TightID_ISO04PFWeighted_Dilep", 
+						       "h_Eff_npv_TightID_ISO04PFWeighted_Dilep",   45, 0, 45);
+  h_Eff_npv_TightID_ISO03PUPPI_Dilep       = CreateH1F("h_Eff_npv_TightID_ISO03PUPPI_Dilep", 
+						       "h_Eff_npv_TightID_ISO03PUPPI_Dilep",        45, 0, 45);
+  h_Eff_npv_TightID_ISO04PUPPI_Dilep       = CreateH1F("h_Eff_npv_TightID_ISO04PUPPI_Dilep", 
+						       "h_Eff_npv_TightID_ISO04PUPPI_Dilep",        45, 0, 45);
+  h_Eff_npv_MediumID_Dilep                 = CreateH1F("h_Eff_npv_MediumID_Dilep", 
+						       "h_Eff_npv_MediumID_Dilep",                  45, 0, 45);
+  h_Eff_npv_MediumID_ISO03_Dilep           = CreateH1F("h_Eff_npv_MediumID_ISO03_Dilep", 
+						       "h_Eff_npv_MediumID_ISO03_Dilep",            45, 0, 45);
+  h_Eff_npv_MediumID_ISO04_Dilep           = CreateH1F("h_Eff_npv_MediumID_ISO04_Dilep", 
+						       "h_Eff_npv_MediumID_ISO04_Dilep",            45, 0, 45);
+  h_Eff_npv_MediumID_ISO03dBeta_Dilep      = CreateH1F("h_Eff_npv_MediumID_ISO03dBeta_Dilep", 
+						       "h_Eff_npv_MediumID_ISO03dBeta_Dilep",       45, 0, 45);
+  h_Eff_npv_MediumID_ISO04dBeta_Dilep      = CreateH1F("h_Eff_npv_MediumID_ISO04dBeta_Dilep", 
+						       "h_Eff_npv_MediumID_ISO04dBeta_Dilep",       45, 0, 45);
+  h_Eff_npv_MediumID_ISO03PFWeighted_Dilep = CreateH1F("h_Eff_npv_MediumID_ISO03PFWeighted_Dilep", 
+						       "h_Eff_npv_MediumID_ISO03PFWeighted_Dilep",  45, 0, 45);
+  h_Eff_npv_MediumID_ISO04PFWeighted_Dilep = CreateH1F("h_Eff_npv_MediumID_ISO04PFWeighted_Dilep", 
+						       "h_Eff_npv_MediumID_ISO04PFWeighted_Dilep",  45, 0, 45);
+  h_Eff_npv_MediumID_ISO03PUPPI_Dilep      = CreateH1F("h_Eff_npv_MediumID_ISO03PUPPI_Dilep", 
+						       "h_Eff_npv_MediumID_ISO03PUPPI_Dilep",       45, 0, 45);
+  h_Eff_npv_MediumID_ISO04PUPPI_Dilep      = CreateH1F("h_Eff_npv_MediumID_ISO04PUPPI_Dilep", 
+						       "h_Eff_npv_MediumID_ISO04PUPPI_Dilep",       45, 0, 45);
 
 }
 
@@ -479,6 +595,7 @@ void CoreMuonSelector::InsideLoop() {
   if (EvtFlag_Matching) {
     doEffsRECO(0,0);
     doEffsRECO(1,1);
+    doEffsRECODilep();
   }
 
   //------------------------------------------------------------------------------
@@ -991,7 +1108,7 @@ void CoreMuonSelector::SetEventFlags() {
   EvtFlag_Gen = G_GEN_Pass;
 
   EvtFlag_Matching = G_PassMatching;
-  if (_IsDATA) EvtFlag_Matching = EvtFlag_Fiducial;
+  if (_IsDATA || _Signal.Contains("QCD")) EvtFlag_Matching = EvtFlag_Fiducial;
 
 }
 
@@ -1263,6 +1380,129 @@ void CoreMuonSelector::doEffsRECO(int iMu, int indexMuon) {
   
 }
 
+void CoreMuonSelector::doEffsRECODilep() {
+
+  for (UInt_t i=0; i<2; i++) {
+
+    float pt  = Get<float>("T_Muon_Pt", i); 
+    float eta = Get<float>("T_Muon_Eta",i);
+    float npv = G_NPV;
+
+    if (pt < 20) continue;
+    
+    if (G_MuonID_Tight[i]) {
+       h_Eff_pt_TightID_Dilep->Fill(pt);
+      h_Eff_eta_TightID_Dilep->Fill(eta);
+      h_Eff_npv_TightID_Dilep->Fill(npv);
+    }
+    
+    if (G_MuonID_Medium[i]) {
+       h_Eff_pt_MediumID_Dilep->Fill(pt);
+      h_Eff_eta_MediumID_Dilep->Fill(eta);
+      h_Eff_npv_MediumID_Dilep->Fill(npv);
+    }
+    
+
+    if (G_MuonID_Tight[i] && G_MuonISO03[i]) {
+       h_Eff_pt_TightID_ISO03_Dilep->Fill(pt);
+      h_Eff_eta_TightID_ISO03_Dilep->Fill(eta);
+      h_Eff_npv_TightID_ISO03_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Tight[i] && G_MuonISO04[i]) {
+       h_Eff_pt_TightID_ISO04_Dilep->Fill(pt);
+      h_Eff_eta_TightID_ISO04_Dilep->Fill(eta);
+      h_Eff_npv_TightID_ISO04_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Tight[i] && G_MuonISO03_dBeta[i]) {
+       h_Eff_pt_TightID_ISO03dBeta_Dilep->Fill(pt);
+      h_Eff_eta_TightID_ISO03dBeta_Dilep->Fill(eta);
+      h_Eff_npv_TightID_ISO03dBeta_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Tight[i] && G_MuonISO04_dBeta[i]) {
+       h_Eff_pt_TightID_ISO04dBeta_Dilep->Fill(pt);
+      h_Eff_eta_TightID_ISO04dBeta_Dilep->Fill(eta);
+      h_Eff_npv_TightID_ISO04dBeta_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Tight[i] && G_MuonISO03_PFWeighted[i]) {
+       h_Eff_pt_TightID_ISO03PFWeighted_Dilep->Fill(pt);
+      h_Eff_eta_TightID_ISO03PFWeighted_Dilep->Fill(eta);
+      h_Eff_npv_TightID_ISO03PFWeighted_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Tight[i] && G_MuonISO04_PFWeighted[i]) {
+       h_Eff_pt_TightID_ISO04PFWeighted_Dilep->Fill(pt);
+      h_Eff_eta_TightID_ISO04PFWeighted_Dilep->Fill(eta);
+      h_Eff_npv_TightID_ISO04PFWeighted_Dilep->Fill(npv);
+    } 
+
+    if (G_MuonID_Tight[i] && G_MuonISO03_PUPPI[i]) {
+       h_Eff_pt_TightID_ISO03PUPPI_Dilep->Fill(pt);
+      h_Eff_eta_TightID_ISO03PUPPI_Dilep->Fill(eta);
+      h_Eff_npv_TightID_ISO03PUPPI_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Tight[i] && G_MuonISO04_PUPPI[i]) {
+       h_Eff_pt_TightID_ISO04PUPPI_Dilep->Fill(pt);
+      h_Eff_eta_TightID_ISO04PUPPI_Dilep->Fill(eta);
+      h_Eff_npv_TightID_ISO04PUPPI_Dilep->Fill(npv);
+    } 
+
+    if (G_MuonID_Medium[i] && G_MuonISO03[i]) {
+       h_Eff_pt_MediumID_ISO03_Dilep->Fill(pt);
+      h_Eff_eta_MediumID_ISO03_Dilep->Fill(eta);
+      h_Eff_npv_MediumID_ISO03_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Medium[i] && G_MuonISO04[i]) {
+       h_Eff_pt_MediumID_ISO04_Dilep->Fill(pt);
+      h_Eff_eta_MediumID_ISO04_Dilep->Fill(eta);
+      h_Eff_npv_MediumID_ISO04_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Medium[i] && G_MuonISO03_dBeta[i]) {
+       h_Eff_pt_MediumID_ISO03dBeta_Dilep->Fill(pt);
+      h_Eff_eta_MediumID_ISO03dBeta_Dilep->Fill(eta);
+      h_Eff_npv_MediumID_ISO03dBeta_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Medium[i] && G_MuonISO04_dBeta[i]) {
+       h_Eff_pt_MediumID_ISO04dBeta_Dilep->Fill(pt);
+      h_Eff_eta_MediumID_ISO04dBeta_Dilep->Fill(eta);
+      h_Eff_npv_MediumID_ISO04dBeta_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Medium[i] && G_MuonISO03_PFWeighted[i]) {
+       h_Eff_pt_MediumID_ISO03PFWeighted_Dilep->Fill(pt);
+      h_Eff_eta_MediumID_ISO03PFWeighted_Dilep->Fill(eta);
+      h_Eff_npv_MediumID_ISO03PFWeighted_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Medium[i] && G_MuonISO04_PFWeighted[i]) {
+       h_Eff_pt_MediumID_ISO04PFWeighted_Dilep->Fill(pt);
+      h_Eff_eta_MediumID_ISO04PFWeighted_Dilep->Fill(eta);
+      h_Eff_npv_MediumID_ISO04PFWeighted_Dilep->Fill(npv);
+    } 
+
+    if (G_MuonID_Medium[i] && G_MuonISO03_PUPPI[i]) {
+       h_Eff_pt_MediumID_ISO03PUPPI_Dilep->Fill(pt);
+      h_Eff_eta_MediumID_ISO03PUPPI_Dilep->Fill(eta);
+      h_Eff_npv_MediumID_ISO03PUPPI_Dilep->Fill(npv);
+    }
+  
+    if (G_MuonID_Medium[i] && G_MuonISO04_PUPPI[i]) {
+       h_Eff_pt_MediumID_ISO04PUPPI_Dilep->Fill(pt);
+      h_Eff_eta_MediumID_ISO04PUPPI_Dilep->Fill(eta);
+      h_Eff_npv_MediumID_ISO04PUPPI_Dilep->Fill(npv);
+    } 
+
+  }
+  
+}
+
 
 void CoreMuonSelector::Summary() {
   // Get Data Members at the client-master (after finishing the analysis at the workers nodes)
@@ -1273,6 +1513,7 @@ void CoreMuonSelector::Summary() {
 
   h_N_PV  = FindOutput<TH1F*>("h_N_PV");
 
+  // Single Muon ID and ISO efficiencies vs pt, eta and npv
   h_Eff_pt_Matched[0]                   = FindOutput<TH1F*>("h_Eff_pt_Matched_Mu1");
   h_Eff_pt_Matched[1]                   = FindOutput<TH1F*>("h_Eff_pt_Matched_Mu2");
   h_Eff_pt_TightID[0]                   = FindOutput<TH1F*>("h_Eff_pt_TightID_Mu1");
@@ -1407,6 +1648,64 @@ void CoreMuonSelector::Summary() {
   h_Eff_npv_MediumID_ISO03PUPPI[1]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03PUPPI_Mu2");
   h_Eff_npv_MediumID_ISO04PUPPI[0]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04PUPPI_Mu1");
   h_Eff_npv_MediumID_ISO04PUPPI[1]      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04PUPPI_Mu2");
+
+  // Dimuon ISO efficiencies vs pt, eta and npv
+  h_Eff_pt_TightID_Dilep                   = FindOutput<TH1F*>("h_Eff_pt_TightID_Dilep");
+  h_Eff_pt_TightID_ISO03_Dilep             = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03_Dilep");
+  h_Eff_pt_TightID_ISO04_Dilep             = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04_Dilep");
+  h_Eff_pt_TightID_ISO03dBeta_Dilep        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03dBeta_Dilep");
+  h_Eff_pt_TightID_ISO04dBeta_Dilep        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04dBeta_Dilep");
+  h_Eff_pt_TightID_ISO03PFWeighted_Dilep   = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03PFWeighted_Dilep");
+  h_Eff_pt_TightID_ISO04PFWeighted_Dilep   = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04PFWeighted_Dilep");
+  h_Eff_pt_TightID_ISO03PUPPI_Dilep        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO03PUPPI_Dilep");
+  h_Eff_pt_TightID_ISO04PUPPI_Dilep        = FindOutput<TH1F*>("h_Eff_pt_TightID_ISO04PUPPI_Dilep");
+  h_Eff_pt_MediumID_Dilep                  = FindOutput<TH1F*>("h_Eff_pt_MediumID_Dilep");
+  h_Eff_pt_MediumID_ISO03_Dilep            = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03_Dilep");
+  h_Eff_pt_MediumID_ISO04_Dilep            = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04_Dilep");
+  h_Eff_pt_MediumID_ISO03dBeta_Dilep       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03dBeta_Dilep");
+  h_Eff_pt_MediumID_ISO04dBeta_Dilep       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04dBeta_Dilep");
+  h_Eff_pt_MediumID_ISO03PFWeighted_Dilep  = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03PFWeighted_Dilep");
+  h_Eff_pt_MediumID_ISO04PFWeighted_Dilep  = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04PFWeighted_Dilep");
+  h_Eff_pt_MediumID_ISO03PUPPI_Dilep       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO03PUPPI_Dilep");
+  h_Eff_pt_MediumID_ISO04PUPPI_Dilep       = FindOutput<TH1F*>("h_Eff_pt_MediumID_ISO04PUPPI_Dilep");
+
+  h_Eff_eta_TightID_Dilep                  = FindOutput<TH1F*>("h_Eff_eta_TightID_Dilep");
+  h_Eff_eta_TightID_ISO03_Dilep            = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03_Dilep");
+  h_Eff_eta_TightID_ISO04_Dilep            = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04_Dilep");
+  h_Eff_eta_TightID_ISO03dBeta_Dilep       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03dBeta_Dilep");
+  h_Eff_eta_TightID_ISO04dBeta_Dilep       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04dBeta_Dilep");
+  h_Eff_eta_TightID_ISO03PFWeighted_Dilep  = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03PFWeighted_Dilep");
+  h_Eff_eta_TightID_ISO04PFWeighted_Dilep  = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04PFWeighted_Dilep");
+  h_Eff_eta_TightID_ISO03PUPPI_Dilep       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO03PUPPI_Dilep");
+  h_Eff_eta_TightID_ISO04PUPPI_Dilep       = FindOutput<TH1F*>("h_Eff_eta_TightID_ISO04PUPPI_Dilep");
+  h_Eff_eta_MediumID_Dilep                 = FindOutput<TH1F*>("h_Eff_eta_MediumID_Dilep");
+  h_Eff_eta_MediumID_ISO03_Dilep           = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03_Dilep");
+  h_Eff_eta_MediumID_ISO04_Dilep           = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04_Dilep");
+  h_Eff_eta_MediumID_ISO03dBeta_Dilep      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03dBeta_Dilep");
+  h_Eff_eta_MediumID_ISO04dBeta_Dilep      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04dBeta_Dilep");
+  h_Eff_eta_MediumID_ISO03PFWeighted_Dilep = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03PFWeighted_Dilep");
+  h_Eff_eta_MediumID_ISO04PFWeighted_Dilep = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04PFWeighted_Dilep");
+  h_Eff_eta_MediumID_ISO03PUPPI_Dilep      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO03PUPPI_Dilep");
+  h_Eff_eta_MediumID_ISO04PUPPI_Dilep      = FindOutput<TH1F*>("h_Eff_eta_MediumID_ISO04PUPPI_Dilep");
+
+  h_Eff_npv_TightID_Dilep                  = FindOutput<TH1F*>("h_Eff_npv_TightID_Dilep");
+  h_Eff_npv_TightID_ISO03_Dilep            = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03_Dilep");
+  h_Eff_npv_TightID_ISO04_Dilep            = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04_Dilep");
+  h_Eff_npv_TightID_ISO03dBeta_Dilep       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03dBeta_Dilep");
+  h_Eff_npv_TightID_ISO04dBeta_Dilep       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04dBeta_Dilep");
+  h_Eff_npv_TightID_ISO03PFWeighted_Dilep  = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03PFWeighted_Dilep");
+  h_Eff_npv_TightID_ISO04PFWeighted_Dilep  = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04PFWeighted_Dilep");
+  h_Eff_npv_TightID_ISO03PUPPI_Dilep       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO03PUPPI_Dilep");
+  h_Eff_npv_TightID_ISO04PUPPI_Dilep       = FindOutput<TH1F*>("h_Eff_npv_TightID_ISO04PUPPI_Dilep");
+  h_Eff_npv_MediumID_Dilep                 = FindOutput<TH1F*>("h_Eff_npv_MediumID_Dilep");
+  h_Eff_npv_MediumID_ISO03_Dilep           = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03_Dilep");
+  h_Eff_npv_MediumID_ISO04_Dilep           = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04_Dilep");
+  h_Eff_npv_MediumID_ISO03dBeta_Dilep      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03dBeta_Dilep");
+  h_Eff_npv_MediumID_ISO04dBeta_Dilep      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04dBeta_Dilep");
+  h_Eff_npv_MediumID_ISO03PFWeighted_Dilep = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03PFWeighted_Dilep");
+  h_Eff_npv_MediumID_ISO04PFWeighted_Dilep = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04PFWeighted_Dilep");
+  h_Eff_npv_MediumID_ISO03PUPPI_Dilep      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03PUPPI_Dilep");
+  h_Eff_npv_MediumID_ISO04PUPPI_Dilep      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04PUPPI_Dilep");
 
   // Final Report
 

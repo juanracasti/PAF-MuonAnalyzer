@@ -42,6 +42,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
   void                        SetEventFlags();
   void                        Counting();
   void                        doEffsRECO(int, int);
+  void                        doEffsRECODilep();
 
 
   // My Declarations:
@@ -151,7 +152,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
   // Histograms 
   TH1F                        *h_N_PV;
 
-  // Efficiencies vs pt, eta, and npv
+  // ID and ISO Efficiencies vs pt, eta, and npv
 
   // Single muons
   TH1F       *h_Eff_pt_Matched[2];
@@ -223,6 +224,63 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_npv_MediumID_ISO03PUPPI[2];
   TH1F       *h_Eff_npv_MediumID_ISO04PUPPI[2];
 
+  // Dileptonic ISO efficiencies
+  TH1F       *h_Eff_pt_TightID_Dilep;
+  TH1F       *h_Eff_pt_TightID_ISO03_Dilep;
+  TH1F       *h_Eff_pt_TightID_ISO04_Dilep;
+  TH1F       *h_Eff_pt_TightID_ISO03dBeta_Dilep;
+  TH1F       *h_Eff_pt_TightID_ISO04dBeta_Dilep;
+  TH1F       *h_Eff_pt_TightID_ISO03PFWeighted_Dilep;
+  TH1F       *h_Eff_pt_TightID_ISO04PFWeighted_Dilep;
+  TH1F       *h_Eff_pt_TightID_ISO03PUPPI_Dilep;
+  TH1F       *h_Eff_pt_TightID_ISO04PUPPI_Dilep;
+  TH1F       *h_Eff_pt_MediumID_Dilep;
+  TH1F       *h_Eff_pt_MediumID_ISO03_Dilep;
+  TH1F       *h_Eff_pt_MediumID_ISO04_Dilep;
+  TH1F       *h_Eff_pt_MediumID_ISO03dBeta_Dilep;
+  TH1F       *h_Eff_pt_MediumID_ISO04dBeta_Dilep;
+  TH1F       *h_Eff_pt_MediumID_ISO03PFWeighted_Dilep;
+  TH1F       *h_Eff_pt_MediumID_ISO04PFWeighted_Dilep;
+  TH1F       *h_Eff_pt_MediumID_ISO03PUPPI_Dilep;
+  TH1F       *h_Eff_pt_MediumID_ISO04PUPPI_Dilep;
+
+  TH1F       *h_Eff_eta_TightID_Dilep;
+  TH1F       *h_Eff_eta_TightID_ISO03_Dilep;
+  TH1F       *h_Eff_eta_TightID_ISO04_Dilep;
+  TH1F       *h_Eff_eta_TightID_ISO03dBeta_Dilep;
+  TH1F       *h_Eff_eta_TightID_ISO04dBeta_Dilep;
+  TH1F       *h_Eff_eta_TightID_ISO03PFWeighted_Dilep;
+  TH1F       *h_Eff_eta_TightID_ISO04PFWeighted_Dilep;
+  TH1F       *h_Eff_eta_TightID_ISO03PUPPI_Dilep;
+  TH1F       *h_Eff_eta_TightID_ISO04PUPPI_Dilep;
+  TH1F       *h_Eff_eta_MediumID_Dilep;
+  TH1F       *h_Eff_eta_MediumID_ISO03_Dilep;
+  TH1F       *h_Eff_eta_MediumID_ISO04_Dilep;
+  TH1F       *h_Eff_eta_MediumID_ISO03dBeta_Dilep;
+  TH1F       *h_Eff_eta_MediumID_ISO04dBeta_Dilep;
+  TH1F       *h_Eff_eta_MediumID_ISO03PFWeighted_Dilep;
+  TH1F       *h_Eff_eta_MediumID_ISO04PFWeighted_Dilep;
+  TH1F       *h_Eff_eta_MediumID_ISO03PUPPI_Dilep;
+  TH1F       *h_Eff_eta_MediumID_ISO04PUPPI_Dilep;
+
+  TH1F       *h_Eff_npv_TightID_Dilep;
+  TH1F       *h_Eff_npv_TightID_ISO03_Dilep;
+  TH1F       *h_Eff_npv_TightID_ISO04_Dilep;
+  TH1F       *h_Eff_npv_TightID_ISO03dBeta_Dilep;
+  TH1F       *h_Eff_npv_TightID_ISO04dBeta_Dilep;
+  TH1F       *h_Eff_npv_TightID_ISO03PFWeighted_Dilep;
+  TH1F       *h_Eff_npv_TightID_ISO04PFWeighted_Dilep;
+  TH1F       *h_Eff_npv_TightID_ISO03PUPPI_Dilep;
+  TH1F       *h_Eff_npv_TightID_ISO04PUPPI_Dilep;
+  TH1F       *h_Eff_npv_MediumID_Dilep;
+  TH1F       *h_Eff_npv_MediumID_ISO03_Dilep;
+  TH1F       *h_Eff_npv_MediumID_ISO04_Dilep;
+  TH1F       *h_Eff_npv_MediumID_ISO03dBeta_Dilep;
+  TH1F       *h_Eff_npv_MediumID_ISO04dBeta_Dilep;
+  TH1F       *h_Eff_npv_MediumID_ISO03PFWeighted_Dilep;
+  TH1F       *h_Eff_npv_MediumID_ISO04PFWeighted_Dilep;
+  TH1F       *h_Eff_npv_MediumID_ISO03PUPPI_Dilep;
+  TH1F       *h_Eff_npv_MediumID_ISO04PUPPI_Dilep;
   
   // Input parameters
   TString                     _Signal;       // Type of Signal
@@ -323,6 +381,24 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_pt_MediumID_ISO04PFWeighted(),
      h_Eff_pt_MediumID_ISO03PUPPI(),
      h_Eff_pt_MediumID_ISO04PUPPI(),
+     h_Eff_pt_TightID_Dilep(),
+     h_Eff_pt_TightID_ISO03_Dilep(),
+     h_Eff_pt_TightID_ISO04_Dilep(),
+     h_Eff_pt_TightID_ISO03dBeta_Dilep(),
+     h_Eff_pt_TightID_ISO04dBeta_Dilep(),
+     h_Eff_pt_TightID_ISO03PFWeighted_Dilep(),
+     h_Eff_pt_TightID_ISO04PFWeighted_Dilep(),
+     h_Eff_pt_TightID_ISO03PUPPI_Dilep(),
+     h_Eff_pt_TightID_ISO04PUPPI_Dilep(),
+     h_Eff_pt_MediumID_Dilep(),
+     h_Eff_pt_MediumID_ISO03_Dilep(),
+     h_Eff_pt_MediumID_ISO04_Dilep(),
+     h_Eff_pt_MediumID_ISO03dBeta_Dilep(),
+     h_Eff_pt_MediumID_ISO04dBeta_Dilep(),
+     h_Eff_pt_MediumID_ISO03PFWeighted_Dilep(),
+     h_Eff_pt_MediumID_ISO04PFWeighted_Dilep(),
+     h_Eff_pt_MediumID_ISO03PUPPI_Dilep(),
+     h_Eff_pt_MediumID_ISO04PUPPI_Dilep(),
   
      h_Eff_eta_Matched(),
      h_Eff_eta_TightID(),
@@ -346,6 +422,24 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_eta_MediumID_ISO04PFWeighted(),
      h_Eff_eta_MediumID_ISO03PUPPI(),
      h_Eff_eta_MediumID_ISO04PUPPI(),
+     h_Eff_eta_TightID_Dilep(),
+     h_Eff_eta_TightID_ISO03_Dilep(),
+     h_Eff_eta_TightID_ISO04_Dilep(),
+     h_Eff_eta_TightID_ISO03dBeta_Dilep(),
+     h_Eff_eta_TightID_ISO04dBeta_Dilep(),
+     h_Eff_eta_TightID_ISO03PFWeighted_Dilep(),
+     h_Eff_eta_TightID_ISO04PFWeighted_Dilep(),
+     h_Eff_eta_TightID_ISO03PUPPI_Dilep(),
+     h_Eff_eta_TightID_ISO04PUPPI_Dilep(),
+     h_Eff_eta_MediumID_Dilep(),
+     h_Eff_eta_MediumID_ISO03_Dilep(),
+     h_Eff_eta_MediumID_ISO04_Dilep(),
+     h_Eff_eta_MediumID_ISO03dBeta_Dilep(),
+     h_Eff_eta_MediumID_ISO04dBeta_Dilep(),
+     h_Eff_eta_MediumID_ISO03PFWeighted_Dilep(),
+     h_Eff_eta_MediumID_ISO04PFWeighted_Dilep(),
+     h_Eff_eta_MediumID_ISO03PUPPI_Dilep(),
+     h_Eff_eta_MediumID_ISO04PUPPI_Dilep(),
   
      h_Eff_npv_Matched(),
      h_Eff_npv_TightID(),
@@ -369,6 +463,24 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_npv_MediumID_ISO04PFWeighted(),
      h_Eff_npv_MediumID_ISO03PUPPI(),
      h_Eff_npv_MediumID_ISO04PUPPI(),
+     h_Eff_npv_TightID_Dilep(),
+     h_Eff_npv_TightID_ISO03_Dilep(),
+     h_Eff_npv_TightID_ISO04_Dilep(),
+     h_Eff_npv_TightID_ISO03dBeta_Dilep(),
+     h_Eff_npv_TightID_ISO04dBeta_Dilep(),
+     h_Eff_npv_TightID_ISO03PFWeighted_Dilep(),
+     h_Eff_npv_TightID_ISO04PFWeighted_Dilep(),
+     h_Eff_npv_TightID_ISO03PUPPI_Dilep(),
+     h_Eff_npv_TightID_ISO04PUPPI_Dilep(),
+     h_Eff_npv_MediumID_Dilep(),
+     h_Eff_npv_MediumID_ISO03_Dilep(),
+     h_Eff_npv_MediumID_ISO04_Dilep(),
+     h_Eff_npv_MediumID_ISO03dBeta_Dilep(),
+     h_Eff_npv_MediumID_ISO04dBeta_Dilep(),
+     h_Eff_npv_MediumID_ISO03PFWeighted_Dilep(),
+     h_Eff_npv_MediumID_ISO04PFWeighted_Dilep(),
+     h_Eff_npv_MediumID_ISO03PUPPI_Dilep(),
+     h_Eff_npv_MediumID_ISO04PUPPI_Dilep(),
      
      _Signal(),
      _NEvents(),

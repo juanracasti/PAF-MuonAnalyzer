@@ -148,6 +148,17 @@ void RunMuonAnalyzer(const char* data) {
 
  }
 
+  else if (signal=="DR74X_50ns_MC_QCD") {
+
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_QCDmuEnriched_0.root");
+   
+    isdata             = false;
+    nEventsInTheSample = 1237119; 
+    xSection           = 1.;
+    whichRun           = 2;
+
+ }
+
   else if (signal=="SingleMu_720") {
 
     myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_SingleMu_mu2012D_720.root");
