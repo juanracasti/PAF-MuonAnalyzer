@@ -832,14 +832,14 @@ float CoreMuonSelector::getISO(int iMu, string typeIso) {
 
   else if (typeIso == "dBetaR03") // PF Rel. ISO, dR=0.3 and dBeta corrections
     PFRelIso = ( Get<float>("T_Muon_chargedHadronIsoR03",iMu) + max(0., Get<float>("T_Muon_neutralHadronIsoR03",iMu) + 
-								    Get<float>("T_Muon_photonIsoR03",iMu) - 
-								    0.5 * Get<float>("T_Muon_sumPUPtR03",iMu)) )
+								        Get<float>("T_Muon_photonIsoR03",iMu) - 
+								        0.5 * Get<float>("T_Muon_sumPUPtR03",iMu)) )
       / pt;
 
   else if (typeIso == "dBetaR04") // PF Rel. ISO, dR=0.4 and dBeta corrections 
     PFRelIso = ( Get<float>("T_Muon_chargedHadronIsoR04",iMu) + max(0., Get<float>("T_Muon_neutralHadronIsoR04",iMu) + 
-								    Get<float>("T_Muon_photonIsoR04",iMu) - 
-								    0.5 * Get<float>("T_Muon_sumPUPtR04",iMu)) )
+								        Get<float>("T_Muon_photonIsoR04",iMu) - 
+								        0.5 * Get<float>("T_Muon_sumPUPtR04",iMu)) )
       / pt;
 
   else if (typeIso == "PFWeightedR03") // PF Rel. ISO, dR=0.3 and PF-weighted corrections
@@ -929,15 +929,15 @@ void CoreMuonSelector::SetGenInfo() {
     
   }
     
-  if (_Signal.Contains("GGHWW") || _Signal.Contains("TTbar"))
+  if (_Signal.Contains("GGHWW") || _Signal.Contains("TTbar") || _Signal.Contains("DY"))
     {
 
-      //if (Get<std::vector<float>*>("T_Gen_W_pt")->size() != 2) return;
-      //if (!( _Signal.Contains("TTbar") 
-      //	     && fabs(Get<int>("T_Gen_W_MpdgId",0))==6 && fabs(Get<int>("T_Gen_W_MpdgId",1))==6 )) return;
+      int bosonPdgId = 0;
+      if      (_Signal.Contains("GGHWW") || _Signal.Contains("TTbar"))  bosonPdgId = 24;
+      else if (_Signal.Contains("DY"))                                  bosonPdgId = 23;        
       
-      if ( genPromptMuSize == 2 && fabs(Get<int>("T_Gen_PromptMuon_MpdgId",0)) == 24 && 
-  	   fabs(Get<int>("T_Gen_PromptMuon_MpdgId",1)) == 24 &&
+      if ( genPromptMuSize == 2 && fabs(Get<int>("T_Gen_PromptMuon_MpdgId",0)) == bosonPdgId && 
+  	   fabs(Get<int>("T_Gen_PromptMuon_MpdgId",1)) == bosonPdgId &&
   	   (Get<int>("T_Gen_PromptMuon_pdgId",0)*Get<int>("T_Gen_PromptMuon_pdgId",1)) < 0) {
 
   	p1 = TLorentzVector(Get<float>("T_Gen_PromptMuon_Px",0), 
@@ -954,8 +954,8 @@ void CoreMuonSelector::SetGenInfo() {
 
       }
       
-      if ( genPromptMuSize == 1 && fabs(Get<int>("T_Gen_PromptMuon_MpdgId",0)) == 24 && 
-  	   genPromptTauSize == 1 && fabs(Get<int>("T_Gen_PromptTau_MpdgId",0))== 24 && 
+      if ( genPromptMuSize == 1 && fabs(Get<int>("T_Gen_PromptMuon_MpdgId",0)) == bosonPdgId && 
+  	   genPromptTauSize == 1 && fabs(Get<int>("T_Gen_PromptTau_MpdgId",0))== bosonPdgId && 
   	   fabs(Get<int>("T_Gen_PromptTau_LepDec_pdgId",0)) == 13 &&
   	   (Get<int>("T_Gen_PromptMuon_pdgId",0)*Get<int>("T_Gen_PromptTau_LepDec_pdgId",0)) < 0) {
 
@@ -975,8 +975,8 @@ void CoreMuonSelector::SetGenInfo() {
       }
       
       if ( genPromptMuSize < 1 && genPromptTauSize == 2 && 
-  	   fabs(Get<int>("T_Gen_PromptTau_MpdgId",0))== 24 && 
-  	   fabs(Get<int>("T_Gen_PromptTau_MpdgId",1))== 24 && 
+  	   fabs(Get<int>("T_Gen_PromptTau_MpdgId",0))== bosonPdgId && 
+  	   fabs(Get<int>("T_Gen_PromptTau_MpdgId",1))== bosonPdgId && 
   	   fabs(Get<int>("T_Gen_PromptTau_LepDec_pdgId",0)) == 13 && 
   	   fabs(Get<int>("T_Gen_PromptTau_LepDec_pdgId",1)) == 13 &&
   	   (Get<int>("T_Gen_PromptTau_LepDec_pdgId",0)*Get<int>("T_Gen_PromptTau_LepDec_pdgId",1)) < 0) {
@@ -996,70 +996,7 @@ void CoreMuonSelector::SetGenInfo() {
       }
       
     }
-  
-  if (_Signal.Contains("DY"))
-    {
 
-      if ( genPromptMuSize == 2 && fabs(Get<int>("T_Gen_PromptMuon_MpdgId",0)) == 23 
-      	   && fabs(Get<int>("T_Gen_PromptMuon_MpdgId",1)) == 23 &&
-      	   (Get<int>("T_Gen_PromptMuon_pdgId",0)*Get<int>("T_Gen_PromptMuon_pdgId",1)) < 0) {
-
-  	p1 = TLorentzVector(Get<float>("T_Gen_PromptMuon_Px",0), 
-  			    Get<float>("T_Gen_PromptMuon_Py",0),
-  			    Get<float>("T_Gen_PromptMuon_Pz",0), 
-  			    Get<float>("T_Gen_PromptMuon_Energy",0));
-
-  	p2 = TLorentzVector(Get<float>("T_Gen_PromptMuon_Px",1), 
-  			    Get<float>("T_Gen_PromptMuon_Py",1),
-  			    Get<float>("T_Gen_PromptMuon_Pz",1), 
-  			    Get<float>("T_Gen_PromptMuon_Energy",1));
-
-  	G_GEN_isMuMu = true; 
-
-      }
-      
-      if ( genPromptMuSize == 1 && fabs(Get<int>("T_Gen_PromptMuon_MpdgId",0)) == 23 
-      	   && genPromptTauSize == 1 && fabs(Get<int>("T_Gen_PromptTau_MpdgId",0))== 23 
-      	   && fabs(Get<int>("T_Gen_PromptTau_LepDec_pdgId",0)) == 13 &&
-      	   (Get<int>("T_Gen_PromptMuon_pdgId",0)*Get<int>("T_Gen_PromptTau_LepDec_pdgId",0)) < 0) {
-
-  	p1 = TLorentzVector(Get<float>("T_Gen_PromptMuon_Px",0), 
-  			    Get<float>("T_Gen_PromptMuon_Py",0),
-  			    Get<float>("T_Gen_PromptMuon_Pz",0), 
-  			    Get<float>("T_Gen_PromptMuon_Energy",0));
-
-  	p2 = TLorentzVector(Get<float>("T_Gen_PromptTau_LepDec_Px",0), 
-  			    Get<float>("T_Gen_PromptTau_LepDec_Py",0),
-  			    Get<float>("T_Gen_PromptTau_LepDec_Pz",0), 
-  			    Get<float>("T_Gen_PromptTau_LepDec_Energy",0));
-
-  	if (p1.Pt() >= p2.Pt()) G_GEN_isMuTau = true;
-  	else                    G_GEN_isTauMu = true;
-
-      }
-      
-      if ( genPromptMuSize < 1 && genPromptTauSize == 2 && 
-      	   fabs(Get<int>("T_Gen_PromptTau_MpdgId",0))== 23 && 
-      	   fabs(Get<int>("T_Gen_PromptTau_MpdgId",1))== 23 && 
-      	   fabs(Get<int>("T_Gen_PromptTau_LepDec_pdgId",0)) == 13 && 
-      	   fabs(Get<int>("T_Gen_PromptTau_LepDec_pdgId",1)) == 13 &&
-      	   (Get<int>("T_Gen_PromptTau_LepDec_pdgId",0)*Get<int>("T_Gen_PromptTau_LepDec_pdgId",1)) < 0) {
-
-  	p1 = TLorentzVector(Get<float>("T_Gen_PromptTau_LepDec_Px",0), 
-  			    Get<float>("T_Gen_PromptTau_LepDec_Py",0),
-  			    Get<float>("T_Gen_PromptTau_LepDec_Pz",0), 
-  			    Get<float>("T_Gen_PromptTau_LepDec_Energy",0));
-
-  	p2 = TLorentzVector(Get<float>("T_Gen_PromptTau_LepDec_Px",1), 
-  			    Get<float>("T_Gen_PromptTau_LepDec_Py",1),
-  			    Get<float>("T_Gen_PromptTau_LepDec_Pz",1), 
-  			    Get<float>("T_Gen_PromptTau_LepDec_Energy",1)); 
-
-  	G_GEN_isTauTau = true; 
-
-      }
-      
-    }
 
   G_GEN_Pass = G_GEN_isMuMu || G_GEN_isMuTau || G_GEN_isTauMu || G_GEN_isTauTau;
 
@@ -1102,17 +1039,17 @@ void CoreMuonSelector::GetMatching() {
 
     int isMatchedTo = 0;
 
-    if (G_MuonID_Fiducial[i] && G_MuonID_GLBorTRKArb[i] && G_GEN_Pass && G_Muon_ChCompatible[i] ) { 
+    if (G_MuonID_Fiducial[i] && G_MuonID_GLBorTRKArb[i]) { 
 
       for (UInt_t j = 0; j < GenSize; ++j) {
       
 	Double_t dR  = 999.;
-	Double_t dPt = 999.;
+	//Double_t dPt = 999.;
 
 	dR  = G_Muon_4vec[i].DeltaR(G_GEN_PromptMuon_4vec[j]);
-	dPt = fabs(G_Muon_4vec[i].Pt() - G_GEN_PromptMuon_4vec[j].Pt());
+	//dPt = fabs(G_Muon_4vec[i].Pt() - G_GEN_PromptMuon_4vec[j].Pt());
       
-	if (dR <= 0.01 && dPt <= 10) {
+	if (dR <= 0.01) { // && dPt <= 10
 	  isMatchedTo = j+1;
 	  break;
 	}
@@ -1141,7 +1078,7 @@ void CoreMuonSelector::GetMatching() {
 
   if (G_Muon_Matching[0]) {
     if (count_matched == 2) {
-      if (G_Muon_Matching[1]) {
+      if (G_Muon_Matching[1] && G_Muon_ChCompatible[1]) {
 	if (count_1 == 1 && count_2 == 1) {
 	  G_PassMatching = true;
 	  if (_Debug) std::cout << "[DEBUG] Matching successful" << std::endl;
@@ -1642,7 +1579,7 @@ void CoreMuonSelector::Summary() {
 
   // 1D histos  
 
-  h_N_PV  = FindOutput<TH1F*>("h_N_PV");
+  h_N_PV = FindOutput<TH1F*>("h_N_PV");
 
   // Single Muon ID and ISO efficiencies vs pt, eta and npv
   h_Eff_pt_Matched[0]                   = FindOutput<TH1F*>("h_Eff_pt_Matched_Mu1");

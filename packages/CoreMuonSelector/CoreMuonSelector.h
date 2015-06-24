@@ -231,6 +231,11 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_npv_MediumID_ISO04PUPPI[2];
 
   // Dileptonic ISO efficiencies
+  TH1F       *h_Eff_pt_Matched_Dilep;
+  TH1F       *h_Eff_pt_HWWID_Dilep;
+  TH1F       *h_Eff_pt_TightIDGoT_Dilep;
+  TH1F       *h_Eff_pt_TightIDipsHWW_Dilep;
+  TH1F       *h_Eff_pt_MediumIDipsHWW_Dilep;
   TH1F       *h_Eff_pt_TightID_Dilep;
   TH1F       *h_Eff_pt_TightID_ISO03_Dilep;
   TH1F       *h_Eff_pt_TightID_ISO04_Dilep;
@@ -250,6 +255,11 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_pt_MediumID_ISO03PUPPI_Dilep;
   TH1F       *h_Eff_pt_MediumID_ISO04PUPPI_Dilep;
 
+  TH1F       *h_Eff_eta_Matched_Dilep;
+  TH1F       *h_Eff_eta_HWWID_Dilep;
+  TH1F       *h_Eff_eta_TightIDGoT_Dilep;
+  TH1F       *h_Eff_eta_TightIDipsHWW_Dilep;
+  TH1F       *h_Eff_eta_MediumIDipsHWW_Dilep;
   TH1F       *h_Eff_eta_TightID_Dilep;
   TH1F       *h_Eff_eta_TightID_ISO03_Dilep;
   TH1F       *h_Eff_eta_TightID_ISO04_Dilep;
@@ -269,6 +279,11 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_eta_MediumID_ISO03PUPPI_Dilep;
   TH1F       *h_Eff_eta_MediumID_ISO04PUPPI_Dilep;
 
+  TH1F       *h_Eff_npv_Matched_Dilep;
+  TH1F       *h_Eff_npv_HWWID_Dilep;
+  TH1F       *h_Eff_npv_TightIDGoT_Dilep;
+  TH1F       *h_Eff_npv_TightIDipsHWW_Dilep;
+  TH1F       *h_Eff_npv_MediumIDipsHWW_Dilep;
   TH1F       *h_Eff_npv_TightID_Dilep;
   TH1F       *h_Eff_npv_TightID_ISO03_Dilep;
   TH1F       *h_Eff_npv_TightID_ISO04_Dilep;
@@ -455,6 +470,11 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_npv_MediumID_ISO03PUPPI(),
      h_Eff_npv_MediumID_ISO04PUPPI(),
 
+     h_Eff_pt_Matched_Dilep(),
+     h_Eff_pt_HWWID_Dilep(),
+     h_Eff_pt_TightIDGoT_Dilep(),
+     h_Eff_pt_TightIDipsHWW_Dilep(),
+     h_Eff_pt_MediumIDipsHWW_Dilep(),
      h_Eff_pt_TightID_Dilep(),
      h_Eff_pt_TightID_ISO03_Dilep(),
      h_Eff_pt_TightID_ISO04_Dilep(),
@@ -474,6 +494,11 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_pt_MediumID_ISO03PUPPI_Dilep(),
      h_Eff_pt_MediumID_ISO04PUPPI_Dilep(),
 
+     h_Eff_eta_Matched_Dilep(),
+     h_Eff_eta_HWWID_Dilep(),
+     h_Eff_eta_TightIDGoT_Dilep(),
+     h_Eff_eta_TightIDipsHWW_Dilep(),
+     h_Eff_eta_MediumIDipsHWW_Dilep(),
      h_Eff_eta_TightID_Dilep(),
      h_Eff_eta_TightID_ISO03_Dilep(),
      h_Eff_eta_TightID_ISO04_Dilep(),
@@ -493,6 +518,11 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_eta_MediumID_ISO03PUPPI_Dilep(),
      h_Eff_eta_MediumID_ISO04PUPPI_Dilep(),
 
+     h_Eff_npv_Matched_Dilep(),
+     h_Eff_npv_HWWID_Dilep(),
+     h_Eff_npv_TightIDGoT_Dilep(),
+     h_Eff_npv_TightIDipsHWW_Dilep(),
+     h_Eff_npv_MediumIDipsHWW_Dilep(),
      h_Eff_npv_TightID_Dilep(),
      h_Eff_npv_TightID_ISO03_Dilep(),
      h_Eff_npv_TightID_ISO04_Dilep(),
