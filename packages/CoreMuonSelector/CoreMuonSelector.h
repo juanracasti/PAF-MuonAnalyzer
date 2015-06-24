@@ -43,6 +43,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
   void                        Counting();
   void                        doEffsRECO(int, int);
   void                        doEffsRECODilep();
+  void                        ISORocCurve();
 
 
   // My Declarations:
@@ -286,6 +287,24 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_npv_MediumID_ISO04PFWeighted_Dilep;
   TH1F       *h_Eff_npv_MediumID_ISO03PUPPI_Dilep;
   TH1F       *h_Eff_npv_MediumID_ISO04PUPPI_Dilep;
+
+  //ISO ROC Curves
+  TH1F       *h_RC_TightID_ISO03_Dilep;
+  TH1F       *h_RC_TightID_ISO04_Dilep;
+  TH1F       *h_RC_TightID_ISO03dBeta_Dilep;
+  TH1F       *h_RC_TightID_ISO04dBeta_Dilep;
+  TH1F       *h_RC_TightID_ISO03PFWeighted_Dilep;
+  TH1F       *h_RC_TightID_ISO04PFWeighted_Dilep;
+  TH1F       *h_RC_TightID_ISO03PUPPI_Dilep;
+  TH1F       *h_RC_TightID_ISO04PUPPI_Dilep;
+  TH1F       *h_RC_MediumID_ISO03_Dilep;
+  TH1F       *h_RC_MediumID_ISO04_Dilep;
+  TH1F       *h_RC_MediumID_ISO03dBeta_Dilep;
+  TH1F       *h_RC_MediumID_ISO04dBeta_Dilep;
+  TH1F       *h_RC_MediumID_ISO03PFWeighted_Dilep;
+  TH1F       *h_RC_MediumID_ISO04PFWeighted_Dilep;
+  TH1F       *h_RC_MediumID_ISO03PUPPI_Dilep;
+  TH1F       *h_RC_MediumID_ISO04PUPPI_Dilep;
   
   // Input parameters
   TString                     _Signal;       // Type of Signal
@@ -492,6 +511,23 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_npv_MediumID_ISO04PFWeighted_Dilep(),
      h_Eff_npv_MediumID_ISO03PUPPI_Dilep(),
      h_Eff_npv_MediumID_ISO04PUPPI_Dilep(),
+
+     h_RC_TightID_ISO03_Dilep(),
+     h_RC_TightID_ISO04_Dilep(),
+     h_RC_TightID_ISO03dBeta_Dilep(),
+     h_RC_TightID_ISO04dBeta_Dilep(),
+     h_RC_TightID_ISO03PFWeighted_Dilep(),
+     h_RC_TightID_ISO04PFWeighted_Dilep(),
+     h_RC_TightID_ISO03PUPPI_Dilep(),
+     h_RC_TightID_ISO04PUPPI_Dilep(),
+     h_RC_MediumID_ISO03_Dilep(),
+     h_RC_MediumID_ISO04_Dilep(),
+     h_RC_MediumID_ISO03dBeta_Dilep(),
+     h_RC_MediumID_ISO04dBeta_Dilep(),
+     h_RC_MediumID_ISO03PFWeighted_Dilep(),
+     h_RC_MediumID_ISO04PFWeighted_Dilep(),
+     h_RC_MediumID_ISO03PUPPI_Dilep(),
+     h_RC_MediumID_ISO04PUPPI_Dilep(),
      
      _Signal(),
      _NEvents(),

@@ -497,6 +497,40 @@ void CoreMuonSelector::Initialise() {
   h_Eff_npv_MediumID_ISO04PUPPI_Dilep      = CreateH1F("h_Eff_npv_MediumID_ISO04PUPPI_Dilep", 
 						       "h_Eff_npv_MediumID_ISO04PUPPI_Dilep",       45, 0, 45);
 
+  //ISO ROC Curves
+  h_RC_TightID_ISO03_Dilep            = CreateH1F("h_RC_TightID_ISO03_Dilep", 
+						  "h_RC_TightID_ISO03_Dilep",             50, 0, 50);
+  h_RC_TightID_ISO04_Dilep            = CreateH1F("h_RC_TightID_ISO04_Dilep", 
+						  "h_RC_TightID_ISO04_Dilep",             50, 0, 50);
+  h_RC_TightID_ISO03dBeta_Dilep       = CreateH1F("h_RC_TightID_ISO03dBeta_Dilep", 
+						  "h_RC_TightID_ISO03dBeta_Dilep",        50, 0, 50);
+  h_RC_TightID_ISO04dBeta_Dilep       = CreateH1F("h_RC_TightID_ISO04dBeta_Dilep", 
+						  "h_RC_TightID_ISO04dBeta_Dilep",        50, 0, 50);
+  h_RC_TightID_ISO03PFWeighted_Dilep  = CreateH1F("h_RC_TightID_ISO03PFWeighted_Dilep", 
+						  "h_RC_TightID_ISO03PFWeighted_Dilep",   50, 0, 50);
+  h_RC_TightID_ISO04PFWeighted_Dilep  = CreateH1F("h_RC_TightID_ISO04PFWeighted_Dilep", 
+						  "h_RC_TightID_ISO04PFWeighted_Dilep",   50, 0, 50);
+  h_RC_TightID_ISO03PUPPI_Dilep       = CreateH1F("h_RC_TightID_ISO03PUPPI_Dilep", 
+						  "h_RC_TightID_ISO03PUPPI_Dilep",        50, 0, 50);
+  h_RC_TightID_ISO04PUPPI_Dilep       = CreateH1F("h_RC_TightID_ISO04PUPPI_Dilep", 
+						  "h_RC_TightID_ISO04PUPPI_Dilep",        50, 0, 50);
+  h_RC_MediumID_ISO03_Dilep           = CreateH1F("h_RC_MediumID_ISO03_Dilep", 
+						  "h_RC_MediumID_ISO03_Dilep",            50, 0, 50);
+  h_RC_MediumID_ISO04_Dilep           = CreateH1F("h_RC_MediumID_ISO04_Dilep", 
+						  "h_RC_MediumID_ISO04_Dilep",            50, 0, 50);
+  h_RC_MediumID_ISO03dBeta_Dilep      = CreateH1F("h_RC_MediumID_ISO03dBeta_Dilep", 
+						  "h_RC_MediumID_ISO03dBeta_Dilep",       50, 0, 50);
+  h_RC_MediumID_ISO04dBeta_Dilep      = CreateH1F("h_RC_MediumID_ISO04dBeta_Dilep", 
+						  "h_RC_MediumID_ISO04dBeta_Dilep",       50, 0, 50);
+  h_RC_MediumID_ISO03PFWeighted_Dilep = CreateH1F("h_RC_MediumID_ISO03PFWeighted_Dilep", 
+						  "h_RC_MediumID_ISO03PFWeighted_Dilep",  50, 0, 50);
+  h_RC_MediumID_ISO04PFWeighted_Dilep = CreateH1F("h_RC_MediumID_ISO04PFWeighted_Dilep", 
+						  "h_RC_MediumID_ISO04PFWeighted_Dilep",  50, 0, 50);
+  h_RC_MediumID_ISO03PUPPI_Dilep      = CreateH1F("h_RC_MediumID_ISO03PUPPI_Dilep", 
+						  "h_RC_MediumID_ISO03PUPPI_Dilep",       50, 0, 50);
+  h_RC_MediumID_ISO04PUPPI_Dilep      = CreateH1F("h_RC_MediumID_ISO04PUPPI_Dilep", 
+						  "h_RC_MediumID_ISO04PUPPI_Dilep",       50, 0, 50); 
+
 }
 
 
@@ -613,6 +647,7 @@ void CoreMuonSelector::InsideLoop() {
   }
 
   doEffsRECODilep();
+  //ISORocCurve();
 
   //------------------------------------------------------------------------------
   // Set Parameters for other selectors. This is the main point of this selector
@@ -1407,6 +1442,132 @@ void CoreMuonSelector::doEffsRECO(int iMu, int indexMuon) {
   
 }
 
+// void CoreMuonSelector::doEffsRECODilep() {
+
+//   for (UInt_t i=0; i<G_RecoMuSize; i++) {
+
+//     float pt  = Get<float>("T_Muon_Pt", i); 
+//     float eta = Get<float>("T_Muon_Eta",i);
+//     float npv = G_NPV;
+
+//     bool equal     = G_MuonID_Medium[i] &&  G_MuonID_Tight[i];
+//     bool not_equal = G_MuonID_Medium[i] && !G_MuonID_Tight[i];
+
+//     if (pt < 20 && fabs(eta) > 2.4) continue;
+//     if (_Signal.Contains("DY") && !G_Muon_Matching[i]) continue;
+    
+//     if (equal) {
+//        h_Eff_pt_TightID_Dilep->Fill(pt);
+//       h_Eff_eta_TightID_Dilep->Fill(eta);
+//       h_Eff_npv_TightID_Dilep->Fill(npv);
+//     }
+    
+//     if (not_equal) {
+//        h_Eff_pt_MediumID_Dilep->Fill(pt);
+//       h_Eff_eta_MediumID_Dilep->Fill(eta);
+//       h_Eff_npv_MediumID_Dilep->Fill(npv);
+//     }
+    
+//     if (equal && G_MuonISO03[i]) {
+//        h_Eff_pt_TightID_ISO03_Dilep->Fill(pt);
+//       h_Eff_eta_TightID_ISO03_Dilep->Fill(eta);
+//       h_Eff_npv_TightID_ISO03_Dilep->Fill(npv);
+//     }
+  
+//     if (equal && G_MuonISO04[i]) {
+//        h_Eff_pt_TightID_ISO04_Dilep->Fill(pt);
+//       h_Eff_eta_TightID_ISO04_Dilep->Fill(eta);
+//       h_Eff_npv_TightID_ISO04_Dilep->Fill(npv);
+//     }
+  
+//     if (equal && G_MuonISO03_dBeta[i]) {
+//        h_Eff_pt_TightID_ISO03dBeta_Dilep->Fill(pt);
+//       h_Eff_eta_TightID_ISO03dBeta_Dilep->Fill(eta);
+//       h_Eff_npv_TightID_ISO03dBeta_Dilep->Fill(npv);
+//     }
+  
+//     if (equal && G_MuonISO04_dBeta[i]) {
+//        h_Eff_pt_TightID_ISO04dBeta_Dilep->Fill(pt);
+//       h_Eff_eta_TightID_ISO04dBeta_Dilep->Fill(eta);
+//       h_Eff_npv_TightID_ISO04dBeta_Dilep->Fill(npv);
+//     }
+  
+//     if (equal && G_MuonISO03_PFWeighted[i]) {
+//        h_Eff_pt_TightID_ISO03PFWeighted_Dilep->Fill(pt);
+//       h_Eff_eta_TightID_ISO03PFWeighted_Dilep->Fill(eta);
+//       h_Eff_npv_TightID_ISO03PFWeighted_Dilep->Fill(npv);
+//     }
+  
+//     if (equal && G_MuonISO04_PFWeighted[i]) {
+//        h_Eff_pt_TightID_ISO04PFWeighted_Dilep->Fill(pt);
+//       h_Eff_eta_TightID_ISO04PFWeighted_Dilep->Fill(eta);
+//       h_Eff_npv_TightID_ISO04PFWeighted_Dilep->Fill(npv);
+//     } 
+
+//     if (equal && G_MuonISO03_PUPPI[i]) {
+//        h_Eff_pt_TightID_ISO03PUPPI_Dilep->Fill(pt);
+//       h_Eff_eta_TightID_ISO03PUPPI_Dilep->Fill(eta);
+//       h_Eff_npv_TightID_ISO03PUPPI_Dilep->Fill(npv);
+//     }
+  
+//     if (equal && G_MuonISO04_PUPPI[i]) {
+//        h_Eff_pt_TightID_ISO04PUPPI_Dilep->Fill(pt);
+//       h_Eff_eta_TightID_ISO04PUPPI_Dilep->Fill(eta);
+//       h_Eff_npv_TightID_ISO04PUPPI_Dilep->Fill(npv);
+//     } 
+
+//     if (not_equal && G_MuonISO03[i]) {
+//        h_Eff_pt_MediumID_ISO03_Dilep->Fill(pt);
+//       h_Eff_eta_MediumID_ISO03_Dilep->Fill(eta);
+//       h_Eff_npv_MediumID_ISO03_Dilep->Fill(npv);
+//     }
+  
+//     if (not_equal && G_MuonISO04[i]) {
+//        h_Eff_pt_MediumID_ISO04_Dilep->Fill(pt);
+//       h_Eff_eta_MediumID_ISO04_Dilep->Fill(eta);
+//       h_Eff_npv_MediumID_ISO04_Dilep->Fill(npv);
+//     }
+  
+//     if (not_equal && G_MuonISO03_dBeta[i]) {
+//        h_Eff_pt_MediumID_ISO03dBeta_Dilep->Fill(pt);
+//       h_Eff_eta_MediumID_ISO03dBeta_Dilep->Fill(eta);
+//       h_Eff_npv_MediumID_ISO03dBeta_Dilep->Fill(npv);
+//     }
+  
+//     if (not_equal && G_MuonISO04_dBeta[i]) {
+//        h_Eff_pt_MediumID_ISO04dBeta_Dilep->Fill(pt);
+//       h_Eff_eta_MediumID_ISO04dBeta_Dilep->Fill(eta);
+//       h_Eff_npv_MediumID_ISO04dBeta_Dilep->Fill(npv);
+//     }
+  
+//     if (not_equal && G_MuonISO03_PFWeighted[i]) {
+//        h_Eff_pt_MediumID_ISO03PFWeighted_Dilep->Fill(pt);
+//       h_Eff_eta_MediumID_ISO03PFWeighted_Dilep->Fill(eta);
+//       h_Eff_npv_MediumID_ISO03PFWeighted_Dilep->Fill(npv);
+//     }
+  
+//     if (not_equal && G_MuonISO04_PFWeighted[i]) {
+//        h_Eff_pt_MediumID_ISO04PFWeighted_Dilep->Fill(pt);
+//       h_Eff_eta_MediumID_ISO04PFWeighted_Dilep->Fill(eta);
+//       h_Eff_npv_MediumID_ISO04PFWeighted_Dilep->Fill(npv);
+//     } 
+
+//     if (not_equal && G_MuonISO03_PUPPI[i]) {
+//        h_Eff_pt_MediumID_ISO03PUPPI_Dilep->Fill(pt);
+//       h_Eff_eta_MediumID_ISO03PUPPI_Dilep->Fill(eta);
+//       h_Eff_npv_MediumID_ISO03PUPPI_Dilep->Fill(npv);
+//     }
+  
+//     if (not_equal && G_MuonISO04_PUPPI[i]) {
+//        h_Eff_pt_MediumID_ISO04PUPPI_Dilep->Fill(pt);
+//       h_Eff_eta_MediumID_ISO04PUPPI_Dilep->Fill(eta);
+//       h_Eff_npv_MediumID_ISO04PUPPI_Dilep->Fill(npv);
+//     } 
+
+//   }
+  
+// }
+
 void CoreMuonSelector::doEffsRECODilep() {
 
   for (UInt_t i=0; i<G_RecoMuSize; i++) {
@@ -1530,6 +1691,71 @@ void CoreMuonSelector::doEffsRECODilep() {
   
 }
 
+void CoreMuonSelector::ISORocCurve() {
+
+  for (UInt_t i=0; i<G_RecoMuSize; i++) {
+
+    float pt  = Get<float>("T_Muon_Pt", i); 
+    float eta = Get<float>("T_Muon_Eta",i);
+
+    if (pt < 20 && fabs(eta) > 2.4) continue;
+    if (_Signal.Contains("DY") && !G_Muon_Matching[i]) continue;
+
+    if (G_MuonID_Tight[i]) {
+
+      h_RC_TightID_ISO03_Dilep          ->Fill(-1);
+      h_RC_TightID_ISO04_Dilep          ->Fill(-1);
+      h_RC_TightID_ISO03dBeta_Dilep     ->Fill(-1);
+      h_RC_TightID_ISO04dBeta_Dilep     ->Fill(-1);
+      h_RC_TightID_ISO03PFWeighted_Dilep->Fill(-1);
+      h_RC_TightID_ISO04PFWeighted_Dilep->Fill(-1);
+      h_RC_TightID_ISO03PUPPI_Dilep     ->Fill(-1);
+      h_RC_TightID_ISO04PUPPI_Dilep     ->Fill(-1);
+
+      for (int j = 0; j < 50; ++j) {
+
+	if (passISO(i, "R03",           j*1.0/100.0)) h_RC_TightID_ISO03_Dilep          ->Fill(j);
+	if (passISO(i, "dBetaR03",      j*1.0/100.0)) h_RC_TightID_ISO03dBeta_Dilep     ->Fill(j);
+	if (passISO(i, "PFWeightedR03", j*1.0/100.0)) h_RC_TightID_ISO03PFWeighted_Dilep->Fill(j);
+	if (passISO(i, "PUPPIR03",      j*1.0/100.0)) h_RC_TightID_ISO03PUPPI_Dilep     ->Fill(j);
+	if (passISO(i, "R04",           j*1.0/100.0)) h_RC_TightID_ISO04_Dilep          ->Fill(j);
+	if (passISO(i, "dBetaR04",      j*1.0/100.0)) h_RC_TightID_ISO04dBeta_Dilep     ->Fill(j);
+	if (passISO(i, "PFWeightedR04", j*1.0/100.0)) h_RC_TightID_ISO04PFWeighted_Dilep->Fill(j);
+	if (passISO(i, "PUPPIR04",      j*1.0/100.0)) h_RC_TightID_ISO04PUPPI_Dilep     ->Fill(j);
+
+      }
+
+    }
+
+    if (G_MuonID_Medium[i]) {
+
+      h_RC_MediumID_ISO03_Dilep          ->Fill(-1);
+      h_RC_MediumID_ISO04_Dilep          ->Fill(-1);
+      h_RC_MediumID_ISO03dBeta_Dilep     ->Fill(-1);
+      h_RC_MediumID_ISO04dBeta_Dilep     ->Fill(-1);
+      h_RC_MediumID_ISO03PFWeighted_Dilep->Fill(-1);
+      h_RC_MediumID_ISO04PFWeighted_Dilep->Fill(-1);
+      h_RC_MediumID_ISO03PUPPI_Dilep     ->Fill(-1);
+      h_RC_MediumID_ISO04PUPPI_Dilep     ->Fill(-1);
+
+      for (int j = 0; j < 50; ++j) {
+
+	if (passISO(i, "R03",           j*1.0/100.0)) h_RC_MediumID_ISO03_Dilep          ->Fill(j);
+	if (passISO(i, "dBetaR03",      j*1.0/100.0)) h_RC_MediumID_ISO03dBeta_Dilep     ->Fill(j);
+	if (passISO(i, "PFWeightedR03", j*1.0/100.0)) h_RC_MediumID_ISO03PFWeighted_Dilep->Fill(j);
+	if (passISO(i, "PUPPIR03",      j*1.0/100.0)) h_RC_MediumID_ISO03PUPPI_Dilep     ->Fill(j);
+	if (passISO(i, "R04",           j*1.0/100.0)) h_RC_MediumID_ISO04_Dilep          ->Fill(j);
+	if (passISO(i, "dBetaR04",      j*1.0/100.0)) h_RC_MediumID_ISO04dBeta_Dilep     ->Fill(j);
+	if (passISO(i, "PFWeightedR04", j*1.0/100.0)) h_RC_MediumID_ISO04PFWeighted_Dilep->Fill(j);
+	if (passISO(i, "PUPPIR04",      j*1.0/100.0)) h_RC_MediumID_ISO04PUPPI_Dilep     ->Fill(j);
+
+      }
+
+    }
+
+  }
+  
+}
 
 void CoreMuonSelector::Summary() {
   // Get Data Members at the client-master (after finishing the analysis at the workers nodes)
@@ -1739,6 +1965,24 @@ void CoreMuonSelector::Summary() {
   h_Eff_npv_MediumID_ISO04PFWeighted_Dilep = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04PFWeighted_Dilep");
   h_Eff_npv_MediumID_ISO03PUPPI_Dilep      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO03PUPPI_Dilep");
   h_Eff_npv_MediumID_ISO04PUPPI_Dilep      = FindOutput<TH1F*>("h_Eff_npv_MediumID_ISO04PUPPI_Dilep");
+
+  //ISO ROC Curves
+  h_RC_TightID_ISO03_Dilep            = FindOutput<TH1F*>("h_RC_TightID_ISO03_Dilep");
+  h_RC_TightID_ISO04_Dilep            = FindOutput<TH1F*>("h_RC_TightID_ISO04_Dilep");
+  h_RC_TightID_ISO03dBeta_Dilep       = FindOutput<TH1F*>("h_RC_TightID_ISO03dBeta_Dilep");
+  h_RC_TightID_ISO04dBeta_Dilep       = FindOutput<TH1F*>("h_RC_TightID_ISO04dBeta_Dilep");
+  h_RC_TightID_ISO03PFWeighted_Dilep  = FindOutput<TH1F*>("h_RC_TightID_ISO03PFWeighted_Dilep");
+  h_RC_TightID_ISO04PFWeighted_Dilep  = FindOutput<TH1F*>("h_RC_TightID_ISO04PFWeighted_Dilep");
+  h_RC_TightID_ISO03PUPPI_Dilep       = FindOutput<TH1F*>("h_RC_TightID_ISO03PUPPI_Dilep");
+  h_RC_TightID_ISO04PUPPI_Dilep       = FindOutput<TH1F*>("h_RC_TightID_ISO04PUPPI_Dilep");
+  h_RC_MediumID_ISO03_Dilep           = FindOutput<TH1F*>("h_RC_MediumID_ISO03_Dilep");
+  h_RC_MediumID_ISO04_Dilep           = FindOutput<TH1F*>("h_RC_MediumID_ISO04_Dilep");
+  h_RC_MediumID_ISO03dBeta_Dilep      = FindOutput<TH1F*>("h_RC_MediumID_ISO03dBeta_Dilep");
+  h_RC_MediumID_ISO04dBeta_Dilep      = FindOutput<TH1F*>("h_RC_MediumID_ISO04dBeta_Dilep");
+  h_RC_MediumID_ISO03PFWeighted_Dilep = FindOutput<TH1F*>("h_RC_MediumID_ISO03PFWeighted_Dilep");
+  h_RC_MediumID_ISO04PFWeighted_Dilep = FindOutput<TH1F*>("h_RC_MediumID_ISO04PFWeighted_Dilep");
+  h_RC_MediumID_ISO03PUPPI_Dilep      = FindOutput<TH1F*>("h_RC_MediumID_ISO03PUPPI_Dilep");
+  h_RC_MediumID_ISO04PUPPI_Dilep      = FindOutput<TH1F*>("h_RC_MediumID_ISO04PUPPI_Dilep");
 
   // Final Report
 

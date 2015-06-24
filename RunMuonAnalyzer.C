@@ -39,10 +39,13 @@ void RunMuonAnalyzer(const char* data) {
   //---------------------------------
 
   // Create Project in Sequential Environment mode
-  // PAFProject* myProject = new PAFProject( new PAFSequentialEnvironment() );
+  //PAFProject* myProject = new PAFProject( new PAFSequentialEnvironment() );
 
   // Create Project in PROOF Lite mode
   PAFProject* myProject = new PAFProject( new PAFPROOFLiteEnvironment(4) );
+
+  // Create Project in PROOF Cluster mode
+  //PAFProject* myProject = new PAFProject( new PAFPROOFClusterEnvironment(10,20) );
 
   // Set default name and subdirectory of Trees
   myProject->SetDefaultTreeName("demo/Tree");

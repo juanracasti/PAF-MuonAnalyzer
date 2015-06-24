@@ -124,7 +124,7 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     }
     
 
-    l2 = new TLegend(0.60, 0.20, 0.83, 0.35);
+    l2 = new TLegend(0.60, 0.20, 0.83, 0.38);
     l2->SetBorderSize(1);
     l2->SetFillStyle(1001);
     l2->SetTextFont(42);
@@ -136,7 +136,7 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     l2->AddEntry(r[0][5][0], "Medium ID, HWW IP cuts", "lp");
 
 
-    l3 = new TLegend(0.60, 0.68, 0.83, 0.83); 
+    l3 = new TLegend(0.60, 0.65, 0.83, 0.83); 
     l3->SetBorderSize(1);
     l3->SetFillStyle(1001);
     l3->SetTextFont(42);
@@ -243,7 +243,7 @@ void IDEff(TString Sample = "DR74X_50ns_MC_DY")
     	mg[iVar][iMu]->GetYaxis()->SetTitleSize(0.035);
     	mg[iVar][iMu]->GetYaxis()->SetTitleOffset(1.6);
 	
-    	mg[iVar][iMu]->GetYaxis()->SetRangeUser(0.0,1.05);
+    	mg[iVar][iMu]->GetYaxis()->SetRangeUser(0.85,1.05);
     	l2->Draw(); 
 	
     	//c[iVar]->Update();
