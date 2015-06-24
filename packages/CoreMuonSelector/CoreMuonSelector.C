@@ -229,14 +229,17 @@ void CoreMuonSelector::InsideLoop() {
   // SetParam("MuonISO04_PFWeighted", G_MuonISO04_PFWeighted);
   // SetParam("MuonISO04_PUPPI",      G_MuonISO04_PUPPI);
 
-  // SetParam("Muon_Matching",        G_Muon_Matching);
+  // SetParam("Muon_Matching",        (void*)&G_Muon_Matching);
 
-  // SetParam("RecoMuSize",           (void*)G_RecoMuSize);
+  SetParam("RecoMuSize",           (void*)&G_RecoMuSize);
   // SetParam("NPV",                  G_NPV);
 
   // SetParam("FLAG_Fiducial",        EvtFlag_Fiducial);
   // SetParam("FLAG_Gen",             EvtFlag_Gen);
   // SetParam("FLAG_Matching",        EvtFlag_Matching);
+
+  unsigned int result = GetParam<unsigned int*>("RecoMuSize");
+  cout << result << endl;
 
 
 
