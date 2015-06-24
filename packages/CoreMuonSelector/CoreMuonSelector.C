@@ -1442,131 +1442,6 @@ void CoreMuonSelector::doEffsRECO(int iMu, int indexMuon) {
   
 }
 
-// void CoreMuonSelector::doEffsRECODilep() {
-
-//   for (UInt_t i=0; i<G_RecoMuSize; i++) {
-
-//     float pt  = Get<float>("T_Muon_Pt", i); 
-//     float eta = Get<float>("T_Muon_Eta",i);
-//     float npv = G_NPV;
-
-//     bool equal     = G_MuonID_Medium[i] &&  G_MuonID_Tight[i];
-//     bool not_equal = G_MuonID_Medium[i] && !G_MuonID_Tight[i];
-
-//     if (pt < 20 && fabs(eta) > 2.4) continue;
-//     if (_Signal.Contains("DY") && !G_Muon_Matching[i]) continue;
-    
-//     if (equal) {
-//        h_Eff_pt_TightID_Dilep->Fill(pt);
-//       h_Eff_eta_TightID_Dilep->Fill(eta);
-//       h_Eff_npv_TightID_Dilep->Fill(npv);
-//     }
-    
-//     if (not_equal) {
-//        h_Eff_pt_MediumID_Dilep->Fill(pt);
-//       h_Eff_eta_MediumID_Dilep->Fill(eta);
-//       h_Eff_npv_MediumID_Dilep->Fill(npv);
-//     }
-    
-//     if (equal && G_MuonISO03[i]) {
-//        h_Eff_pt_TightID_ISO03_Dilep->Fill(pt);
-//       h_Eff_eta_TightID_ISO03_Dilep->Fill(eta);
-//       h_Eff_npv_TightID_ISO03_Dilep->Fill(npv);
-//     }
-  
-//     if (equal && G_MuonISO04[i]) {
-//        h_Eff_pt_TightID_ISO04_Dilep->Fill(pt);
-//       h_Eff_eta_TightID_ISO04_Dilep->Fill(eta);
-//       h_Eff_npv_TightID_ISO04_Dilep->Fill(npv);
-//     }
-  
-//     if (equal && G_MuonISO03_dBeta[i]) {
-//        h_Eff_pt_TightID_ISO03dBeta_Dilep->Fill(pt);
-//       h_Eff_eta_TightID_ISO03dBeta_Dilep->Fill(eta);
-//       h_Eff_npv_TightID_ISO03dBeta_Dilep->Fill(npv);
-//     }
-  
-//     if (equal && G_MuonISO04_dBeta[i]) {
-//        h_Eff_pt_TightID_ISO04dBeta_Dilep->Fill(pt);
-//       h_Eff_eta_TightID_ISO04dBeta_Dilep->Fill(eta);
-//       h_Eff_npv_TightID_ISO04dBeta_Dilep->Fill(npv);
-//     }
-  
-//     if (equal && G_MuonISO03_PFWeighted[i]) {
-//        h_Eff_pt_TightID_ISO03PFWeighted_Dilep->Fill(pt);
-//       h_Eff_eta_TightID_ISO03PFWeighted_Dilep->Fill(eta);
-//       h_Eff_npv_TightID_ISO03PFWeighted_Dilep->Fill(npv);
-//     }
-  
-//     if (equal && G_MuonISO04_PFWeighted[i]) {
-//        h_Eff_pt_TightID_ISO04PFWeighted_Dilep->Fill(pt);
-//       h_Eff_eta_TightID_ISO04PFWeighted_Dilep->Fill(eta);
-//       h_Eff_npv_TightID_ISO04PFWeighted_Dilep->Fill(npv);
-//     } 
-
-//     if (equal && G_MuonISO03_PUPPI[i]) {
-//        h_Eff_pt_TightID_ISO03PUPPI_Dilep->Fill(pt);
-//       h_Eff_eta_TightID_ISO03PUPPI_Dilep->Fill(eta);
-//       h_Eff_npv_TightID_ISO03PUPPI_Dilep->Fill(npv);
-//     }
-  
-//     if (equal && G_MuonISO04_PUPPI[i]) {
-//        h_Eff_pt_TightID_ISO04PUPPI_Dilep->Fill(pt);
-//       h_Eff_eta_TightID_ISO04PUPPI_Dilep->Fill(eta);
-//       h_Eff_npv_TightID_ISO04PUPPI_Dilep->Fill(npv);
-//     } 
-
-//     if (not_equal && G_MuonISO03[i]) {
-//        h_Eff_pt_MediumID_ISO03_Dilep->Fill(pt);
-//       h_Eff_eta_MediumID_ISO03_Dilep->Fill(eta);
-//       h_Eff_npv_MediumID_ISO03_Dilep->Fill(npv);
-//     }
-  
-//     if (not_equal && G_MuonISO04[i]) {
-//        h_Eff_pt_MediumID_ISO04_Dilep->Fill(pt);
-//       h_Eff_eta_MediumID_ISO04_Dilep->Fill(eta);
-//       h_Eff_npv_MediumID_ISO04_Dilep->Fill(npv);
-//     }
-  
-//     if (not_equal && G_MuonISO03_dBeta[i]) {
-//        h_Eff_pt_MediumID_ISO03dBeta_Dilep->Fill(pt);
-//       h_Eff_eta_MediumID_ISO03dBeta_Dilep->Fill(eta);
-//       h_Eff_npv_MediumID_ISO03dBeta_Dilep->Fill(npv);
-//     }
-  
-//     if (not_equal && G_MuonISO04_dBeta[i]) {
-//        h_Eff_pt_MediumID_ISO04dBeta_Dilep->Fill(pt);
-//       h_Eff_eta_MediumID_ISO04dBeta_Dilep->Fill(eta);
-//       h_Eff_npv_MediumID_ISO04dBeta_Dilep->Fill(npv);
-//     }
-  
-//     if (not_equal && G_MuonISO03_PFWeighted[i]) {
-//        h_Eff_pt_MediumID_ISO03PFWeighted_Dilep->Fill(pt);
-//       h_Eff_eta_MediumID_ISO03PFWeighted_Dilep->Fill(eta);
-//       h_Eff_npv_MediumID_ISO03PFWeighted_Dilep->Fill(npv);
-//     }
-  
-//     if (not_equal && G_MuonISO04_PFWeighted[i]) {
-//        h_Eff_pt_MediumID_ISO04PFWeighted_Dilep->Fill(pt);
-//       h_Eff_eta_MediumID_ISO04PFWeighted_Dilep->Fill(eta);
-//       h_Eff_npv_MediumID_ISO04PFWeighted_Dilep->Fill(npv);
-//     } 
-
-//     if (not_equal && G_MuonISO03_PUPPI[i]) {
-//        h_Eff_pt_MediumID_ISO03PUPPI_Dilep->Fill(pt);
-//       h_Eff_eta_MediumID_ISO03PUPPI_Dilep->Fill(eta);
-//       h_Eff_npv_MediumID_ISO03PUPPI_Dilep->Fill(npv);
-//     }
-  
-//     if (not_equal && G_MuonISO04_PUPPI[i]) {
-//        h_Eff_pt_MediumID_ISO04PUPPI_Dilep->Fill(pt);
-//       h_Eff_eta_MediumID_ISO04PUPPI_Dilep->Fill(eta);
-//       h_Eff_npv_MediumID_ISO04PUPPI_Dilep->Fill(npv);
-//     } 
-
-//   }
-  
-// }
 
 void CoreMuonSelector::doEffsRECODilep() {
 
@@ -1576,112 +1451,115 @@ void CoreMuonSelector::doEffsRECODilep() {
     float eta = Get<float>("T_Muon_Eta",i);
     float npv = G_NPV;
 
+    bool tight  = G_MuonID_Tight_GoT[i];
+    bool medium = G_MuonID_Medium[i] && G_MuonID_IPs_HWW[i];
+
     if (pt < 20 && fabs(eta) > 2.4) continue;
     if (_Signal.Contains("DY") && !G_Muon_Matching[i]) continue;
     
-    if (G_MuonID_Tight[i]) {
+    if (tight) {
        h_Eff_pt_TightID_Dilep->Fill(pt);
       h_Eff_eta_TightID_Dilep->Fill(eta);
       h_Eff_npv_TightID_Dilep->Fill(npv);
     }
     
-    if (G_MuonID_Medium[i]) {
+    if (medium) {
        h_Eff_pt_MediumID_Dilep->Fill(pt);
       h_Eff_eta_MediumID_Dilep->Fill(eta);
       h_Eff_npv_MediumID_Dilep->Fill(npv);
     }
     
-    if (G_MuonID_Tight[i] && G_MuonISO03[i]) {
+    if (tight && G_MuonISO03[i]) {
        h_Eff_pt_TightID_ISO03_Dilep->Fill(pt);
       h_Eff_eta_TightID_ISO03_Dilep->Fill(eta);
       h_Eff_npv_TightID_ISO03_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Tight[i] && G_MuonISO04[i]) {
+    if (tight && G_MuonISO04[i]) {
        h_Eff_pt_TightID_ISO04_Dilep->Fill(pt);
       h_Eff_eta_TightID_ISO04_Dilep->Fill(eta);
       h_Eff_npv_TightID_ISO04_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Tight[i] && G_MuonISO03_dBeta[i]) {
+    if (tight && G_MuonISO03_dBeta[i]) {
        h_Eff_pt_TightID_ISO03dBeta_Dilep->Fill(pt);
       h_Eff_eta_TightID_ISO03dBeta_Dilep->Fill(eta);
       h_Eff_npv_TightID_ISO03dBeta_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Tight[i] && G_MuonISO04_dBeta[i]) {
+    if (tight && G_MuonISO04_dBeta[i]) {
        h_Eff_pt_TightID_ISO04dBeta_Dilep->Fill(pt);
       h_Eff_eta_TightID_ISO04dBeta_Dilep->Fill(eta);
       h_Eff_npv_TightID_ISO04dBeta_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Tight[i] && G_MuonISO03_PFWeighted[i]) {
+    if (tight && G_MuonISO03_PFWeighted[i]) {
        h_Eff_pt_TightID_ISO03PFWeighted_Dilep->Fill(pt);
       h_Eff_eta_TightID_ISO03PFWeighted_Dilep->Fill(eta);
       h_Eff_npv_TightID_ISO03PFWeighted_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Tight[i] && G_MuonISO04_PFWeighted[i]) {
+    if (tight && G_MuonISO04_PFWeighted[i]) {
        h_Eff_pt_TightID_ISO04PFWeighted_Dilep->Fill(pt);
       h_Eff_eta_TightID_ISO04PFWeighted_Dilep->Fill(eta);
       h_Eff_npv_TightID_ISO04PFWeighted_Dilep->Fill(npv);
     } 
 
-    if (G_MuonID_Tight[i] && G_MuonISO03_PUPPI[i]) {
+    if (tight && G_MuonISO03_PUPPI[i]) {
        h_Eff_pt_TightID_ISO03PUPPI_Dilep->Fill(pt);
       h_Eff_eta_TightID_ISO03PUPPI_Dilep->Fill(eta);
       h_Eff_npv_TightID_ISO03PUPPI_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Tight[i] && G_MuonISO04_PUPPI[i]) {
+    if (tight && G_MuonISO04_PUPPI[i]) {
        h_Eff_pt_TightID_ISO04PUPPI_Dilep->Fill(pt);
       h_Eff_eta_TightID_ISO04PUPPI_Dilep->Fill(eta);
       h_Eff_npv_TightID_ISO04PUPPI_Dilep->Fill(npv);
     } 
 
-    if (G_MuonID_Medium[i] && G_MuonISO03[i]) {
+    if (medium && G_MuonISO03[i]) {
        h_Eff_pt_MediumID_ISO03_Dilep->Fill(pt);
       h_Eff_eta_MediumID_ISO03_Dilep->Fill(eta);
       h_Eff_npv_MediumID_ISO03_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Medium[i] && G_MuonISO04[i]) {
+    if (medium && G_MuonISO04[i]) {
        h_Eff_pt_MediumID_ISO04_Dilep->Fill(pt);
       h_Eff_eta_MediumID_ISO04_Dilep->Fill(eta);
       h_Eff_npv_MediumID_ISO04_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Medium[i] && G_MuonISO03_dBeta[i]) {
+    if (medium && G_MuonISO03_dBeta[i]) {
        h_Eff_pt_MediumID_ISO03dBeta_Dilep->Fill(pt);
       h_Eff_eta_MediumID_ISO03dBeta_Dilep->Fill(eta);
       h_Eff_npv_MediumID_ISO03dBeta_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Medium[i] && G_MuonISO04_dBeta[i]) {
+    if (medium && G_MuonISO04_dBeta[i]) {
        h_Eff_pt_MediumID_ISO04dBeta_Dilep->Fill(pt);
       h_Eff_eta_MediumID_ISO04dBeta_Dilep->Fill(eta);
       h_Eff_npv_MediumID_ISO04dBeta_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Medium[i] && G_MuonISO03_PFWeighted[i]) {
+    if (medium && G_MuonISO03_PFWeighted[i]) {
        h_Eff_pt_MediumID_ISO03PFWeighted_Dilep->Fill(pt);
       h_Eff_eta_MediumID_ISO03PFWeighted_Dilep->Fill(eta);
       h_Eff_npv_MediumID_ISO03PFWeighted_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Medium[i] && G_MuonISO04_PFWeighted[i]) {
+    if (medium && G_MuonISO04_PFWeighted[i]) {
        h_Eff_pt_MediumID_ISO04PFWeighted_Dilep->Fill(pt);
       h_Eff_eta_MediumID_ISO04PFWeighted_Dilep->Fill(eta);
       h_Eff_npv_MediumID_ISO04PFWeighted_Dilep->Fill(npv);
     } 
 
-    if (G_MuonID_Medium[i] && G_MuonISO03_PUPPI[i]) {
+    if (medium && G_MuonISO03_PUPPI[i]) {
        h_Eff_pt_MediumID_ISO03PUPPI_Dilep->Fill(pt);
       h_Eff_eta_MediumID_ISO03PUPPI_Dilep->Fill(eta);
       h_Eff_npv_MediumID_ISO03PUPPI_Dilep->Fill(npv);
     }
   
-    if (G_MuonID_Medium[i] && G_MuonISO04_PUPPI[i]) {
+    if (medium && G_MuonISO04_PUPPI[i]) {
        h_Eff_pt_MediumID_ISO04PUPPI_Dilep->Fill(pt);
       h_Eff_eta_MediumID_ISO04PUPPI_Dilep->Fill(eta);
       h_Eff_npv_MediumID_ISO04PUPPI_Dilep->Fill(npv);
