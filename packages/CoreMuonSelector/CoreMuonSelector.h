@@ -36,13 +36,13 @@ class CoreMuonSelector: public PAFChainItemSelector{
   void                        CheckMuons();
   void                        SetGenInfo();
   void                        GetMatching();
-  bool                        passMediumID(int);
-  bool                        passISO(int, string, float);
-  float                       getISO(int, string);
+  bool                        passMediumID(UInt_t);
+  bool                        passISO(UInt_t, TString, float);
+  float                       getISO(UInt_t, TString);
   void                        SetEventFlags();
   void                        Counting();
-  void                        doEffsRECO(int, int);
-  void                        doEffsRECODilep();
+  void                        EffsSingleMu(UInt_t);
+  void                        EffsAllMu();
   void                        ISORocCurve();
 
 
@@ -153,12 +153,14 @@ class CoreMuonSelector: public PAFChainItemSelector{
 
  
   // Histograms 
-  TH1F                        *h_N_PV;
 
-  // ID and ISO Efficiencies vs pt, eta, and npv
+  // Pile up
+  TH1F       *h_N_PV;
+
+  // Counting histos for ID and ISO Efficiencies vs pt, eta, and npv
 
   // Single muons
-  TH1F       *h_Eff_pt_Matched[2];
+  TH1F       *h_Eff_pt_NoID[2];
   TH1F       *h_Eff_pt_TightID[2];
   TH1F       *h_Eff_pt_MediumID[2];
   TH1F       *h_Eff_pt_HWWID[2];
@@ -182,7 +184,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_pt_MediumID_ISO03PUPPI[2];
   TH1F       *h_Eff_pt_MediumID_ISO04PUPPI[2];
   
-  TH1F       *h_Eff_eta_Matched[2];
+  TH1F       *h_Eff_eta_NoID[2];
   TH1F       *h_Eff_eta_TightID[2];
   TH1F       *h_Eff_eta_MediumID[2];
   TH1F       *h_Eff_eta_HWWID[2];
@@ -206,7 +208,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_eta_MediumID_ISO03PUPPI[2];
   TH1F       *h_Eff_eta_MediumID_ISO04PUPPI[2];
   
-  TH1F       *h_Eff_npv_Matched[2];
+  TH1F       *h_Eff_npv_NoID[2];
   TH1F       *h_Eff_npv_TightID[2];
   TH1F       *h_Eff_npv_MediumID[2];
   TH1F       *h_Eff_npv_HWWID[2];
@@ -230,96 +232,96 @@ class CoreMuonSelector: public PAFChainItemSelector{
   TH1F       *h_Eff_npv_MediumID_ISO03PUPPI[2];
   TH1F       *h_Eff_npv_MediumID_ISO04PUPPI[2];
 
-  // Dileptonic ISO efficiencies
-  TH1F       *h_Eff_pt_Matched_Dilep;
-  TH1F       *h_Eff_pt_HWWID_Dilep;
-  TH1F       *h_Eff_pt_TightIDGoT_Dilep;
-  TH1F       *h_Eff_pt_TightIDipsHWW_Dilep;
-  TH1F       *h_Eff_pt_MediumIDipsHWW_Dilep;
-  TH1F       *h_Eff_pt_TightID_Dilep;
-  TH1F       *h_Eff_pt_TightID_ISO03_Dilep;
-  TH1F       *h_Eff_pt_TightID_ISO04_Dilep;
-  TH1F       *h_Eff_pt_TightID_ISO03dBeta_Dilep;
-  TH1F       *h_Eff_pt_TightID_ISO04dBeta_Dilep;
-  TH1F       *h_Eff_pt_TightID_ISO03PFWeighted_Dilep;
-  TH1F       *h_Eff_pt_TightID_ISO04PFWeighted_Dilep;
-  TH1F       *h_Eff_pt_TightID_ISO03PUPPI_Dilep;
-  TH1F       *h_Eff_pt_TightID_ISO04PUPPI_Dilep;
-  TH1F       *h_Eff_pt_MediumID_Dilep;
-  TH1F       *h_Eff_pt_MediumID_ISO03_Dilep;
-  TH1F       *h_Eff_pt_MediumID_ISO04_Dilep;
-  TH1F       *h_Eff_pt_MediumID_ISO03dBeta_Dilep;
-  TH1F       *h_Eff_pt_MediumID_ISO04dBeta_Dilep;
-  TH1F       *h_Eff_pt_MediumID_ISO03PFWeighted_Dilep;
-  TH1F       *h_Eff_pt_MediumID_ISO04PFWeighted_Dilep;
-  TH1F       *h_Eff_pt_MediumID_ISO03PUPPI_Dilep;
-  TH1F       *h_Eff_pt_MediumID_ISO04PUPPI_Dilep;
+  // ISO efficiencies for All (matched) muons (in case of MC like DY, WW, TTbar...)
+  TH1F       *h_Eff_pt_NoID_AllMu;
+  TH1F       *h_Eff_pt_HWWID_AllMu;
+  TH1F       *h_Eff_pt_TightIDGoT_AllMu;
+  TH1F       *h_Eff_pt_TightIDipsHWW_AllMu;
+  TH1F       *h_Eff_pt_MediumIDipsHWW_AllMu;
+  TH1F       *h_Eff_pt_TightID_AllMu;
+  TH1F       *h_Eff_pt_TightID_ISO03_AllMu;
+  TH1F       *h_Eff_pt_TightID_ISO04_AllMu;
+  TH1F       *h_Eff_pt_TightID_ISO03dBeta_AllMu;
+  TH1F       *h_Eff_pt_TightID_ISO04dBeta_AllMu;
+  TH1F       *h_Eff_pt_TightID_ISO03PFWeighted_AllMu;
+  TH1F       *h_Eff_pt_TightID_ISO04PFWeighted_AllMu;
+  TH1F       *h_Eff_pt_TightID_ISO03PUPPI_AllMu;
+  TH1F       *h_Eff_pt_TightID_ISO04PUPPI_AllMu;
+  TH1F       *h_Eff_pt_MediumID_AllMu;
+  TH1F       *h_Eff_pt_MediumID_ISO03_AllMu;
+  TH1F       *h_Eff_pt_MediumID_ISO04_AllMu;
+  TH1F       *h_Eff_pt_MediumID_ISO03dBeta_AllMu;
+  TH1F       *h_Eff_pt_MediumID_ISO04dBeta_AllMu;
+  TH1F       *h_Eff_pt_MediumID_ISO03PFWeighted_AllMu;
+  TH1F       *h_Eff_pt_MediumID_ISO04PFWeighted_AllMu;
+  TH1F       *h_Eff_pt_MediumID_ISO03PUPPI_AllMu;
+  TH1F       *h_Eff_pt_MediumID_ISO04PUPPI_AllMu;
 
-  TH1F       *h_Eff_eta_Matched_Dilep;
-  TH1F       *h_Eff_eta_HWWID_Dilep;
-  TH1F       *h_Eff_eta_TightIDGoT_Dilep;
-  TH1F       *h_Eff_eta_TightIDipsHWW_Dilep;
-  TH1F       *h_Eff_eta_MediumIDipsHWW_Dilep;
-  TH1F       *h_Eff_eta_TightID_Dilep;
-  TH1F       *h_Eff_eta_TightID_ISO03_Dilep;
-  TH1F       *h_Eff_eta_TightID_ISO04_Dilep;
-  TH1F       *h_Eff_eta_TightID_ISO03dBeta_Dilep;
-  TH1F       *h_Eff_eta_TightID_ISO04dBeta_Dilep;
-  TH1F       *h_Eff_eta_TightID_ISO03PFWeighted_Dilep;
-  TH1F       *h_Eff_eta_TightID_ISO04PFWeighted_Dilep;
-  TH1F       *h_Eff_eta_TightID_ISO03PUPPI_Dilep;
-  TH1F       *h_Eff_eta_TightID_ISO04PUPPI_Dilep;
-  TH1F       *h_Eff_eta_MediumID_Dilep;
-  TH1F       *h_Eff_eta_MediumID_ISO03_Dilep;
-  TH1F       *h_Eff_eta_MediumID_ISO04_Dilep;
-  TH1F       *h_Eff_eta_MediumID_ISO03dBeta_Dilep;
-  TH1F       *h_Eff_eta_MediumID_ISO04dBeta_Dilep;
-  TH1F       *h_Eff_eta_MediumID_ISO03PFWeighted_Dilep;
-  TH1F       *h_Eff_eta_MediumID_ISO04PFWeighted_Dilep;
-  TH1F       *h_Eff_eta_MediumID_ISO03PUPPI_Dilep;
-  TH1F       *h_Eff_eta_MediumID_ISO04PUPPI_Dilep;
+  TH1F       *h_Eff_eta_NoID_AllMu;
+  TH1F       *h_Eff_eta_HWWID_AllMu;
+  TH1F       *h_Eff_eta_TightIDGoT_AllMu;
+  TH1F       *h_Eff_eta_TightIDipsHWW_AllMu;
+  TH1F       *h_Eff_eta_MediumIDipsHWW_AllMu;
+  TH1F       *h_Eff_eta_TightID_AllMu;
+  TH1F       *h_Eff_eta_TightID_ISO03_AllMu;
+  TH1F       *h_Eff_eta_TightID_ISO04_AllMu;
+  TH1F       *h_Eff_eta_TightID_ISO03dBeta_AllMu;
+  TH1F       *h_Eff_eta_TightID_ISO04dBeta_AllMu;
+  TH1F       *h_Eff_eta_TightID_ISO03PFWeighted_AllMu;
+  TH1F       *h_Eff_eta_TightID_ISO04PFWeighted_AllMu;
+  TH1F       *h_Eff_eta_TightID_ISO03PUPPI_AllMu;
+  TH1F       *h_Eff_eta_TightID_ISO04PUPPI_AllMu;
+  TH1F       *h_Eff_eta_MediumID_AllMu;
+  TH1F       *h_Eff_eta_MediumID_ISO03_AllMu;
+  TH1F       *h_Eff_eta_MediumID_ISO04_AllMu;
+  TH1F       *h_Eff_eta_MediumID_ISO03dBeta_AllMu;
+  TH1F       *h_Eff_eta_MediumID_ISO04dBeta_AllMu;
+  TH1F       *h_Eff_eta_MediumID_ISO03PFWeighted_AllMu;
+  TH1F       *h_Eff_eta_MediumID_ISO04PFWeighted_AllMu;
+  TH1F       *h_Eff_eta_MediumID_ISO03PUPPI_AllMu;
+  TH1F       *h_Eff_eta_MediumID_ISO04PUPPI_AllMu;
 
-  TH1F       *h_Eff_npv_Matched_Dilep;
-  TH1F       *h_Eff_npv_HWWID_Dilep;
-  TH1F       *h_Eff_npv_TightIDGoT_Dilep;
-  TH1F       *h_Eff_npv_TightIDipsHWW_Dilep;
-  TH1F       *h_Eff_npv_MediumIDipsHWW_Dilep;
-  TH1F       *h_Eff_npv_TightID_Dilep;
-  TH1F       *h_Eff_npv_TightID_ISO03_Dilep;
-  TH1F       *h_Eff_npv_TightID_ISO04_Dilep;
-  TH1F       *h_Eff_npv_TightID_ISO03dBeta_Dilep;
-  TH1F       *h_Eff_npv_TightID_ISO04dBeta_Dilep;
-  TH1F       *h_Eff_npv_TightID_ISO03PFWeighted_Dilep;
-  TH1F       *h_Eff_npv_TightID_ISO04PFWeighted_Dilep;
-  TH1F       *h_Eff_npv_TightID_ISO03PUPPI_Dilep;
-  TH1F       *h_Eff_npv_TightID_ISO04PUPPI_Dilep;
-  TH1F       *h_Eff_npv_MediumID_Dilep;
-  TH1F       *h_Eff_npv_MediumID_ISO03_Dilep;
-  TH1F       *h_Eff_npv_MediumID_ISO04_Dilep;
-  TH1F       *h_Eff_npv_MediumID_ISO03dBeta_Dilep;
-  TH1F       *h_Eff_npv_MediumID_ISO04dBeta_Dilep;
-  TH1F       *h_Eff_npv_MediumID_ISO03PFWeighted_Dilep;
-  TH1F       *h_Eff_npv_MediumID_ISO04PFWeighted_Dilep;
-  TH1F       *h_Eff_npv_MediumID_ISO03PUPPI_Dilep;
-  TH1F       *h_Eff_npv_MediumID_ISO04PUPPI_Dilep;
+  TH1F       *h_Eff_npv_NoID_AllMu;
+  TH1F       *h_Eff_npv_HWWID_AllMu;
+  TH1F       *h_Eff_npv_TightIDGoT_AllMu;
+  TH1F       *h_Eff_npv_TightIDipsHWW_AllMu;
+  TH1F       *h_Eff_npv_MediumIDipsHWW_AllMu;
+  TH1F       *h_Eff_npv_TightID_AllMu;
+  TH1F       *h_Eff_npv_TightID_ISO03_AllMu;
+  TH1F       *h_Eff_npv_TightID_ISO04_AllMu;
+  TH1F       *h_Eff_npv_TightID_ISO03dBeta_AllMu;
+  TH1F       *h_Eff_npv_TightID_ISO04dBeta_AllMu;
+  TH1F       *h_Eff_npv_TightID_ISO03PFWeighted_AllMu;
+  TH1F       *h_Eff_npv_TightID_ISO04PFWeighted_AllMu;
+  TH1F       *h_Eff_npv_TightID_ISO03PUPPI_AllMu;
+  TH1F       *h_Eff_npv_TightID_ISO04PUPPI_AllMu;
+  TH1F       *h_Eff_npv_MediumID_AllMu;
+  TH1F       *h_Eff_npv_MediumID_ISO03_AllMu;
+  TH1F       *h_Eff_npv_MediumID_ISO04_AllMu;
+  TH1F       *h_Eff_npv_MediumID_ISO03dBeta_AllMu;
+  TH1F       *h_Eff_npv_MediumID_ISO04dBeta_AllMu;
+  TH1F       *h_Eff_npv_MediumID_ISO03PFWeighted_AllMu;
+  TH1F       *h_Eff_npv_MediumID_ISO04PFWeighted_AllMu;
+  TH1F       *h_Eff_npv_MediumID_ISO03PUPPI_AllMu;
+  TH1F       *h_Eff_npv_MediumID_ISO04PUPPI_AllMu;
 
   //ISO ROC Curves
-  TH1F       *h_RC_TightID_ISO03_Dilep;
-  TH1F       *h_RC_TightID_ISO04_Dilep;
-  TH1F       *h_RC_TightID_ISO03dBeta_Dilep;
-  TH1F       *h_RC_TightID_ISO04dBeta_Dilep;
-  TH1F       *h_RC_TightID_ISO03PFWeighted_Dilep;
-  TH1F       *h_RC_TightID_ISO04PFWeighted_Dilep;
-  TH1F       *h_RC_TightID_ISO03PUPPI_Dilep;
-  TH1F       *h_RC_TightID_ISO04PUPPI_Dilep;
-  TH1F       *h_RC_MediumID_ISO03_Dilep;
-  TH1F       *h_RC_MediumID_ISO04_Dilep;
-  TH1F       *h_RC_MediumID_ISO03dBeta_Dilep;
-  TH1F       *h_RC_MediumID_ISO04dBeta_Dilep;
-  TH1F       *h_RC_MediumID_ISO03PFWeighted_Dilep;
-  TH1F       *h_RC_MediumID_ISO04PFWeighted_Dilep;
-  TH1F       *h_RC_MediumID_ISO03PUPPI_Dilep;
-  TH1F       *h_RC_MediumID_ISO04PUPPI_Dilep;
+  TH1F       *h_RC_TightID_ISO03_AllMu;
+  TH1F       *h_RC_TightID_ISO04_AllMu;
+  TH1F       *h_RC_TightID_ISO03dBeta_AllMu;
+  TH1F       *h_RC_TightID_ISO04dBeta_AllMu;
+  TH1F       *h_RC_TightID_ISO03PFWeighted_AllMu;
+  TH1F       *h_RC_TightID_ISO04PFWeighted_AllMu;
+  TH1F       *h_RC_TightID_ISO03PUPPI_AllMu;
+  TH1F       *h_RC_TightID_ISO04PUPPI_AllMu;
+  TH1F       *h_RC_MediumID_ISO03_AllMu;
+  TH1F       *h_RC_MediumID_ISO04_AllMu;
+  TH1F       *h_RC_MediumID_ISO03dBeta_AllMu;
+  TH1F       *h_RC_MediumID_ISO04dBeta_AllMu;
+  TH1F       *h_RC_MediumID_ISO03PFWeighted_AllMu;
+  TH1F       *h_RC_MediumID_ISO04PFWeighted_AllMu;
+  TH1F       *h_RC_MediumID_ISO03PUPPI_AllMu;
+  TH1F       *h_RC_MediumID_ISO04PUPPI_AllMu;
   
   // Input parameters
   TString                     _Signal;       // Type of Signal
@@ -398,7 +400,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
      
      h_N_PV(),
 
-     h_Eff_pt_Matched(),
+     h_Eff_pt_NoID(),
      h_Eff_pt_TightID(),
      h_Eff_pt_MediumID(),
      h_Eff_pt_HWWID(),
@@ -422,7 +424,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_pt_MediumID_ISO03PUPPI(),
      h_Eff_pt_MediumID_ISO04PUPPI(),
 
-     h_Eff_eta_Matched(),
+     h_Eff_eta_NoID(),
      h_Eff_eta_TightID(),
      h_Eff_eta_MediumID(),
      h_Eff_eta_HWWID(),
@@ -446,7 +448,7 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_eta_MediumID_ISO03PUPPI(),
      h_Eff_eta_MediumID_ISO04PUPPI(),
   
-     h_Eff_npv_Matched(),
+     h_Eff_npv_NoID(),
      h_Eff_npv_TightID(),
      h_Eff_npv_MediumID(),
      h_Eff_npv_HWWID(),
@@ -470,94 +472,94 @@ class CoreMuonSelector: public PAFChainItemSelector{
      h_Eff_npv_MediumID_ISO03PUPPI(),
      h_Eff_npv_MediumID_ISO04PUPPI(),
 
-     h_Eff_pt_Matched_Dilep(),
-     h_Eff_pt_HWWID_Dilep(),
-     h_Eff_pt_TightIDGoT_Dilep(),
-     h_Eff_pt_TightIDipsHWW_Dilep(),
-     h_Eff_pt_MediumIDipsHWW_Dilep(),
-     h_Eff_pt_TightID_Dilep(),
-     h_Eff_pt_TightID_ISO03_Dilep(),
-     h_Eff_pt_TightID_ISO04_Dilep(),
-     h_Eff_pt_TightID_ISO03dBeta_Dilep(),
-     h_Eff_pt_TightID_ISO04dBeta_Dilep(),
-     h_Eff_pt_TightID_ISO03PFWeighted_Dilep(),
-     h_Eff_pt_TightID_ISO04PFWeighted_Dilep(),
-     h_Eff_pt_TightID_ISO03PUPPI_Dilep(),
-     h_Eff_pt_TightID_ISO04PUPPI_Dilep(),
-     h_Eff_pt_MediumID_Dilep(),
-     h_Eff_pt_MediumID_ISO03_Dilep(),
-     h_Eff_pt_MediumID_ISO04_Dilep(),
-     h_Eff_pt_MediumID_ISO03dBeta_Dilep(),
-     h_Eff_pt_MediumID_ISO04dBeta_Dilep(),
-     h_Eff_pt_MediumID_ISO03PFWeighted_Dilep(),
-     h_Eff_pt_MediumID_ISO04PFWeighted_Dilep(),
-     h_Eff_pt_MediumID_ISO03PUPPI_Dilep(),
-     h_Eff_pt_MediumID_ISO04PUPPI_Dilep(),
+     h_Eff_pt_NoID_AllMu(),
+     h_Eff_pt_HWWID_AllMu(),
+     h_Eff_pt_TightIDGoT_AllMu(),
+     h_Eff_pt_TightIDipsHWW_AllMu(),
+     h_Eff_pt_MediumIDipsHWW_AllMu(),
+     h_Eff_pt_TightID_AllMu(),
+     h_Eff_pt_TightID_ISO03_AllMu(),
+     h_Eff_pt_TightID_ISO04_AllMu(),
+     h_Eff_pt_TightID_ISO03dBeta_AllMu(),
+     h_Eff_pt_TightID_ISO04dBeta_AllMu(),
+     h_Eff_pt_TightID_ISO03PFWeighted_AllMu(),
+     h_Eff_pt_TightID_ISO04PFWeighted_AllMu(),
+     h_Eff_pt_TightID_ISO03PUPPI_AllMu(),
+     h_Eff_pt_TightID_ISO04PUPPI_AllMu(),
+     h_Eff_pt_MediumID_AllMu(),
+     h_Eff_pt_MediumID_ISO03_AllMu(),
+     h_Eff_pt_MediumID_ISO04_AllMu(),
+     h_Eff_pt_MediumID_ISO03dBeta_AllMu(),
+     h_Eff_pt_MediumID_ISO04dBeta_AllMu(),
+     h_Eff_pt_MediumID_ISO03PFWeighted_AllMu(),
+     h_Eff_pt_MediumID_ISO04PFWeighted_AllMu(),
+     h_Eff_pt_MediumID_ISO03PUPPI_AllMu(),
+     h_Eff_pt_MediumID_ISO04PUPPI_AllMu(),
 
-     h_Eff_eta_Matched_Dilep(),
-     h_Eff_eta_HWWID_Dilep(),
-     h_Eff_eta_TightIDGoT_Dilep(),
-     h_Eff_eta_TightIDipsHWW_Dilep(),
-     h_Eff_eta_MediumIDipsHWW_Dilep(),
-     h_Eff_eta_TightID_Dilep(),
-     h_Eff_eta_TightID_ISO03_Dilep(),
-     h_Eff_eta_TightID_ISO04_Dilep(),
-     h_Eff_eta_TightID_ISO03dBeta_Dilep(),
-     h_Eff_eta_TightID_ISO04dBeta_Dilep(),
-     h_Eff_eta_TightID_ISO03PFWeighted_Dilep(),
-     h_Eff_eta_TightID_ISO04PFWeighted_Dilep(),
-     h_Eff_eta_TightID_ISO03PUPPI_Dilep(),
-     h_Eff_eta_TightID_ISO04PUPPI_Dilep(),
-     h_Eff_eta_MediumID_Dilep(),
-     h_Eff_eta_MediumID_ISO03_Dilep(),
-     h_Eff_eta_MediumID_ISO04_Dilep(),
-     h_Eff_eta_MediumID_ISO03dBeta_Dilep(),
-     h_Eff_eta_MediumID_ISO04dBeta_Dilep(),
-     h_Eff_eta_MediumID_ISO03PFWeighted_Dilep(),
-     h_Eff_eta_MediumID_ISO04PFWeighted_Dilep(),
-     h_Eff_eta_MediumID_ISO03PUPPI_Dilep(),
-     h_Eff_eta_MediumID_ISO04PUPPI_Dilep(),
+     h_Eff_eta_NoID_AllMu(),
+     h_Eff_eta_HWWID_AllMu(),
+     h_Eff_eta_TightIDGoT_AllMu(),
+     h_Eff_eta_TightIDipsHWW_AllMu(),
+     h_Eff_eta_MediumIDipsHWW_AllMu(),
+     h_Eff_eta_TightID_AllMu(),
+     h_Eff_eta_TightID_ISO03_AllMu(),
+     h_Eff_eta_TightID_ISO04_AllMu(),
+     h_Eff_eta_TightID_ISO03dBeta_AllMu(),
+     h_Eff_eta_TightID_ISO04dBeta_AllMu(),
+     h_Eff_eta_TightID_ISO03PFWeighted_AllMu(),
+     h_Eff_eta_TightID_ISO04PFWeighted_AllMu(),
+     h_Eff_eta_TightID_ISO03PUPPI_AllMu(),
+     h_Eff_eta_TightID_ISO04PUPPI_AllMu(),
+     h_Eff_eta_MediumID_AllMu(),
+     h_Eff_eta_MediumID_ISO03_AllMu(),
+     h_Eff_eta_MediumID_ISO04_AllMu(),
+     h_Eff_eta_MediumID_ISO03dBeta_AllMu(),
+     h_Eff_eta_MediumID_ISO04dBeta_AllMu(),
+     h_Eff_eta_MediumID_ISO03PFWeighted_AllMu(),
+     h_Eff_eta_MediumID_ISO04PFWeighted_AllMu(),
+     h_Eff_eta_MediumID_ISO03PUPPI_AllMu(),
+     h_Eff_eta_MediumID_ISO04PUPPI_AllMu(),
 
-     h_Eff_npv_Matched_Dilep(),
-     h_Eff_npv_HWWID_Dilep(),
-     h_Eff_npv_TightIDGoT_Dilep(),
-     h_Eff_npv_TightIDipsHWW_Dilep(),
-     h_Eff_npv_MediumIDipsHWW_Dilep(),
-     h_Eff_npv_TightID_Dilep(),
-     h_Eff_npv_TightID_ISO03_Dilep(),
-     h_Eff_npv_TightID_ISO04_Dilep(),
-     h_Eff_npv_TightID_ISO03dBeta_Dilep(),
-     h_Eff_npv_TightID_ISO04dBeta_Dilep(),
-     h_Eff_npv_TightID_ISO03PFWeighted_Dilep(),
-     h_Eff_npv_TightID_ISO04PFWeighted_Dilep(),
-     h_Eff_npv_TightID_ISO03PUPPI_Dilep(),
-     h_Eff_npv_TightID_ISO04PUPPI_Dilep(),
-     h_Eff_npv_MediumID_Dilep(),
-     h_Eff_npv_MediumID_ISO03_Dilep(),
-     h_Eff_npv_MediumID_ISO04_Dilep(),
-     h_Eff_npv_MediumID_ISO03dBeta_Dilep(),
-     h_Eff_npv_MediumID_ISO04dBeta_Dilep(),
-     h_Eff_npv_MediumID_ISO03PFWeighted_Dilep(),
-     h_Eff_npv_MediumID_ISO04PFWeighted_Dilep(),
-     h_Eff_npv_MediumID_ISO03PUPPI_Dilep(),
-     h_Eff_npv_MediumID_ISO04PUPPI_Dilep(),
+     h_Eff_npv_NoID_AllMu(),
+     h_Eff_npv_HWWID_AllMu(),
+     h_Eff_npv_TightIDGoT_AllMu(),
+     h_Eff_npv_TightIDipsHWW_AllMu(),
+     h_Eff_npv_MediumIDipsHWW_AllMu(),
+     h_Eff_npv_TightID_AllMu(),
+     h_Eff_npv_TightID_ISO03_AllMu(),
+     h_Eff_npv_TightID_ISO04_AllMu(),
+     h_Eff_npv_TightID_ISO03dBeta_AllMu(),
+     h_Eff_npv_TightID_ISO04dBeta_AllMu(),
+     h_Eff_npv_TightID_ISO03PFWeighted_AllMu(),
+     h_Eff_npv_TightID_ISO04PFWeighted_AllMu(),
+     h_Eff_npv_TightID_ISO03PUPPI_AllMu(),
+     h_Eff_npv_TightID_ISO04PUPPI_AllMu(),
+     h_Eff_npv_MediumID_AllMu(),
+     h_Eff_npv_MediumID_ISO03_AllMu(),
+     h_Eff_npv_MediumID_ISO04_AllMu(),
+     h_Eff_npv_MediumID_ISO03dBeta_AllMu(),
+     h_Eff_npv_MediumID_ISO04dBeta_AllMu(),
+     h_Eff_npv_MediumID_ISO03PFWeighted_AllMu(),
+     h_Eff_npv_MediumID_ISO04PFWeighted_AllMu(),
+     h_Eff_npv_MediumID_ISO03PUPPI_AllMu(),
+     h_Eff_npv_MediumID_ISO04PUPPI_AllMu(),
 
-     h_RC_TightID_ISO03_Dilep(),
-     h_RC_TightID_ISO04_Dilep(),
-     h_RC_TightID_ISO03dBeta_Dilep(),
-     h_RC_TightID_ISO04dBeta_Dilep(),
-     h_RC_TightID_ISO03PFWeighted_Dilep(),
-     h_RC_TightID_ISO04PFWeighted_Dilep(),
-     h_RC_TightID_ISO03PUPPI_Dilep(),
-     h_RC_TightID_ISO04PUPPI_Dilep(),
-     h_RC_MediumID_ISO03_Dilep(),
-     h_RC_MediumID_ISO04_Dilep(),
-     h_RC_MediumID_ISO03dBeta_Dilep(),
-     h_RC_MediumID_ISO04dBeta_Dilep(),
-     h_RC_MediumID_ISO03PFWeighted_Dilep(),
-     h_RC_MediumID_ISO04PFWeighted_Dilep(),
-     h_RC_MediumID_ISO03PUPPI_Dilep(),
-     h_RC_MediumID_ISO04PUPPI_Dilep(),
+     h_RC_TightID_ISO03_AllMu(),
+     h_RC_TightID_ISO04_AllMu(),
+     h_RC_TightID_ISO03dBeta_AllMu(),
+     h_RC_TightID_ISO04dBeta_AllMu(),
+     h_RC_TightID_ISO03PFWeighted_AllMu(),
+     h_RC_TightID_ISO04PFWeighted_AllMu(),
+     h_RC_TightID_ISO03PUPPI_AllMu(),
+     h_RC_TightID_ISO04PUPPI_AllMu(),
+     h_RC_MediumID_ISO03_AllMu(),
+     h_RC_MediumID_ISO04_AllMu(),
+     h_RC_MediumID_ISO03dBeta_AllMu(),
+     h_RC_MediumID_ISO04dBeta_AllMu(),
+     h_RC_MediumID_ISO03PFWeighted_AllMu(),
+     h_RC_MediumID_ISO04PFWeighted_AllMu(),
+     h_RC_MediumID_ISO03PUPPI_AllMu(),
+     h_RC_MediumID_ISO04PUPPI_AllMu(),
      
      _Signal(),
      _NEvents(),
