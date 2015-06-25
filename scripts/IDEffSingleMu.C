@@ -1,4 +1,4 @@
-void IDEff(TString Sample = "DR74X_50ns_MC_DY") 
+void IDEffSingleMu(TString Sample = "DR74X_50ns_MC_DY") 
 { 
 
   TFile *f  = TFile::Open("../files/" + Sample + ".root");

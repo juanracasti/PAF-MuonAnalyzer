@@ -1,4 +1,4 @@
-void ISOEffDilep(TString Sample = "DR74X_50ns_MC_DY", TString BaseID = "TightID", TString dR = "04") 
+void ISOEffAllMu(TString Sample = "DR74X_50ns_MC_DY", TString BaseID = "TightID", TString dR = "04") 
 { 
 
   TFile *f  = TFile::Open("../files/" + Sample + ".root");
@@ -26,10 +26,10 @@ void ISOEffDilep(TString Sample = "DR74X_50ns_MC_DY", TString BaseID = "TightID"
     for (unsigned int iISO = 0; iISO < nISO+1; iISO++) {
       
       if (iISO == 0) {
-	h[iVar][iISO] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+BaseID+"_Dilep");
+	h[iVar][iISO] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+BaseID+"_AllMu");
       }
       else {
-	h[iVar][iISO] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+BaseID+"_ISO"+dR+ISO[iISO]+"_Dilep");
+	h[iVar][iISO] = (TH1F*)f->Get("h_Eff_"+Var[iVar]+"_"+BaseID+"_ISO"+dR+ISO[iISO]+"_AllMu");
       }
       
     }
