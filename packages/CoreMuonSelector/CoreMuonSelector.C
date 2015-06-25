@@ -673,11 +673,10 @@ void CoreMuonSelector::InsideLoop() {
   if (EvtFlag_Matching) {
     EffsSingleMu(0);
     EffsSingleMu(1);
-    //EffsAllMu();
   }
 
   EffsAllMu();
-  //ISORocCurve();
+  //ISORocCurve(); //Warning! Long calculation
 
   //------------------------------------------------------------------------------
   // Set Parameters for other selectors. This is the main point of this selector
@@ -745,8 +744,8 @@ void CoreMuonSelector::CheckMuons() {
       for (int j=0; j<NFLAGS; ++j) muon_sel[j] = false;
 
       muon_sel[0] = (i==0) ? 
-	(G_Muon_4vec[i].Pt() > 20. && fabs(G_Muon_4vec[i].Eta()) < 2.4) :
-	(G_Muon_4vec[i].Pt() > 10. && fabs(G_Muon_4vec[i].Eta()) < 2.4);
+	(G_Muon_4vec[i].Pt() >= 20. && fabs(G_Muon_4vec[i].Eta()) <= 2.4) :
+	(G_Muon_4vec[i].Pt() >= 10. && fabs(G_Muon_4vec[i].Eta()) <= 2.4);
       muon_sel[1] = Get<bool>("T_Muon_IsPFMuon",i);
       muon_sel[2] = Get<bool>("T_Muon_IsGlobalMuon",i);
       muon_sel[3] = Get<bool>("T_Muon_IsTrackerMuon",i) && Get<bool>("T_Muon_IsTrackerMuonArbitrated",i);
@@ -1267,8 +1266,8 @@ void CoreMuonSelector::EffsSingleMu(UInt_t iMu) {
   float eta = Get<float>("T_Muon_Eta",iMu);
   float npv = G_NPV;
 
-  bool tight  = G_MuonID_Tight[i];
-  bool medium = G_MuonID_Medium[i];
+  bool tight  = G_MuonID_Tight[iMu];
+  bool medium = G_MuonID_Medium[iMu];
   
    h_Eff_pt_NoID[iMu]->Fill(pt);
   h_Eff_eta_NoID[iMu]->Fill(eta);
@@ -1420,7 +1419,8 @@ void CoreMuonSelector::EffsAllMu() {
     bool tight  = G_MuonID_Tight[i];
     bool medium = G_MuonID_Medium[i];
 
-    if (pt < 20 && fabs(eta) > 2.4) continue;
+    if (pt < 20) continue;
+    if (fabs(eta) > 2.4) continue;
     if (_Signal.Contains("DY") && !G_Muon_Matching[i]) continue;
 
      h_Eff_pt_NoID_AllMu->Fill(pt);
@@ -1570,7 +1570,8 @@ void CoreMuonSelector::ISORocCurve() {
     float pt  = Get<float>("T_Muon_Pt", i); 
     float eta = Get<float>("T_Muon_Eta",i);
 
-    if (pt < 20 && fabs(eta) > 2.4) continue;
+    if (pt < 20) continue;
+    if (fabs(eta) > 2.4) continue;
     if (_Signal.Contains("DY") && !G_Muon_Matching[i]) continue;
 
     if (G_MuonID_Tight[i]) {
