@@ -676,7 +676,7 @@ void CoreMuonSelector::InsideLoop() {
   }
 
   EffsAllMu();
-  //ISORocCurve(); //Warning! Long calculation
+  ISORocCurve(); //Warning! Long calculation
 
   //------------------------------------------------------------------------------
   // Set Parameters for other selectors. This is the main point of this selector
