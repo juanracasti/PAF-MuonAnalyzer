@@ -676,7 +676,7 @@ void CoreMuonSelector::InsideLoop() {
   }
 
   EffsAllMu();
-  ISORocCurve(); //Warning! Long calculation
+  //ISORocCurve(); //Warning! Long calculation
 
   //------------------------------------------------------------------------------
   // Set Parameters for other selectors. This is the main point of this selector
@@ -1587,14 +1587,14 @@ void CoreMuonSelector::ISORocCurve() {
 
       for (int j = 0; j < 25; ++j) {
 
-	if (passISO(i, "R03",           j*1.0/100.0)) h_RC_TightID_ISO03_AllMu          ->Fill(j);
-	if (passISO(i, "dBetaR03",      j*1.0/100.0)) h_RC_TightID_ISO03dBeta_AllMu     ->Fill(j);
-	if (passISO(i, "PFWeightedR03", j*1.0/100.0)) h_RC_TightID_ISO03PFWeighted_AllMu->Fill(j);
-	if (passISO(i, "PUPPIR03",      j*1.0/100.0)) h_RC_TightID_ISO03PUPPI_AllMu     ->Fill(j);
-	if (passISO(i, "R04",           j*1.0/100.0)) h_RC_TightID_ISO04_AllMu          ->Fill(j);
-	if (passISO(i, "dBetaR04",      j*1.0/100.0)) h_RC_TightID_ISO04dBeta_AllMu     ->Fill(j);
-	if (passISO(i, "PFWeightedR04", j*1.0/100.0)) h_RC_TightID_ISO04PFWeighted_AllMu->Fill(j);
-	if (passISO(i, "PUPPIR04",      j*1.0/100.0)) h_RC_TightID_ISO04PUPPI_AllMu     ->Fill(j);
+	if (passISO(i, "R03",           j*2.0/100.0)) h_RC_TightID_ISO03_AllMu          ->Fill(j);
+	if (passISO(i, "dBetaR03",      j*2.0/100.0)) h_RC_TightID_ISO03dBeta_AllMu     ->Fill(j);
+	if (passISO(i, "PFWeightedR03", j*2.0/100.0)) h_RC_TightID_ISO03PFWeighted_AllMu->Fill(j);
+	if (passISO(i, "PUPPIR03",      j*2.0/100.0)) h_RC_TightID_ISO03PUPPI_AllMu     ->Fill(j);
+	if (passISO(i, "R04",           j*2.0/100.0)) h_RC_TightID_ISO04_AllMu          ->Fill(j);
+	if (passISO(i, "dBetaR04",      j*2.0/100.0)) h_RC_TightID_ISO04dBeta_AllMu     ->Fill(j);
+	if (passISO(i, "PFWeightedR04", j*2.0/100.0)) h_RC_TightID_ISO04PFWeighted_AllMu->Fill(j);
+	if (passISO(i, "PUPPIR04",      j*2.0/100.0)) h_RC_TightID_ISO04PUPPI_AllMu     ->Fill(j);
 
       }
 
@@ -1613,14 +1613,14 @@ void CoreMuonSelector::ISORocCurve() {
 
       for (int j = 0; j < 25; ++j) {
 
-	if (passISO(i, "R03",           j*1.0/100.0)) h_RC_MediumID_ISO03_AllMu          ->Fill(j);
-	if (passISO(i, "dBetaR03",      j*1.0/100.0)) h_RC_MediumID_ISO03dBeta_AllMu     ->Fill(j);
-	if (passISO(i, "PFWeightedR03", j*1.0/100.0)) h_RC_MediumID_ISO03PFWeighted_AllMu->Fill(j);
-	if (passISO(i, "PUPPIR03",      j*1.0/100.0)) h_RC_MediumID_ISO03PUPPI_AllMu     ->Fill(j);
-	if (passISO(i, "R04",           j*1.0/100.0)) h_RC_MediumID_ISO04_AllMu          ->Fill(j);
-	if (passISO(i, "dBetaR04",      j*1.0/100.0)) h_RC_MediumID_ISO04dBeta_AllMu     ->Fill(j);
-	if (passISO(i, "PFWeightedR04", j*1.0/100.0)) h_RC_MediumID_ISO04PFWeighted_AllMu->Fill(j);
-	if (passISO(i, "PUPPIR04",      j*1.0/100.0)) h_RC_MediumID_ISO04PUPPI_AllMu     ->Fill(j);
+	if (passISO(i, "R03",           j*2.0/100.0)) h_RC_MediumID_ISO03_AllMu          ->Fill(j);
+	if (passISO(i, "dBetaR03",      j*2.0/100.0)) h_RC_MediumID_ISO03dBeta_AllMu     ->Fill(j);
+	if (passISO(i, "PFWeightedR03", j*2.0/100.0)) h_RC_MediumID_ISO03PFWeighted_AllMu->Fill(j);
+	if (passISO(i, "PUPPIR03",      j*2.0/100.0)) h_RC_MediumID_ISO03PUPPI_AllMu     ->Fill(j);
+	if (passISO(i, "R04",           j*2.0/100.0)) h_RC_MediumID_ISO04_AllMu          ->Fill(j);
+	if (passISO(i, "dBetaR04",      j*2.0/100.0)) h_RC_MediumID_ISO04dBeta_AllMu     ->Fill(j);
+	if (passISO(i, "PFWeightedR04", j*2.0/100.0)) h_RC_MediumID_ISO04PFWeighted_AllMu->Fill(j);
+	if (passISO(i, "PUPPIR04",      j*2.0/100.0)) h_RC_MediumID_ISO04PUPPI_AllMu     ->Fill(j);
 
       }
 
