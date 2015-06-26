@@ -209,37 +209,40 @@ void CoreMuonSelector::InsideLoop() {
   // Set Parameters for other selectors. This is the main point of this selector
   //------------------------------------------------------------------------------
 
-  // SetParam("Muon_4vec",            (void*)G_Muon_4vec);
-  // SetParam("GEN_PromptMuon_4vec",  (void*)G_GEN_PromptMuon_4vec);
-  // SetParam("GEN_Muon_4vec",        (void*)G_GEN_Muon_4vec);
+  // SetParam("Muon_4vec",            (void*)&G_Muon_4vec);
+  // SetParam("GEN_PromptMuon_4vec",  (void*)&G_GEN_PromptMuon_4vec);
+  // SetParam("GEN_Muon_4vec",        (void*)&G_GEN_Muon_4vec);
 
-  // SetParam("MuonID_Tight",         (void*)G_MuonID_Tight);
-  // SetParam("MuonID_Medium",        G_MuonID_Medium);
-  // SetParam("MuonID_HWW",           G_MuonID_HWW);
-  // SetParam("MuonID_IPs_HWW",       G_MuonID_IPs_HWW);
-  // SetParam("MuonID_GLBorTRKArb",   G_MuonID_GLBorTRKArb);
-  // SetParam("MuonID_Fiducial",      G_MuonID_Fiducial);
+  // SetParam("MuonID_Tight",         (void*)&G_MuonID_Tight);
+  // SetParam("MuonID_Medium",        (void*)&G_MuonID_Medium);
+  // SetParam("MuonID_HWW",           (void*)&G_MuonID_HWW);
+  // SetParam("MuonID_IPs_HWW",       (void*)&G_MuonID_IPs_HWW);
+  // SetParam("MuonID_GLBorTRKArb",   (void*)&G_MuonID_GLBorTRKArb);
+  // SetParam("MuonID_Fiducial",      (void*)&G_MuonID_Fiducial);
 
-  // SetParam("MuonISO03",            G_MuonISO03);
-  // SetParam("MuonISO03_dBeta",      G_MuonISO03_dBeta);
-  // SetParam("MuonISO03_PFWeighted", G_MuonISO03_PFWeighted);
-  // SetParam("MuonISO03_PUPPI",      G_MuonISO03_PUPPI);
-  // SetParam("MuonISO04",            G_MuonISO04);
-  // SetParam("MuonISO04_dBeta",      G_MuonISO04_dBeta);
-  // SetParam("MuonISO04_PFWeighted", G_MuonISO04_PFWeighted);
-  // SetParam("MuonISO04_PUPPI",      G_MuonISO04_PUPPI);
+  // SetParam("MuonISO03",            (void*)&G_MuonISO03);
+  // SetParam("MuonISO03_dBeta",      (void*)&G_MuonISO03_dBeta);
+  // SetParam("MuonISO03_PFWeighted", (void*)&G_MuonISO03_PFWeighted);
+  // SetParam("MuonISO03_PUPPI",      (void*)&G_MuonISO03_PUPPI);
+  // SetParam("MuonISO04",            (void*)&G_MuonISO04);
+  // SetParam("MuonISO04_dBeta",      (void*)&G_MuonISO04_dBeta);
+  // SetParam("MuonISO04_PFWeighted", (void*)&G_MuonISO04_PFWeighted);
+  // SetParam("MuonISO04_PUPPI",      (void*)&G_MuonISO04_PUPPI);
 
   // SetParam("Muon_Matching",        (void*)&G_Muon_Matching);
 
-  SetParam("RecoMuSize",           (void*)&G_RecoMuSize);
-  // SetParam("NPV",                  G_NPV);
+  // SetParam("RecoMuSize",           (void*)&G_RecoMuSize);
+  // SetParam("NPV",                  (void*)&G_NPV);
 
-  // SetParam("FLAG_Fiducial",        EvtFlag_Fiducial);
-  // SetParam("FLAG_Gen",             EvtFlag_Gen);
-  // SetParam("FLAG_Matching",        EvtFlag_Matching);
+  // SetParam("FLAG_Fiducial",        (void*)&EvtFlag_Fiducial);
+  // SetParam("FLAG_Gen",             (void*)&EvtFlag_Gen);
+  // SetParam("FLAG_Matching",        (void*)&EvtFlag_Matching);
 
-  unsigned int result = GetParam<unsigned int*>("RecoMuSize");
-  cout << result << endl;
+  // UInt_t result = *(GetParam<UInt_t*>("RecoMuSize"));
+  // cout << result << endl;
+
+  // std::vector<int> result = *(GetParam<std::vector<int>*>("Muon_Matching"));
+  // if (G_RecoMuSize > 0) cout << result[0] << endl;
 
 
 

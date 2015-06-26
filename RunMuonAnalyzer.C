@@ -187,7 +187,7 @@ void RunMuonAnalyzer(const char* data) {
   // OUTPUT FILE NAME
   // Specify the name of the file where you want your histograms to be saved
 
-  myProject->SetOutputFile("files/"+signal+".root"); 
+  myProject->SetOutputFile("files/"+signal+".root.test"); 
 
   ///////////////////////////////
   // SELECTOR AND PACKAGES
