@@ -212,10 +212,15 @@ void CoreMuonSelector::InsideLoop() {
   // SetParam("Muon_4vec",            (void*)&G_Muon_4vec);
   // SetParam("GEN_PromptMuon_4vec",  (void*)&G_GEN_PromptMuon_4vec);
   // SetParam("GEN_Muon_4vec",        (void*)&G_GEN_Muon_4vec);
+  // SetParam("GEN_isMuMu",           (void*)&G_GEN_isMuMu);
+  // SetParam("GEN_isMuTau",          (void*)&G_GEN_isMuTau);
+  // SetParam("GEN_isTauMu",          (void*)&G_GEN_isTauMu);
+  // SetParam("GEN_isTauTau",         (void*)&G_GEN_isTauTau);
 
   // SetParam("MuonID_Tight",         (void*)&G_MuonID_Tight);
   // SetParam("MuonID_Medium",        (void*)&G_MuonID_Medium);
   // SetParam("MuonID_HWW",           (void*)&G_MuonID_HWW);
+  // SetParam("MuonID_Tight_GoT",     (void*)&G_MuonID_Tight_GoT);
   // SetParam("MuonID_IPs_HWW",       (void*)&G_MuonID_IPs_HWW);
   // SetParam("MuonID_GLBorTRKArb",   (void*)&G_MuonID_GLBorTRKArb);
   // SetParam("MuonID_Fiducial",      (void*)&G_MuonID_Fiducial);
@@ -229,6 +234,7 @@ void CoreMuonSelector::InsideLoop() {
   // SetParam("MuonISO04_PFWeighted", (void*)&G_MuonISO04_PFWeighted);
   // SetParam("MuonISO04_PUPPI",      (void*)&G_MuonISO04_PUPPI);
 
+  // SetParam("Muon_ChCompatible",    (void*)&G_Muon_ChCompatible);
   // SetParam("Muon_Matching",        (void*)&G_Muon_Matching);
 
   // SetParam("RecoMuSize",           (void*)&G_RecoMuSize);
