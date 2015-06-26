@@ -676,7 +676,7 @@ void CoreMuonSelector::InsideLoop() {
   }
 
   EffsAllMu();
-  //ISORocCurve(); //Warning! Long calculation
+  ISORocCurve(); //Warning! Long calculation
 
   //------------------------------------------------------------------------------
   // Set Parameters for other selectors. This is the main point of this selector
@@ -833,7 +833,7 @@ bool CoreMuonSelector::passISO(UInt_t iMu, TString typeIso, float wp) {
 
   float PFRelIsoBeta = getISO(iMu, typeIso);
      
-  if (PFRelIsoBeta <=  wp)  passIso = true;	  
+  if (PFRelIsoBeta <  wp)  passIso = true;	  
 
   return passIso;
 
