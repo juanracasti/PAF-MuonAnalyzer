@@ -237,17 +237,17 @@ void MuonCoreSelector::InsideLoop() {
   // SetParam("Muon_ChCompatible",    (void*)&G_Muon_ChCompatible);
   // SetParam("Muon_Matching",        (void*)&G_Muon_Matching);
 
-  // SetParam("RecoMuSize",           (void*)&G_RecoMuSize);
+  // SetParam("RecoMuSize",           G_RecoMuSize);
   // SetParam("NPV",                  (void*)&G_NPV);
 
   // SetParam("FLAG_Fiducial",        (void*)&EvtFlag_Fiducial);
   // SetParam("FLAG_Gen",             (void*)&EvtFlag_Gen);
   // SetParam("FLAG_Matching",        (void*)&EvtFlag_Matching);
 
-  // UInt_t result = *(GetParam<UInt_t*>("RecoMuSize"));
+  // UInt_t result = GetParam<UInt_t>("RecoMuSize");
   // cout << result << endl;
 
-  // std::vector<int> result = *(GetParam<std::vector<int>*>("Muon_Matching"));
+  // std::vector<UInt_t> result = *(GetParam<std::vector<UInt_t>*>("Muon_Matching"));
   // if (G_RecoMuSize > 0) cout << result[0] << endl;
 
 
@@ -661,9 +661,9 @@ void MuonCoreSelector::GetMatching() {
   UInt_t GenSize = 0;
   GenSize = G_GEN_PromptMuon_4vec.size();
 
-  for (unsigned int i = 0; i < G_RecoMuSize; ++i) {
+  for (UInt_t i = 0; i < G_RecoMuSize; ++i) {
 
-    int isMatchedTo = 0;
+    UInt_t isMatchedTo = 0;
 
     if (G_MuonID_Fiducial[i] && G_MuonID_GLBorTRKArb[i] && G_GEN_Pass) { 
 

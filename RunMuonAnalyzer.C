@@ -13,7 +13,25 @@
 
 #include "TSelector.h"
 
-void RunMuonAnalyzer(const char* data) {
+void RunMuonAnalyzer(const char* data, const TString environment) {
+  // Function input parameters:
+  // + data :        String to select the Trees to read
+  //                 Possible values:
+  //                     > "DR74X_50ns_MC_DY"
+  //                     > "DR74X_50ns_MC_TTbar"
+  //                     > "DR74X_50ns_MC_QCD"
+  //                     > "PHYS14_PU20bx25_MC_GGHWW"
+  //                     > "PHYS14_PU20bx25_MC_Wjets"
+  //                     > "PHYS14_PU20bx25_MC_DY"
+  //                     > "PHYS14_PU20bx25_MC_TTbar"
+  //                     > "PHYS14_PU30bx50_MC_TTbar"
+  //                     > "SingleMu_720"
+  //                     > "SingleMu_740"
+  // + environment : String to select the desired PAF Execution Environment
+  //                 Possible values:
+  //                     > "Sequential"
+  //                     > "PROOFLite"
+  //                     > "PROOFCluster"
  
   gSystem->Load("libPAF.so");   
 
@@ -25,7 +43,7 @@ void RunMuonAnalyzer(const char* data) {
   // Manual Input Parameters
   float    luminosity       = 20000.0; //In pb-1
   bool     debug            = false;   //For verbose while debugging
-  int      nEventsToProcess = -1;   //Number of events to be processed (-1 = all)
+  int      nEventsToProcess = 1000;   //Number of events to be processed (-1 = all)
   bool     doReport         = false;   //Count events and print final report
 
   // Automatic Input Parameters (don't touch)
@@ -38,23 +56,65 @@ void RunMuonAnalyzer(const char* data) {
   // INITIALISE PAF PROJECT
   //---------------------------------
 
-  // Create Project in Sequential Environment mode
-  //PAFProject* myProject = new PAFProject( new PAFSequentialEnvironment() );
+  // Create Project
+  PAFProject* myProject;
 
-  // Create Project in PROOF Lite mode
-  PAFProject* myProject = new PAFProject( new PAFPROOFLiteEnvironment(6) );
+  // Initialize Project and set PAF Execution Environment
+  if (environment == "Sequential")        myProject = new PAFProject( new PAFSequentialEnvironment() );
+  else if (environment == "PROOFLite")    myProject = new PAFProject( new PAFPROOFLiteEnvironment(6) );
+  else if (environment == "PROOFCluster") myProject = new PAFProject( new PAFPROOFClusterEnvironment(10,99) );
+  else {
+    cout << "[WARNING!] The selected PAF Execution Environment doesn't exist" << endl;
+    cout << "[WARNING!] Switching to Sequential enviroment" << endl;
+    myProject = new PAFProject( new PAFSequentialEnvironment() );
+  }
 
-  // Create Project in PROOF Cluster mode
-  //PAFProject* myProject = new PAFProject( new PAFPROOFClusterEnvironment(10,20) );
 
   // Set default name and subdirectory of Trees
   myProject->SetDefaultTreeName("demo/Tree");
 
-
   ////////////////////////////////////////////////
   // ADD SAMPLES
 
-  if (signal=="PHYS14_PU20bx25_MC_GGHWW") {
+  if (signal=="DR74X_50ns_MC_DY") {
+
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_0.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_1.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_2.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_3.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_4.root");
+   
+    isdata             = false;
+    nEventsInTheSample = 6810943; 
+    xSection           = 6025.2;
+    whichRun           = 2;
+
+ }
+
+  else if (signal=="DR74X_50ns_MC_TTbar") {
+
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_TTbar_Powheg_0.root");
+   
+    isdata             = false;
+    nEventsInTheSample = 1079068; 
+    xSection           = 6025.2;
+    whichRun           = 2;
+
+ }
+
+  else if (signal=="DR74X_50ns_MC_QCD") {
+
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_QCDmuEnriched_0.root");
+    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_QCDmuEnriched_1.root");
+   
+    isdata             = false;
+    nEventsInTheSample = 1848472; 
+    xSection           = 1.;
+    whichRun           = 2;
+
+ }
+
+  else if (signal=="PHYS14_PU20bx25_MC_GGHWW") {
 
     myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_HWW125.root");
     
@@ -129,44 +189,6 @@ void RunMuonAnalyzer(const char* data) {
 
  }
 
-  else if (signal=="DR74X_50ns_MC_TTbar") {
-
-    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_TTbar_Powheg_0.root");
-   
-    isdata             = false;
-    nEventsInTheSample = 1079068; 
-    xSection           = 6025.2;
-    whichRun           = 2;
-
- }
-
-  else if (signal=="DR74X_50ns_MC_DY") {
-
-    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_0.root");
-    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_1.root");
-    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_2.root");
-    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_3.root");
-    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_ZJets_aMCatNLO_4.root");
-   
-    isdata             = false;
-    nEventsInTheSample = 6810943; 
-    xSection           = 6025.2;
-    whichRun           = 2;
-
- }
-
-  else if (signal=="DR74X_50ns_MC_QCD") {
-
-    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_QCDmuEnriched_0.root");
-    myProject->AddDataFile(Path_DR74X + "50ns/PuppiVar/Tree_QCDmuEnriched_1.root");
-   
-    isdata             = false;
-    nEventsInTheSample = 1848472; 
-    xSection           = 1.;
-    whichRun           = 2;
-
- }
-
   else if (signal=="SingleMu_720") {
 
     myProject->AddDataFile(Path_PHYS14 + "PU20bx25/Tree_SingleMu_mu2012D_720.root");
@@ -209,15 +231,21 @@ void RunMuonAnalyzer(const char* data) {
   // OUTPUT FILE NAME
   // Specify the name of the file where you want your histograms to be saved
 
-  myProject->SetOutputFile("files/"+signal+".root"); 
+  myProject->SetOutputFile("files/"+signal+".root.test"); 
 
   ///////////////////////////////
   // SELECTOR AND PACKAGES
 
-  //Add the core selector, this one is essential 
-  myProject->AddSelectorPackage("CoreMuonSelector");
+  //To Run in one step (Please, use this one for now!)
+  myProject->AddSelectorPackage("MuonMasterSelector");
 
-  //Add the additional selectors if needed (and if available!)
+  //To Run by modules (CURRENTLY UNSUPPORTED, DO NOT USE!)
+  //First add the core selector, this one is essential 
+  // myProject->AddSelectorPackage("MuonCoreSelector");
+
+  //Then, add the additional selectors if needed (and if available!)
+  // myProject->AddSelectorPackage("MuonEfficienciesSelector");
+  // myProject->AddSelectorPackage("MuonISORocCurvesSelector");
 
   // RUN THE ANALYSIS
   // ================

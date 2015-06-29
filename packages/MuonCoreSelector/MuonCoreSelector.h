@@ -81,7 +81,7 @@ class MuonCoreSelector: public PAFChainItemSelector{
   std::vector<bool>           G_MuonISO04_PFWeighted; // ""                            "", dR=0.4 and PFweighted corr.
   std::vector<bool>           G_MuonISO04_PUPPI;      // ""                            "", dR=0.4 and PUPPI corr.
 
-  std::vector<int>            G_Muon_Matching;        //To which GEN prompt muon the RECO muons are matched
+  std::vector<UInt_t>         G_Muon_Matching;        //To which GEN prompt muon the RECO muons are matched
                                                       //  * 1: matched to the 1st GEN prompt muon
                                                       //  * 2: matched to the 2nd GEN prompt muon 
                                                       //  * 0: not matched to any GEN prompt muon
