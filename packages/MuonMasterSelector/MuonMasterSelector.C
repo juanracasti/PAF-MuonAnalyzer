@@ -1075,7 +1075,7 @@ void MuonMasterSelector::GetMatching() {
 	dR  = G_Muon_4vec[i].DeltaR(G_GEN_PromptMuon_4vec[j]);
 	//dPt = fabs(G_Muon_4vec[i].Pt() - G_GEN_PromptMuon_4vec[j].Pt());
       
-	if (dR <= 0.01) { // && dPt <= 10
+	if (dR <= 0.05) { // && dPt <= 10
 	  isMatchedTo = j+1;
 	  break;
 	}
@@ -1260,6 +1260,9 @@ void MuonMasterSelector::Counting() {
       
 }
 
+//---------------------------------------------------------------------------------------------------------------------
+// EffsSingleMu: Calculate ID and ISO efficiencies individually for the 2 muons passing Evt_Flag_Matching
+//---------------------------------------------------------------------------------------------------------------------
 void MuonMasterSelector::EffsSingleMu(UInt_t iMu) {
 
   float pt  = Get<float>("T_Muon_Pt", iMu); 
@@ -1407,7 +1410,9 @@ void MuonMasterSelector::EffsSingleMu(UInt_t iMu) {
   
 }
 
-
+//---------------------------------------------------------------------------------------------------------------------
+// EffsAllMu: Calculate ID and ISO efficiencies for all muons (matched in case of DY, TTbar, WW, HWW, etc.)
+//---------------------------------------------------------------------------------------------------------------------
 void MuonMasterSelector::EffsAllMu() {
 
   for (UInt_t i=0; i<G_RecoMuSize; i++) {
@@ -1563,6 +1568,9 @@ void MuonMasterSelector::EffsAllMu() {
   
 }
 
+//---------------------------------------------------------------------------------------------------------------------
+// ISORocCurve: Fill histos to calculate Isolation Roc Curves for all muons
+//---------------------------------------------------------------------------------------------------------------------
 void MuonMasterSelector::ISORocCurve() {
 
   for (UInt_t i=0; i<G_RecoMuSize; i++) {

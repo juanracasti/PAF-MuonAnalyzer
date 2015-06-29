@@ -43,7 +43,7 @@ void RunMuonAnalyzer(const char* data, const TString environment) {
   // Manual Input Parameters
   float    luminosity       = 20000.0; //In pb-1
   bool     debug            = false;   //For verbose while debugging
-  int      nEventsToProcess = 1000;   //Number of events to be processed (-1 = all)
+  int      nEventsToProcess = -1;   //Number of events to be processed (-1 = all)
   bool     doReport         = false;   //Count events and print final report
 
   // Automatic Input Parameters (don't touch)
@@ -231,7 +231,7 @@ void RunMuonAnalyzer(const char* data, const TString environment) {
   // OUTPUT FILE NAME
   // Specify the name of the file where you want your histograms to be saved
 
-  myProject->SetOutputFile("files/"+signal+".root.test"); 
+  myProject->SetOutputFile("files/"+signal+".root"); 
 
   ///////////////////////////////
   // SELECTOR AND PACKAGES
