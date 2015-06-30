@@ -36,14 +36,14 @@ Now source the PAF setup
 
 	source /gpfs/csic_projects/cms/sw/PAF/PAF_setup.sh
 	
-Take a brief look at the file RunMuonAnalyzer.C. It's the one you will use to run the PAF Project with root CINT interpreter. Note that there is a variable called 'signal' that can take several values depending on the Trees to load. So to run the code, you just do:
+Take a brief look at the file RunMuonAnalyzer.C. It's the one you will use to run the PAF Project with root CINT interpreter. Note the description of the two input parameters of the function, signal and environment. Both are strings, the first is used to select the trees to be loaded, and the second one sets the desired PAF execution environment. So, to run it, do:
 
 	root -l
-	.x RunMuonAnalyzer.C("SIGNAL")
+	.x RunMuonAnalyzer.C("SIGNAL", "ENVIRONMENT")
 	
-where SIGNAL is one of the possible values. For example try:
+where SIGNAL and ENVIRONMENT are accepted values. For example try:
 
-	.x RunMuonAnalyzer.C("PHYS14_PU20bx25_MC_DY")
+	.x RunMuonAnalyzer.C("DR74X_50ns_MC_DY","Sequential")
 
 # Edit the code
 Read the PAF documentation first! Despite that, the files are well documented and should be quite self-explanatory. Try to mantain that philosophy :)
