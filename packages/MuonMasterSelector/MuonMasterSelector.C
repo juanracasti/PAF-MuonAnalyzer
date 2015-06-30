@@ -760,14 +760,13 @@ void MuonMasterSelector::CheckMuons() {
 	             (G_Muon_4vec[i].Pt() >= 20  &&  Get<float>("T_Muon_IPwrtAveBSInTrack",i)  < 0.02);
       muon_sel[12] = fabs(Get<float>("T_Muon_BestTrack_dz",i)) < 0.1;
       muon_sel[13] = Get<bool>("T_Muon_IsTightMuon",i);
-      muon_sel[14] = passMediumID(i);
       muon_sel[14] = Exists("T_Muon_IsMediumMuon") ? Get<bool>("T_Muon_IsMediumMuon",i) : passMediumID(i);
       
-      muon_sel[15] = (muon_sel[2] || muon_sel[3]);
-      muon_sel[16] = (((muon_sel[2] && muon_sel[4] && muon_sel[5] && muon_sel[6]) || muon_sel[3]) &&
-		     muon_sel[7] && muon_sel[8] && muon_sel[11] && muon_sel[12]);
-      muon_sel[17] = (((muon_sel[2] && muon_sel[4] && muon_sel[5] && muon_sel[6]) || muon_sel[3]) &&
-		     muon_sel[7] && muon_sel[8] && muon_sel[9] && muon_sel[10]);
+      muon_sel[15] = muon_sel[2] || muon_sel[3];
+      muon_sel[16] = (((muon_sel[2] && muon_sel[4] && muon_sel[5]) || (muon_sel[3] && muon_sel[6])) &&
+		     muon_sel[1] && muon_sel[6] && muon_sel[7] && muon_sel[8] && muon_sel[11] && muon_sel[12]);
+      muon_sel[17] = (((muon_sel[2] && muon_sel[4] && muon_sel[5]) || (muon_sel[3] && muon_sel[6])) &&
+		     muon_sel[1] && muon_sel[6] && muon_sel[7] && muon_sel[8] && muon_sel[9] && muon_sel[10]);
       muon_sel[18] = (i==0) ? true : (Get<int>("T_Muon_Charge",0)*Get<int>("T_Muon_Charge",i)) < 0;
 
       
@@ -1075,7 +1074,7 @@ void MuonMasterSelector::GetMatching() {
 	dR  = G_Muon_4vec[i].DeltaR(G_GEN_PromptMuon_4vec[j]);
 	//dPt = fabs(G_Muon_4vec[i].Pt() - G_GEN_PromptMuon_4vec[j].Pt());
       
-	if (dR <= 0.05) { // && dPt <= 10
+	if (dR <= 0.02) { // && dPt <= 10
 	  isMatchedTo = j+1;
 	  break;
 	}
